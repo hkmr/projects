@@ -6,7 +6,7 @@
 
 @section('content')
 
-
+{{-- 
 	
     <section id="services">
         <div class="container padding-top padding-bottom" >
@@ -103,7 +103,11 @@
 
 			</div>
         </div>
-    </section><hr>
-    <!--/#services-->
+    </section><hr> --}}
+
+
+<div class="uk-padding-large">
+	
+</div>
 
 @endsection

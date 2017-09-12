@@ -123,8 +123,8 @@
         <div class="uk-card uk-card-default uk-card-body uk-width-2-3@m ">
     
             <ul uk-tab>
-                <li><a href="#"><p class="uk-text-lead uk-margin-large-left">Login</p></a></li>
-                <li><a href="#"><p class="uk-text-lead uk-margin-large-left">SignUp</p></a></li>
+                <li><a ><p class="uk-text-lead uk-margin-large-left">Login</p></a></li>
+                <li><a ><p class="uk-text-lead uk-margin-large-left">SignUp</p></a></li>
             </ul>
 
             <ul class="uk-switcher uk-margin">
@@ -138,20 +138,40 @@
                     <a href="/auth/google/" class="uk-icon-button" uk-icon="icon: google-plus" title="Google" uk-tooltip></a>
                   </div>
                   <hr class="uk-divider-icon">
-                  <form>
+                  <form role="form" method="POST" action="{{ route('login') }}">
+                      {{ csrf_field() }}
 
-                      <div class="uk-margin">
+                      <div class="uk-margin {{ $errors->has('email') ? ' has-error' : '' }}">
                           <div class="uk-inline">
                               <span class="uk-form-icon" uk-icon="icon: user"></span>
-                              <input class="uk-input" type="text" placeholder="Email Id">
+                              <input id="email" class="uk-input" type="email" name="email" value="{{ old('email') }}" placeholder="Email Id" required autofocus>
+
+                              @if ($errors->has('email'))
+                                  <span class="help-block">
+                                      <strong>{{ $errors->first('email') }}</strong>
+                                  </span>
+                              @endif
                           </div>
                       </div>
 
-                      <div class="uk-margin">
+                      <div class="uk-margin {{ $errors->has('password') ? ' has-error' : '' }}">
                           <div class="uk-inline">
                               <span class="uk-form-icon" uk-icon="icon: lock"></span>
-                              <input class="uk-input" type="password" placeholder="Password">
+                              <input class="uk-input" id="password" type="password"  name="password" placeholder="Password" required>
+
+                              @if ($errors->has('password'))
+                                  <span class="help-block">
+                                      <strong>{{ $errors->first('password') }}</strong>
+                                  </span>
+                              @endif
                           </div>
+
+                          <div class="uk-margin">
+                            <label>
+                              <input class="uk-checkbox" type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> Remember Me
+                          </label>
+                          </div>
+
                       </div>
 
                       <div class="uk-margin">
@@ -161,6 +181,9 @@
                       </div>
 
                   </form>
+                  <div class="uk-margin">
+                    <a href="{{ route('password.request') }}" class="uk-link-reset">Forgot password?</a>
+                  </div>
                 </li>
 
                 {{-- Singup Form --}}
@@ -173,33 +196,54 @@
                     <a href="/auth/google/" class="uk-icon-button" uk-icon="icon: google-plus" title="Google" uk-tooltip></a>
                   </div>
                   <hr class="uk-divider-icon">
-                  <form>
+                  {{-- signup form --}}
+                  <form role="form" method="POST" action="{{ route('register') }}">
+
+                    {{ csrf_field() }}
 
                       <div class="uk-margin">
-                          <div class="uk-inline">
+                          <div class="uk-inline {{ $errors->has('name') ? ' has-error' : '' }}">
                               <span class="uk-form-icon" uk-icon="icon: user"></span>
-                              <input class="uk-input" type="text" placeholder="User Name">
+                              <input class="uk-input" id="name" type="text"  placeholder="User Name" name="name" value="{{ old('name') }}" required>
+
+                               @if ($errors->has('name'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('name') }}</strong>
+                                    </span>
+                                @endif
                           </div>
                       </div>
 
                       <div class="uk-margin">
-                          <div class="uk-inline">
+                          <div class="uk-inline {{ $errors->has('email') ? ' has-error' : '' }}">
                               <span class="uk-form-icon" uk-icon="icon: mail"></span>
-                              <input class="uk-input" type="text" placeholder="Email Address">
+                              <input class="uk-input" id="email" type="email"  placeholder="Email Id" name="email" value="{{ old('email') }}" required>
+
+                               @if ($errors->has('email'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('email') }}</strong>
+                                    </span>
+                                @endif
+                          </div>
+                      </div>
+
+                      <div class="uk-margin">
+                          <div class="uk-inline {{ $errors->has('password') ? ' has-error' : '' }}">
+                              <span class="uk-form-icon" uk-icon="icon: lock"></span>
+                              <input class="uk-input" id="password" type="password"  placeholder="Create password" name="password" required >
+
+                              @if ($errors->has('password'))
+                                  <span class="help-block">
+                                      <strong>{{ $errors->first('password') }}</strong>
+                                  </span>
+                              @endif
                           </div>
                       </div>
 
                       <div class="uk-margin">
                           <div class="uk-inline">
                               <span class="uk-form-icon" uk-icon="icon: lock"></span>
-                              <input class="uk-input" type="password" placeholder="Create Password">
-                          </div>
-                      </div>
-
-                      <div class="uk-margin">
-                          <div class="uk-inline">
-                              <span class="uk-form-icon" uk-icon="icon: lock"></span>
-                              <input class="uk-input" type="password" placeholder="Confirm Password">
+                              <input class="uk-input" id="password-confirm" type="password" placeholder="Confirm password" name="password_confirmation" required>
                           </div>
                       </div>
 

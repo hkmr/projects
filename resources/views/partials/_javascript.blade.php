@@ -1,51 +1,34 @@
 <script type="text/javascript" src="/js/jquery.js"></script>
 <script type="text/javascript" src="/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="/js/semantic.min.js"></script>
-<script type="text/javascript" src="/js/lightbox.min.js"></script>
+{{-- <script type="text/javascript" src="/js/lightbox.min.js"></script> --}}
 <script type="text/javascript" src="/js/wow.min.js"></script>
-<script type="text/javascript" src="/js/main.js"></script> 
+{{-- <script type="text/javascript" src="/js/main.js"></script>  --}}
 <script type="text/javascript" src="/js/page-loader-min.js"></script> 
 <script type="text/javascript" src="/js/notify.js"></script> 
 <script type="text/javascript" src="/js/readingTime.js"></script> 
 <script type="text/javascript" src="/js/tag-extract.min.js"></script> 
+{{-- navbar plugin --}}
 <script type="text/javascript" src="/js/paradeiser.min.js"></script> 
-<script type="text/javascript" src="/js/flowtype.js"></script> 
+{{-- <script type="text/javascript" src="/js/flowtype.js"></script>  --}}
+
+{{-- infinite scroll plugin --}}
 <script type="text/javascript" src="/js/jquery.jscroll.js"></script> 
 
+{{-- dynamic typing plugin --}}
 <script src="https://cdn.jsdelivr.net/jquery.typeit/4.4.0/typeit.min.js"></script>
 
 <!-- UIkit JS -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.28/js/uikit.min.js"></script>
+<script src="{{ asset('js/app.js') }}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.28/js/uikit-icons.min.js"></script
 
 <!-- javascript plugin for responsive grid layout -->
-    <script src="/js/masonry.pkgd.min.js"></script>
-    <script src="/js/imagesloaded.pkgd.min.js"></script>
+    {{-- <script src="/js/masonry.pkgd.min.js"></script> --}}
+    {{-- <script src="/js/imagesloaded.pkgd.min.js"></script> --}}
 
 
 <script type="text/javascript">
 
-// responsive grid script
-
-var $grid = $('.grid').masonry({
-  itemSelector : '.grid-item',
-  columnWidth  : 30
-});
-
-// var $grid = $('.grid').imagesLoaded( function() {
-//   // init Masonry after all images have loaded
-//   $grid.masonry({
-//     itemSelector : '.grid-item',
-//   columnWidth  : 30
-//   });
-// });
-
-$grid.imagesLoaded().progress( function() {
-  $grid.masonry('layout');
-});
-
-/* ###########################################
- */
 
 // script for login page
 $(".email-signup").hide();
@@ -77,15 +60,6 @@ $('article').readingTime();
 $('.ui.dropdown')
   .dropdown();
 
-/* ###########################################
- */
-
-// text size manager jquery script 
- $('article').flowtype({
-   minimum : 500,
-   maximum : 1200,
-   fontRatio: 40
-});
 
 /*
 ###############################################

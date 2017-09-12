@@ -50,6 +50,7 @@
             <li><a href="{{ '/profile/'.Auth::user()->id }}"><span uk-icon="icon: user"></span> Profile</a></li>
             <li><a href="{{ route('posts.index') }}"><span uk-icon="icon: grid"></span> My Stories</a></li>
             <li><a href="{{ route('categories.index') }}"><span uk-icon="icon: plus-circle"></span> Add Categories</a></li>
+            <li><a href="#"><span uk-icon="icon: cog"></span> Setting</a></li>
             <li><a href="{{route('logout')}}"><span uk-icon="icon: sign-out"></span> Logout</a></li>
             <li id="greybox"><a href="#!"></a></li>
         </ul>
@@ -71,7 +72,7 @@
   <!--/#header -->
 
   <div id="mySidenav" class="sidenav">
-    <button id="myBtn">Send Feedback</button>
+    <a uk-icon="icon: question; ratio:1.7" title="Feedback" id="myBtn" uk-tooltip></a>
   </div>
 
   <!-- The Modal -->

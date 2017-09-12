@@ -187,10 +187,11 @@
         <div class="uk-padding-small">
             <div class="uk-inline uk-light uk-margin">
                 <a href="{{'categories/'. $category->id }}">
-                    <img src="/images/blog/1493449659.jpg" alt="">
+                    <img src="/images/categories/gaming.jpeg" alt="">
                     <div class="uk-overlay-primary uk-position-cover"></div>
                     <div class="uk-position-center">
-                        <span class="uk-text-large uk-text-bold uk-text-uppercase"> {{ $category->name }} </span>
+                        <span class="uk-text-large uk-text-bold uk-text-uppercase"> {{ $category->name }} </span><br>
+                        <small class="uk-text-meta">123 Stories</small>
                     </div>
                 </a>
             </div>

@@ -6,18 +6,18 @@
 <title> tweBox @yield('title') </title>
 <link href="/css/bootstrap.min.css" rel="stylesheet">
 <link href="/css/semantic.min.css" rel="stylesheet">
-<link href="/css/font-awesome.min.css" rel="stylesheet">
-<link href="/css/lightbox.css" rel="stylesheet"> 
-<link href="/css/animate.min.css" rel="stylesheet"> 
-<link href="/css/main.css" rel="stylesheet">
-<link href="/css/responsive.css" rel="stylesheet">
+{{-- <link href="/css/font-awesome.min.css" rel="stylesheet"> --}}
+{{-- <link href="/css/lightbox.css" rel="stylesheet">  --}}
+{{-- <link href="/css/animate.min.css" rel="stylesheet">  --}}
+{{-- <link href="/css/main.css" rel="stylesheet"> --}}
+{{-- <link href="/css/responsive.css" rel="stylesheet"> --}}
 <link href="/css/styles.css" rel="stylesheet">
 <link href="/css/notify.css" rel="stylesheet">
 <link href="/css/paradeiser.css" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css?family=Quicksand|Roboto+Mono|Titillium+Web|Marvel|Economica|Josefin+Sans" rel="stylesheet">
 
 <!-- UIkit CSS -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.28/css/uikit.min.css" />
+  {{-- <link href="{{ asset('css/app.css') }}" rel="stylesheet"> --}}
 
 <!-- facebook meta tags -->
   <meta property="og:url"           content="@yield('og-url') " />

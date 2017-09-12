@@ -6,7 +6,7 @@
 
 @section('content')
 	
-	<section id="company-information" class="padding-top">
+	{{-- <section id="company-information" class="padding-top">
         <div class="container">
             <div class="row">
                 <div class="about-us">
@@ -44,7 +44,181 @@
                 </div>
             </div>
         </div>
-    </section>
-    <!-- Category -->
+    </section> --}}
+
+
+    <div class="uk-padding-large">
+
+        <div class="uk-margin">
+            <h2 class="uk-heading-primary">Categories List</h2>
+            <hr class="uk-divider-small">
+        </div>
+        <div class="uk-child-width-expand@s uk-text-center" uk-grid>
+
+            <div class="uk-padding-small">
+                <div class="uk-inline uk-light uk-margin uk-inline-clip uk-transition-toggle">
+                    <a href="#">
+                            <img class="uk-transition-scale-up uk-transition-opaque" src="/images/categories/gaming.jpeg" alt="">
+                        <div class="uk-overlay-primary uk-position-cover"></div>
+                        <div class="uk-position-center">
+                            <span class="uk-text-large uk-text-bold uk-text-uppercase"> Category Name </span><br>
+                            <small class="uk-text-meta">123 Stories</small>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="uk-padding-small">
+                <div class="uk-inline uk-light uk-margin">
+                    <a href="#">
+                        <img src="/images/categories/gaming.jpeg" alt="">
+                        <div class="uk-overlay-primary uk-position-cover"></div>
+                        <div class="uk-position-center">
+                            <span class="uk-text-large uk-text-bold uk-text-uppercase"> Category Name </span><br>
+                            <small class="uk-text-meta">123 Stories</small>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="uk-padding-small">
+                <div class="uk-inline uk-light uk-margin">
+                    <a href="#">
+                        <img src="/images/categories/gaming.jpeg" alt="">
+                        <div class="uk-overlay-primary uk-position-cover"></div>
+                        <div class="uk-position-center">
+                            <span class="uk-text-large uk-text-bold uk-text-uppercase"> Category Name </span><br>
+                            <small class="uk-text-meta">123 Stories</small>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="uk-padding-small">
+                <div class="uk-inline uk-light uk-margin">
+                    <a href="#">
+                        <img src="/images/categories/gaming.jpeg" alt="">
+                        <div class="uk-overlay-primary uk-position-cover"></div>
+                        <div class="uk-position-center">
+                            <span class="uk-text-large uk-text-bold uk-text-uppercase"> Category Name </span><br>
+                            <small class="uk-text-meta">123 Stories</small>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="uk-child-width-expand@s uk-text-center" uk-grid>
+           
+           <div class="uk-padding-small">
+                <div class="uk-inline uk-light uk-margin">
+                    <a href="#">
+                        <img src="/images/categories/gaming.jpeg" alt="">
+                        <div class="uk-overlay-primary uk-position-cover"></div>
+                        <div class="uk-position-center">
+                            <span class="uk-text-large uk-text-bold uk-text-uppercase"> Category Name </span><br>
+                            <small class="uk-text-meta">123 Stories</small>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="uk-padding-small">
+                <div class="uk-inline uk-light uk-margin">
+                    <a href="#">
+                        <img src="/images/categories/gaming.jpeg" alt="">
+                        <div class="uk-overlay-primary uk-position-cover"></div>
+                        <div class="uk-position-center">
+                            <span class="uk-text-large uk-text-bold uk-text-uppercase"> Category Name </span><br>
+                            <small class="uk-text-meta">123 Stories</small>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="uk-padding-small">
+                <div class="uk-inline uk-light uk-margin">
+                    <a href="#">
+                        <img src="/images/categories/gaming.jpeg" alt="">
+                        <div class="uk-overlay-primary uk-position-cover"></div>
+                        <div class="uk-position-center">
+                            <span class="uk-text-large uk-text-bold uk-text-uppercase"> Category Name </span><br>
+                            <small class="uk-text-meta">123 Stories</small>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="uk-padding-small">
+                <div class="uk-inline uk-light uk-margin">
+                    <a href="#">
+                        <img src="/images/categories/gaming.jpeg" alt="">
+                        <div class="uk-overlay-primary uk-position-cover"></div>
+                        <div class="uk-position-center">
+                            <span class="uk-text-large uk-text-bold uk-text-uppercase"> Category Name </span><br>
+                            <small class="uk-text-meta">123 Stories</small>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="uk-child-width-expand@s uk-text-center" uk-grid>
+           
+            <div class="uk-padding-small">
+                <div class="uk-inline uk-light uk-margin">
+                    <a href="#">
+                        <img src="/images/categories/gaming.jpeg" alt="">
+                        <div class="uk-overlay-primary uk-position-cover"></div>
+                        <div class="uk-position-center">
+                            <span class="uk-text-large uk-text-bold uk-text-uppercase"> Category Name </span><br>
+                            <small class="uk-text-meta">123 Stories</small>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="uk-padding-small">
+                <div class="uk-inline uk-light uk-margin">
+                    <a href="#">
+                        <img src="/images/categories/gaming.jpeg" alt="">
+                        <div class="uk-overlay-primary uk-position-cover"></div>
+                        <div class="uk-position-center">
+                            <span class="uk-text-large uk-text-bold uk-text-uppercase"> Category Name </span><br>
+                            <small class="uk-text-meta">123 Stories</small>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="uk-padding-small">
+                <div class="uk-inline uk-light uk-margin">
+                    <a href="#">
+                        <img src="/images/categories/gaming.jpeg" alt="">
+                        <div class="uk-overlay-primary uk-position-cover"></div>
+                        <div class="uk-position-center">
+                            <span class="uk-text-large uk-text-bold uk-text-uppercase"> Category Name </span><br>
+                            <small class="uk-text-meta">123 Stories</small>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="uk-padding-small">
+                <div class="uk-inline uk-light uk-margin">
+                    <a href="#">
+                        <img src="/images/categories/gaming.jpeg" alt="">
+                        <div class="uk-overlay-primary uk-position-cover"></div>
+                        <div class="uk-position-center">
+                            <span class="uk-text-large uk-text-bold uk-text-uppercase"> Category Name </span><br>
+                            <small class="uk-text-meta">123 Stories</small>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
 
 @endsection
