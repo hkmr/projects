@@ -1,8 +1,8 @@
 <header id="header" >      
 <nav class="paradeiser">
-    <a href="#">
-        <p class="logo">TweBox </p>
-    </a>
+    {{-- <a href="#">
+        <h2>TweBox </h2>
+    </a> --}}
     <a href="/" class="link">
         <div class="paradeiser_icon_canvas">
             <span uk-icon="icon: home; ratio:1.3"></span>
@@ -38,7 +38,7 @@
     </div>
     @if ( Auth::check() )
     <!-- dropdown list -->
-    <div class="paradeiser_dropdown">
+    <div class="paradeiser_dropdown" >
         <a href="#paradeiser-more" id="paradeiser-dropdown">
             <div class="paradeiser_icon_canvas">
                 <!-- User icon by Icons8 -->
@@ -47,9 +47,11 @@
             <span>{{ Auth::user()->name }} </span>
         </a>
         <ul class="paradeiser_children" id="paradeiser-more">
-            <li><a href="{{ '/profile/'.Auth::user()->id }}"><span uk-icon="icon: user"></span> Profile</a></li>
+            <li><a href="{{ route('profile.show', ['id' => Auth::user()->id]) }}"><span uk-icon="icon: user"></span> Profile</a></li>
             <li><a href="{{ route('posts.index') }}"><span uk-icon="icon: grid"></span> My Stories</a></li>
-            <li><a href="{{ route('categories.index') }}"><span uk-icon="icon: plus-circle"></span> Add Categories</a></li>
+            <li><a href="{{ route('categories.index') }}"><span uk-icon="icon: heart"></span> Likes</a></li>
+            <li><a href="{{ route('categories.index') }}"><span uk-icon="icon: list"></span> Interests</a></li>
+            <li><a href="{{ route('categories.index') }}"><span uk-icon="icon: bookmark"></span> Bookmarks</a></li>
             <li><a href="#"><span uk-icon="icon: cog"></span> Setting</a></li>
             <li><a href="{{route('logout')}}"><span uk-icon="icon: sign-out"></span> Logout</a></li>
             <li id="greybox"><a href="#!"></a></li>

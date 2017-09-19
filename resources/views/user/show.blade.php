@@ -150,7 +150,9 @@
         {{-- backgroud image --}}
         <div class="uk-background-cover uk-background-muted uk-height-medium uk-panel uk-flex uk-flex-center uk-flex-middle" style="background-image: url(/images/blog/1493449659.jpg);">
             {{-- user profile image --}}
-                <img class="uk-position-bottom uk-border-circle uk-padding-small" style="z-index: 100;" width="150" height="150" src="../images/user-profile/1494097628.jpg">
+                <div uk-lightbox>
+                    <a href="{{ asset('/images/user-profile/1494097628.jpg') }}"><img  class="uk-position-bottom uk-border-circle uk-padding-small" style="z-index: 100;" width="150" height="150" src="../images/user-profile/1494097628.jpg"></a>
+                </div>
                 <div class="uk-overlay-default">
                 <p class="uk-heading-primary">Harsh Kumar</p>
                 </div>
@@ -164,7 +166,7 @@
                 </p>
         </div>
         <div class="uk-flex uk-flex-right uk-padding-small">
-            <a class="uk-button uk-button-default uk-margin-small-right" href="#"><span uk-icon="icon: pencil"></span> Edit Profile</a>
+            <a class="uk-button uk-button-default uk-margin-small-right" href="/profile/13/edit"><span uk-icon="icon: pencil"></span> Edit Profile</a>
             <a class="uk-button uk-button-default" href="#"><span uk-icon="icon: cog"></span> Setting</a>
         </div>
 

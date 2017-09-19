@@ -81,7 +81,8 @@ body {
   }
 }
 .paradeiser a.active, .paradeiser a:hover, .paradeiser .paradeiser_dropdown.active, .paradeiser .paradeiser_dropdown:hover {
-  background: #f2f2f2;
+  /*background: #f2f2f2;*/
+  text-decoration: none;
 }
 .paradeiser .paradeiser_icon_canvas {
   display: block;

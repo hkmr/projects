@@ -48,9 +48,11 @@
                         proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
                         </p>
 
-                        <div class="uk-cover-container">
-                            <canvas width="400" height="200"></canvas>
-                            <img uk-cover src="/images/blog/1493449659.jpg" alt="">
+                        <div class="uk-cover-container" uk-lightbox>
+                            <a href="/images/blog/1493449659.jpg" data-caption="Caption">
+                              <canvas width="400" height="200"></canvas>
+                              <img uk-cover src="/images/blog/1493449659.jpg" alt="">
+                            </a>
                         </div>
 
                         <p class="uk-text-lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod

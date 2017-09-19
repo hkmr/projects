@@ -6,6 +6,7 @@
     <div uk-grid>
         <div class="uk-width-4-5@m">
             <ul>
+                <li class="uk-display-inline uk-text-large uk-padding-small">Twebox</li>
                 <li class="uk-display-inline uk-padding-small"><a href="/" class="uk-link-muted">Home</a></li>
                 <li class="uk-display-inline uk-padding-small"><a href="/blog" class="uk-link-muted">Stories</a></li>
                 <li class="uk-display-inline uk-padding-small"><a href="/about" class="uk-link-muted">About</a></li>

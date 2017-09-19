@@ -17,6 +17,7 @@
 
 <!-- UIkit CSS -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.28/css/uikit.min.css" />
+  <link href="https://fonts.googleapis.com/css?family=Bungee+Shade" rel="stylesheet">
   {{-- <link href="{{ asset('css/app.css') }}" rel="stylesheet"> --}}
 
 <!-- facebook meta tags -->

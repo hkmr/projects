@@ -4,6 +4,18 @@
 
 @section('description' , '| twebox terms and conditions for users')
 
+@section('stylesheets')
+
+<link href="https://fonts.googleapis.com/css?family=Maven+Pro" rel="stylesheet">
+
+<style type="text/css">
+	.terms p{
+		font-family: 'Maven Pro', sans-serif;
+	}
+</style>
+
+@endsection
+
 @section('content')
 
 {{-- 
@@ -106,8 +118,38 @@
     </section><hr> --}}
 
 
-<div class="uk-padding-large">
+<div class="uk-padding-large uk-margin" uk-grid>
+
+	<div class="uk-width-1-4@m"></div>
+	<div class="terms uk-width-1-2@m">
+		
+		<h1 class="uk-heading-primary uk-text-center">TWEBOX TERMS OF USE</h1>
 	
+		<p class="uk-text-lead">
+			Welcome! We’re happy to have you here, and hope you find tweBox delightful to use.
+
+			These Terms of Use (“Terms”) apply to your use of tweBox's websites, products and services. Please read these Terms carefully; by using twebox, you agree to be bound by them.
+		</p>
+		<hr>
+		<h1 class="uk-text-large"><span uk-icon="icon: hashtag; ratio:1.7"></span> CONTENT</h1>
+		
+		<span class="uk-divider-small"></span>
+		<p class="uk-text-lead">
+			What you see on tweBox may be protected by one or more laws regarding intellectual property. You’ll find a few different types of material on our service, so let’s break it down.
+		</p>
+
+		<p class="uk-text-bold uk-text-lead">tweBox’s Service, Products, and Brand</p>
+
+		<p class="uk-text-lead">
+			Our service and products are protected by copyright, trademark, patent and other laws. tweBox gives you a personal, worldwide, non-assignable license to use the software we provide you for your own personal, non-commercial use. This license lets you use tweBox solely as permitted by these Terms.
+		</p>
+
+		<p class="uk-text-lead">
+			Unauthorized use of any of tweBox’s trademarks, logos, domain names or other distinctive brand features is prohibited
+		</p>
+
+	</div>
+
 </div>
 
 @endsection

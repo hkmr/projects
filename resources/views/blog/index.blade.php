@@ -124,7 +124,17 @@
             <div class="uk-grid-small uk-child-width-1-4" uk-grid>
               <div class="uk-child-width-auto"><a href="" uk-icon="icon: heart" title="Like" uk-tooltip></a><span class="uk-text-meta"> 150</span></div>
               <div class="uk-child-width-auto"><a href="" uk-icon="icon: comment" title="Comment" uk-tooltip></a><span class="uk-text-meta"> 78</span></div>
-              <div class="uk-child-width-auto"><a href="" uk-icon="icon: social" title="Share" uk-tooltip></a></div>
+              <div class="uk-child-width-auto">
+                <a uk-icon="icon: social" title="Share" uk-tooltip></a>
+                <div uk-dropdown="mode: click">
+                    <ul class="uk-iconnav uk-padding-remove">
+                        <li><a href="#" uk-icon="icon: facebook" title="Facebook" uk-tooltip></a></li>
+                        <li><a href="#" uk-icon="icon: twitter" title="Twiiter" uk-tooltip></a></li>
+                        <li><a href="#" uk-icon="icon: google-plus" title="Google Plus" uk-tooltip></a></li>
+                        <li><a href="#" uk-icon="icon: instagram" title="Instagram" uk-tooltip></a></li>
+                    </ul>
+                </div>
+               </div>
               <div class="uk-child-width-auto"><a href="" uk-icon="icon: bookmark" title="Bookmark" uk-tooltip></a></div>
             </div>
           </div>

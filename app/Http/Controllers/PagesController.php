@@ -8,6 +8,7 @@ use Mail;
 use App\Category;
 use App\User;
 use Session;
+use Illuminate\Support\Facades\DB;
 
 class PagesController extends Controller {
 
@@ -18,8 +19,13 @@ class PagesController extends Controller {
 		$user = User::all();
 		$topcategories = Category::orderBy('created_at','desc')->take(15)->get();
 
+		// recommended System
+
+		// $allPost = Post::all()->first();
+		$recomends = Post::all()->random(5);
+
 		return view('pages.welcome')->withPosts($posts)->withCategories($categories)->withPopulars($populars)
-		->withUser($user)->withTopcategories($topcategories);
+		->withUser($user)->withTopcategories($topcategories)->withRecomends($recomends);
 	}
 
 	public function getAbout(){
@@ -69,6 +75,12 @@ class PagesController extends Controller {
 			Session::flash('success', 'Your email has been successfully send!');
 
 			return redirect('/');
+	}
+
+
+	public function setting() {
+
+		return view('pages.setting');
 	}
 
 }

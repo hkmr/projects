@@ -29,6 +29,8 @@ Route::get('about','PagesController@getAbout');
 
 Route::get('terms','PagesController@getTerms');
 
+Route::get('setting','PagesController@setting');
+
 Route::resource('profile','ProfileController');
 
 Route::resource('posts','PostController');

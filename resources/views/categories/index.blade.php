@@ -57,53 +57,65 @@
 
             <div class="uk-padding-small">
                 <div class="uk-inline uk-light uk-margin uk-inline-clip uk-transition-toggle">
-                    <a href="#">
-                            <img class="uk-transition-scale-up uk-transition-opaque" src="/images/categories/gaming.jpeg" alt="">
-                        <div class="uk-overlay-primary uk-position-cover"></div>
-                        <div class="uk-position-center">
-                            <span class="uk-text-large uk-text-bold uk-text-uppercase"> Category Name </span><br>
-                            <small class="uk-text-meta">123 Stories</small>
-                        </div>
-                    </a>
+
+                    <img class="uk-transition-scale-up uk-transition-opaque" src="/images/categories/gaming.jpeg" alt="">
+                    <div class="uk-overlay-primary uk-position-cover"></div>
+                    <div class="uk-position-center">
+                        <a class="uk-link-reset" href="#">
+                            <span class="uk-text-large uk-text-bold uk-text-uppercase"> Category Name </span>
+                        </a><br>
+                        <small class="uk-text-meta">123 Stories</small>
+                        <p><button class="uk-button uk-button-default uk-button-small">Follow</button></p>
+                    </div>
+
                 </div>
             </div>
             
             <div class="uk-padding-small">
                 <div class="uk-inline uk-light uk-margin">
-                    <a href="#">
-                        <img src="/images/categories/gaming.jpeg" alt="">
-                        <div class="uk-overlay-primary uk-position-cover"></div>
-                        <div class="uk-position-center">
-                            <span class="uk-text-large uk-text-bold uk-text-uppercase"> Category Name </span><br>
-                            <small class="uk-text-meta">123 Stories</small>
-                        </div>
-                    </a>
+
+                    <img src="/images/categories/gaming.jpeg" alt="">
+                    <div class="uk-overlay-primary uk-position-cover"></div>
+                    <div class="uk-position-center">
+                        <a href="#" class="uk-link-reset">
+                            <span class="uk-text-large uk-text-bold uk-text-uppercase"> Category Name </span>
+                        </a><br>
+                        <small class="uk-text-meta">123 Stories</small>
+                        <p><button class="uk-button uk-button-default uk-button-small"><span uk-icon="icon: check" style="color: green"></span> Following</button></p>
+                    </div>
+
                 </div>
             </div>
             
             <div class="uk-padding-small">
                 <div class="uk-inline uk-light uk-margin">
-                    <a href="#">
-                        <img src="/images/categories/gaming.jpeg" alt="">
-                        <div class="uk-overlay-primary uk-position-cover"></div>
-                        <div class="uk-position-center">
-                            <span class="uk-text-large uk-text-bold uk-text-uppercase"> Category Name </span><br>
-                            <small class="uk-text-meta">123 Stories</small>
-                        </div>
-                    </a>
+
+                    <img src="/images/categories/gaming.jpeg" alt="">
+                    <div class="uk-overlay-primary uk-position-cover"></div>
+                    <div class="uk-position-center">
+                        <a href="#" class="uk-link-reset">
+                            <span class="uk-text-large uk-text-bold uk-text-uppercase"> Category Name </span>
+                        </a><br>
+                        <small class="uk-text-meta">123 Stories</small>
+                        <p><button class="uk-button uk-button-default uk-button-small"><span uk-icon="icon: check" style="color: green"></span> Following</button></p>
+                    </div>
+
                 </div>
             </div>
 
             <div class="uk-padding-small">
                 <div class="uk-inline uk-light uk-margin">
-                    <a href="#">
-                        <img src="/images/categories/gaming.jpeg" alt="">
-                        <div class="uk-overlay-primary uk-position-cover"></div>
-                        <div class="uk-position-center">
-                            <span class="uk-text-large uk-text-bold uk-text-uppercase"> Category Name </span><br>
-                            <small class="uk-text-meta">123 Stories</small>
-                        </div>
-                    </a>
+
+                    <img src="/images/categories/gaming.jpeg" alt="">
+                    <div class="uk-overlay-primary uk-position-cover"></div>
+                    <div class="uk-position-center">
+                        <a href="#" class="uk-link-reset">
+                            <span class="uk-text-large uk-text-bold uk-text-uppercase"> Category Name </span>
+                        </a><br>
+                        <small class="uk-text-meta">123 Stories</small>
+                        <p><button class="uk-button uk-button-default uk-button-small"><span uk-icon="icon: check" style="color: green"></span> Following</button></p>
+                    </div>
+
                 </div>
             </div>
         </div>
@@ -112,53 +124,65 @@
            
            <div class="uk-padding-small">
                 <div class="uk-inline uk-light uk-margin">
-                    <a href="#">
-                        <img src="/images/categories/gaming.jpeg" alt="">
-                        <div class="uk-overlay-primary uk-position-cover"></div>
-                        <div class="uk-position-center">
-                            <span class="uk-text-large uk-text-bold uk-text-uppercase"> Category Name </span><br>
-                            <small class="uk-text-meta">123 Stories</small>
-                        </div>
-                    </a>
+
+                    <img src="/images/categories/gaming.jpeg" alt="">
+                    <div class="uk-overlay-primary uk-position-cover"></div>
+                    <div class="uk-position-center">
+                        <a href="#" class="uk-link-reset">
+                            <span class="uk-text-large uk-text-bold uk-text-uppercase"> Category Name </span>
+                        </a><br>
+                        <small class="uk-text-meta">123 Stories</small>
+                        <p><button class="uk-button uk-button-default uk-button-small"><span uk-icon="icon: check" style="color: green"></span> Following</button></p>
+                    </div>
+
                 </div>
             </div>
 
             <div class="uk-padding-small">
                 <div class="uk-inline uk-light uk-margin">
-                    <a href="#">
-                        <img src="/images/categories/gaming.jpeg" alt="">
-                        <div class="uk-overlay-primary uk-position-cover"></div>
-                        <div class="uk-position-center">
-                            <span class="uk-text-large uk-text-bold uk-text-uppercase"> Category Name </span><br>
-                            <small class="uk-text-meta">123 Stories</small>
-                        </div>
-                    </a>
+
+                    <img src="/images/categories/gaming.jpeg" alt="">
+                    <div class="uk-overlay-primary uk-position-cover"></div>
+                    <div class="uk-position-center">
+                        <a href="#" class="uk-link-reset">
+                            <span class="uk-text-large uk-text-bold uk-text-uppercase"> Category Name </span>
+                        </a><br>
+                        <small class="uk-text-meta">123 Stories</small>
+                        <p><button class="uk-button uk-button-default uk-button-small"><span uk-icon="icon: check" style="color: green"></span> Following</button></p>
+                    </div>
+
                 </div>
             </div>
 
             <div class="uk-padding-small">
                 <div class="uk-inline uk-light uk-margin">
-                    <a href="#">
-                        <img src="/images/categories/gaming.jpeg" alt="">
-                        <div class="uk-overlay-primary uk-position-cover"></div>
-                        <div class="uk-position-center">
-                            <span class="uk-text-large uk-text-bold uk-text-uppercase"> Category Name </span><br>
-                            <small class="uk-text-meta">123 Stories</small>
-                        </div>
-                    </a>
+
+                    <img src="/images/categories/gaming.jpeg" alt="">
+                    <div class="uk-overlay-primary uk-position-cover"></div>
+                    <div class="uk-position-center">
+                        <a href="#" class="uk-link-reset">
+                            <span class="uk-text-large uk-text-bold uk-text-uppercase"> Category Name </span>
+                        </a><br>
+                        <small class="uk-text-meta">123 Stories</small>
+                        <p><button class="uk-button uk-button-default uk-button-small"><span uk-icon="icon: check" style="color: green"></span> Following</button></p>
+                    </div>
+
                 </div>
             </div>
 
             <div class="uk-padding-small">
-                <div class="uk-inline uk-light uk-margin">
-                    <a href="#">
-                        <img src="/images/categories/gaming.jpeg" alt="">
-                        <div class="uk-overlay-primary uk-position-cover"></div>
-                        <div class="uk-position-center">
-                            <span class="uk-text-large uk-text-bold uk-text-uppercase"> Category Name </span><br>
-                            <small class="uk-text-meta">123 Stories</small>
-                        </div>
-                    </a>
+               <div class="uk-inline uk-light uk-margin">
+
+                    <img src="/images/categories/gaming.jpeg" alt="">
+                    <div class="uk-overlay-primary uk-position-cover"></div>
+                    <div class="uk-position-center">
+                        <a href="#" class="uk-link-reset">
+                            <span class="uk-text-large uk-text-bold uk-text-uppercase"> Category Name </span>
+                        </a><br>
+                        <small class="uk-text-meta">123 Stories</small>
+                        <p><button class="uk-button uk-button-default uk-button-small"><span uk-icon="icon: check" style="color: green"></span> Following</button></p>
+                    </div>
+
                 </div>
             </div>
         </div>
@@ -167,53 +191,65 @@
            
             <div class="uk-padding-small">
                 <div class="uk-inline uk-light uk-margin">
-                    <a href="#">
-                        <img src="/images/categories/gaming.jpeg" alt="">
-                        <div class="uk-overlay-primary uk-position-cover"></div>
-                        <div class="uk-position-center">
-                            <span class="uk-text-large uk-text-bold uk-text-uppercase"> Category Name </span><br>
-                            <small class="uk-text-meta">123 Stories</small>
-                        </div>
-                    </a>
+
+                    <img src="/images/categories/gaming.jpeg" alt="">
+                    <div class="uk-overlay-primary uk-position-cover"></div>
+                    <div class="uk-position-center">
+                        <a href="#" class="uk-link-reset">
+                            <span class="uk-text-large uk-text-bold uk-text-uppercase"> Category Name </span>
+                        </a><br>
+                        <small class="uk-text-meta">123 Stories</small>
+                        <p><button class="uk-button uk-button-default uk-button-small"><span uk-icon="icon: check" style="color: green"></span> Following</button></p>
+                    </div>
+
                 </div>
             </div>
 
             <div class="uk-padding-small">
                 <div class="uk-inline uk-light uk-margin">
-                    <a href="#">
-                        <img src="/images/categories/gaming.jpeg" alt="">
-                        <div class="uk-overlay-primary uk-position-cover"></div>
-                        <div class="uk-position-center">
-                            <span class="uk-text-large uk-text-bold uk-text-uppercase"> Category Name </span><br>
-                            <small class="uk-text-meta">123 Stories</small>
-                        </div>
-                    </a>
+
+                    <img src="/images/categories/gaming.jpeg" alt="">
+                    <div class="uk-overlay-primary uk-position-cover"></div>
+                    <div class="uk-position-center">
+                        <a href="#" class="uk-link-reset">
+                            <span class="uk-text-large uk-text-bold uk-text-uppercase"> Category Name </span>
+                        </a><br>
+                        <small class="uk-text-meta">123 Stories</small>
+                        <p><button class="uk-button uk-button-default uk-button-small"><span uk-icon="icon: check" style="color: green"></span> Following</button></p>
+                    </div>
+
                 </div>
             </div>
 
             <div class="uk-padding-small">
                 <div class="uk-inline uk-light uk-margin">
-                    <a href="#">
-                        <img src="/images/categories/gaming.jpeg" alt="">
-                        <div class="uk-overlay-primary uk-position-cover"></div>
-                        <div class="uk-position-center">
-                            <span class="uk-text-large uk-text-bold uk-text-uppercase"> Category Name </span><br>
-                            <small class="uk-text-meta">123 Stories</small>
-                        </div>
-                    </a>
+
+                    <img src="/images/categories/gaming.jpeg" alt="">
+                    <div class="uk-overlay-primary uk-position-cover"></div>
+                    <div class="uk-position-center">
+                        <a href="#" class="uk-link-reset">
+                            <span class="uk-text-large uk-text-bold uk-text-uppercase"> Category Name </span>
+                        </a><br>
+                        <small class="uk-text-meta">123 Stories</small>
+                        <p><button class="uk-button uk-button-default uk-button-small"><span uk-icon="icon: check" style="color: green"></span> Following</button></p>
+                    </div>
+
                 </div>
             </div>
 
             <div class="uk-padding-small">
                 <div class="uk-inline uk-light uk-margin">
-                    <a href="#">
-                        <img src="/images/categories/gaming.jpeg" alt="">
-                        <div class="uk-overlay-primary uk-position-cover"></div>
-                        <div class="uk-position-center">
-                            <span class="uk-text-large uk-text-bold uk-text-uppercase"> Category Name </span><br>
-                            <small class="uk-text-meta">123 Stories</small>
-                        </div>
-                    </a>
+
+                    <img src="/images/categories/gaming.jpeg" alt="">
+                    <div class="uk-overlay-primary uk-position-cover"></div>
+                    <div class="uk-position-center">
+                        <a href="#" class="uk-link-reset">
+                            <span class="uk-text-large uk-text-bold uk-text-uppercase"> Category Name </span>
+                        </a><br>
+                        <small class="uk-text-meta">123 Stories</small>
+                        <p><button class="uk-button uk-button-default uk-button-small"><span uk-icon="icon: check" style="color: green"></span> Following</button></p>
+                    </div>
+
                 </div>
             </div>
 

@@ -20,7 +20,7 @@ class CreateUsersTable extends Migration
             $table->string('password')->nullable();
             $table->string('provider')->default('normal');
             $table->string('provider_id');
-            $table->string('avatar')->default('default-profile.jpg');
+            $table->string('avatar');
             $table->text('info');
             $table->rememberToken();
             $table->timestamps();
