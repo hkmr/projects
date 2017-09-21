@@ -12,12 +12,10 @@ class BlogController extends Controller
 
 	public function getIndex(){
 
-        $posts=Post::orderBy('views','desc')->paginate(10);
-		$recents=Post::orderBy('created_at','desc')->paginate(5);
-        $categories = Category::orderBy('created_at','desc')->take(4)->get();
+        $posts=Post::orderBy('views','desc')->get();
         $user = new User;
 
-		return view('blog.index')->withPosts($posts)->withRecents($recents)->withCategories($categories)->withUser($user);
+		return view('blog.index')->withPosts($posts)->withUser($user);
 	}
 
     public function getSingle($slug){

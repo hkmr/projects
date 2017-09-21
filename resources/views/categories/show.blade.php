@@ -6,7 +6,7 @@
 
 @section('content')
 
-	<section id="blog" class="padding-top">
+{{-- 	<section id="blog" class="padding-top">
         <div class="container">
             <div class="row">
                 <div class="col-md-9 col-sm-7">
@@ -64,48 +64,13 @@
                         </ul>
                     </div>
                  </div>
-                <div class="col-md-3 col-sm-5">
-                    <div class="sidebar blog-sidebar">
-                        <div class="sidebar-item  recent">
-                            <h3>Popular Posts</h3>
-                            @foreach( $populars as $post )
-                            <div class="media">
-                                <div class="pull-left">
-                                    <a href="{{ route('blog.single', $post->slug) }}">
-                                    @if($post->image == null)
-									<img src=" {{ asset('images/blog/blog-default.jpg') }} " alt="default-image" height="52" width="52" />
-									@else
-										<img src=" {{ asset('images/blog/'. $post->image) }} " alt="{{$post->name}}" height="52" width="52" />
-									@endif
-									</a>
-                                </div>
-                                <div class="media-body">
-                                    <h4><a href="{{ route('blog.single', $post->slug) }}">{{ $post->title }}</a></h4>
-                                    <p>posted on  {{ $post->created_at->diffForHumans() }}</p>
-                                </div>
-                            </div>
-                            
-                          @endforeach
-                        </div>
-                        <div class="sidebar-item categories">
-                            <h3>Categories</h3>
-                            <ul class="nav navbar-stacked">
-                            @foreach($categories as $category)
-                                <li><a href="{{'/categories/'. $category->id }}">{{$category->name}}<span class="pull-right"></span></a></li>
-                            @endforeach   
-                            </ul>
-                        </div>
-                        <div class="sidebar-item tag-cloud">
-                            <h3>Advertisment</h3>
-
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </section>
-    <!--/#blog-->
-	
+	 --}}
 
+     <div class="uk-padding-large">
+         <h1 class="uk-heading-primary">All stories related to same category...</h1>
+     </div>
 
 @endsection

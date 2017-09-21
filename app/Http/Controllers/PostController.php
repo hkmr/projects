@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use App\Post;
 use Session;
 use App\Category;
-use App\Tag;
 use Purifier;
 use Image;
 use Storage;
@@ -39,6 +38,31 @@ class PostController extends Controller
 
 
     /**
+     * Favorite a particular post
+     *
+     * @param  Post $post
+     * @return Response
+     */
+    public function favoritePost(Post $post)
+    {
+        Auth::user()->favorites()->attach($post->id);
+        $post->increment('likes');
+        return back();
+    }
+
+    /**
+     * Unfavorite a particular post
+     *
+     * @param  Post $post
+     * @return Response
+     */
+    public function unFavoritePost(Post $post)
+    {
+        Auth::user()->favorites()->detach($post->id);
+        $post->decrement('likes');
+        return back();
+    }
+    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
@@ -46,9 +70,8 @@ class PostController extends Controller
     public function create()
     {
         $categories = Category::all();
-        $tags = Tag::all();
 
-        return view('posts.create')->withCategories($categories)->withTags($tags);
+        return view('posts.create')->withCategories($categories);
     }
 
     /**
@@ -150,16 +173,9 @@ class PostController extends Controller
                 $cats[$category->id] = $category->name;
             }
 
-            $tags =Tag::all();
-            $tags2 = array();
-
-            foreach ($tags as $tag) {
-                $tags2[$tag->id] = $tag->name;
-            }
-
 
             //returing the view
-            return view('posts.edit')->withPost($post)->withCategories($cats)->withTags($tags2);
+            return view('posts.edit')->withPost($post)->withCategories($cats);
 
         }
         else {
@@ -211,15 +227,7 @@ class PostController extends Controller
             Storage::delete('blog/'.$oldFileName);
         }
 
-        $post->save();
-
-        if (isset($request->tags)) {
-            $post->tags()->sync($request->tags);
-        }
-        else{
-            $post->tags()->sync(array());
-        }
-        
+        $post->save();     
 
         //setting flash massage to display success Msg
         Session::flash('success', 'Successfully Saved !');
@@ -240,7 +248,6 @@ class PostController extends Controller
         
         //deleting the post
         $post = Post::find($id);
-        $post->tags()->detach();
         
         Storage::delete($post->image);
 

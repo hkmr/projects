@@ -37,9 +37,12 @@ Route::resource('posts','PostController');
 
 //Authentication routes
 Auth::routes();
-// changed in the method form post to get of logout route
-// /vendor/laravel/framework/src/Illuminate/Routing/Router.php
-// Route::get('/logout', 'Auth\LoginController@logout');
+
+// Post like routes
+Route::post('/favorite/{post}', 'PostController@favoritePost');
+Route::post('/unfavorite/{post}', 'PostController@unFavoritePost');
+
+// Route::get('my_favorites', 'UsersController@myFavorites')->middleware('auth');
 
 // socialite - social login route
 Route::get('/auth/{provider}', 'Auth\RegisterController@redirectToProvider');

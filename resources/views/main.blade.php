@@ -12,19 +12,19 @@
 
   <body>
 
+      @include('partials._navBar')  
+  
+      @yield('content')
+   
+      @include('partials._footer')
 
-    @include('partials._navBar')
+      @include('partials._javascript')
 
+      @yield('scripts')
 
-    @yield('content')
+      @include('partials._messages')
 
-    @include('partials._footer')
-
-    @include('partials._javascript')
-
-    @yield('scripts')
-
-    @include('partials._messages')
+    
 
   </body>
 

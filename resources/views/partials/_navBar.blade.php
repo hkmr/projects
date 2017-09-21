@@ -1,4 +1,4 @@
-<header id="header" >      
+<header class="uk-position-relative" id="header" >      
 <nav class="paradeiser">
     {{-- <a href="#">
         <h2>TweBox </h2>
@@ -49,7 +49,7 @@
         <ul class="paradeiser_children" id="paradeiser-more">
             <li><a href="{{ route('profile.show', ['id' => Auth::user()->id]) }}"><span uk-icon="icon: user"></span> Profile</a></li>
             <li><a href="{{ route('posts.index') }}"><span uk-icon="icon: grid"></span> My Stories</a></li>
-            <li><a href="{{ route('categories.index') }}"><span uk-icon="icon: heart"></span> Likes</a></li>
+            <li><a href="{{ url('my_favorites') }}"><span uk-icon="icon: heart"></span> Likes</a></li>
             <li><a href="{{ route('categories.index') }}"><span uk-icon="icon: list"></span> Interests</a></li>
             <li><a href="{{ route('categories.index') }}"><span uk-icon="icon: bookmark"></span> Bookmarks</a></li>
             <li><a href="#"><span uk-icon="icon: cog"></span> Setting</a></li>

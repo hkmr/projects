@@ -8,7 +8,7 @@
 @section('content')
 
 
-<div class="uk-padding-large uk-margin-auto-top">
+<div class="uk-container uk-margin-xlarge-top" id="app">
     
     {{-- Welcome Message --}}
     <div uk-alert>
@@ -53,8 +53,16 @@
           </div>
           <div class="uk-card-footer">
             <div class="uk-grid-small uk-child-width-1-4" uk-grid>
-              <div class="uk-child-width-auto"><a style="color:#a51313" uk-icon="icon: heart" title="Like" uk-tooltip></a><span class="uk-text-meta uk-text-small">150</span> </div>
-              <div class="uk-child-width-auto"><a href="{{ route('blog.single', $post->slug.'#comments') }}" uk-icon="icon: comments" title="Comment" uk-tooltip></a><span class="uk-text-meta uk-text-small"> {{ $post->comments()->count() }}</span> </div>
+              {{-- <div class="uk-child-width-auto"><a style="color:#a51313" uk-icon="icon: heart" title="Like" uk-tooltip></a><span class="uk-text-meta uk-text-small">150</span> </div> --}}
+              <favorite :post= {{ $post->id }} :favorited= {{ $post->favorited() ? 'true' : 'false' }}
+                :likes={{ $post->likes }} >
+              </favorite>
+              <div class="uk-child-width-auto">
+                <a href="{{ route('blog.single', $post->slug.'#comments') }}">
+                    <span uk-icon="icon: comments" title="Comment" uk-tooltip></span>
+                  <span class="uk-text-meta uk-text-small"> {{ $post->comments()->count() }}</span> 
+                </a>
+              </div>
               <div class="uk-child-width-auto">
                 <a uk-icon="icon: social" title="Share" uk-tooltip></a>
                 <div uk-dropdown="mode: click">
@@ -79,7 +87,7 @@
 {{-- Week's Trending Stories --}}
 
 <h1 class="uk-heading-divider uk-margin-top-small">Week's Trending <span class="uk-text-small"><a href="/blog"> Show more...</a></span></h1>
-<div class="uk-grid-large uk-text-center uk-padding-large@s uk-child-width-1-3@m" uk-grid>
+<div class="uk-grid-large uk-grid-match uk-text-center uk-padding-large@s uk-child-width-1-3@m" uk-grid>
 
 @foreach($posts as $post)
  <div>
@@ -121,7 +129,7 @@
                 </ul>
             </div>
            </div>
-          <div class="uk-child-width-auto"><a href="" uk-icon="icon: bookmark" title="Bookmark" uk-tooltip></a> </div>
+          <div class="uk-child-width-auto"><a href="" uk-icon="icon: bookmark" title="Bookmark" uk-tooltip></a> 12</div>
         </div>
       </div>
     </div>
@@ -133,7 +141,8 @@
     
     {{-- Categories Section --}}
 
-   <h1 class="uk-heading-divider">Categories <span class="uk-text-small"><a href="/categories/"> Show more...</a></span></h1>
+   <div class="container">
+     <h1 class="uk-heading-divider">Categories <span class="uk-text-small"><a href="/categories/"> Show more...</a></span></h1>
    <div class="uk-child-width-1-5@s" uk-grid>
 
     @foreach ($categories as $category)
@@ -157,6 +166,7 @@
     @endforeach
     
     </div>
+   </div>
 
 <hr class="uk-divider-icon">
 
@@ -188,54 +198,7 @@
     </div>
 
     @endforeach
-    {{-- <div>
-        <div class="uk-card uk-card-primary uk-card-body">
-            <h3 class="uk-card-title">Title</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-            <div class="uk-child-width-1-4" uk-grid>
-                <div><a href="" uk-icon="icon: heart" title="Like" uk-tooltip></a></div>
-                <div><a href="" uk-icon="icon: comments" title="Comment" uk-tooltip></a></div>
-                <div><a href="" uk-icon="icon: social" title="Share" uk-tooltip></a></div>
-                <div><a href="" uk-icon="icon: bookmark" title="Bookmark" uk-tooltip></a></div>
-            </div>
-        </div>
-    </div>
-    <div>
-        <div class="uk-card uk-card-primary uk-card-body">
-            <h3 class="uk-card-title">Title</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-            <div class="uk-child-width-1-4" uk-grid>
-                <div><a href="" uk-icon="icon: heart" title="Like" uk-tooltip></a></div>
-                <div><a href="" uk-icon="icon: comments" title="Comment" uk-tooltip></a></div>
-                <div><a href="" uk-icon="icon: social" title="Share" uk-tooltip></a></div>
-                <div><a href="" uk-icon="icon: bookmark" title="Bookmark" uk-tooltip></a></div>
-            </div>
-        </div>
-    </div>
-    <div>
-        <div class="uk-card uk-card-primary uk-card-body">
-            <h3 class="uk-card-title">Title</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-            <div class="uk-child-width-1-4" uk-grid>
-                <div><a href="" uk-icon="icon: heart" title="Like" uk-tooltip></a></div>
-                <div><a href="" uk-icon="icon: comments" title="Comment" uk-tooltip></a></div>
-                <div><a href="" uk-icon="icon: social" title="Share" uk-tooltip></a></div>
-                <div><a href="" uk-icon="icon: bookmark" title="Bookmark" uk-tooltip></a></div>
-            </div>
-        </div>
-    </div>
-    <div>
-        <div class="uk-card uk-card-primary uk-card-body">
-            <h3 class="uk-card-title">Title</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-            <div class="uk-child-width-1-4" uk-grid>
-                <div><a href="" uk-icon="icon: heart" title="Like" uk-tooltip></a></div>
-                <div><a href="" uk-icon="icon: comments" title="Comment" uk-tooltip></a></div>
-                <div><a href="" uk-icon="icon: social" title="Share" uk-tooltip></a></div>
-                <div><a href="" uk-icon="icon: bookmark" title="Bookmark" uk-tooltip></a></div>
-            </div>
-        </div>
-    </div> --}}
+    
 </div>
 
 </div>

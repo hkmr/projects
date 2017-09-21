@@ -26,7 +26,7 @@
             <div class="uk-width-3-5@m">
                 <p class="uk-text-lead">
                     <article class="uk-article">
-                        <h1 class="uk-article-title">The 5 Questions Asked in Every Microsoft Interview & How to Answer Them</h1>
+                        <h1 class="uk-article-title">The 5 Questions Asked in Every Microsoft Interview and How to Answer Them</h1>
                         <p class="uk-article-meta"><span class="uk-icon uk-icon-image" style="background-image: url(../images/user-profile/1494097628.jpg);"></span><a href="#"> Super User</a> . 12 April 2012.
                         <span class="uk-badge uk-text-center uk-align-right"><a class="uk-link-reset" href="#">Interview</a></span></p>
 
