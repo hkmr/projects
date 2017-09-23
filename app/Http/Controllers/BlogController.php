@@ -12,7 +12,7 @@ class BlogController extends Controller
 
 	public function getIndex(){
 
-        $posts=Post::orderBy('views','desc')->get();
+        $posts=Post::orderBy('views','desc')->paginate(21);
         $user = new User;
 
 		return view('blog.index')->withPosts($posts)->withUser($user);
@@ -23,14 +23,11 @@ class BlogController extends Controller
     	//fetching from database based on slug
     	$post = Post::where('slug' , '=', $slug)->first();
         $post->increment('views'); 
-        $user = new User;
-        $populars=Post::orderBy('views','desc')->paginate(5);
-        $categories = Category::orderBy('created_at','desc')->take(4)->get();
         $posts =Post::all();
         $users=User::all();
         
 
     	//returning the view
-    	return view('blog.single')->withPost($post)->withPopulars($populars)->withCategories($categories)->withUser($user)->withPosts($posts)->withUsers($users);
+    	return view('blog.single',compact('post'));
     }
 }

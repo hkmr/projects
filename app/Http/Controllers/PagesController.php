@@ -17,30 +17,15 @@ class PagesController extends Controller {
 		$categories = Category::orderBy('created_at','desc')->take(5)->get();
 		$populars =Post::orderBy('views','desc')->paginate(5);
 		$user = User::all();
-		$topcategories = Category::orderBy('created_at','desc')->take(15)->get();
 
 		// recommended System
-
-		// $allPost = Post::all()->first();
 		$recomends = Post::all()->random(5);
 
-		return view('pages.welcome')->withPosts($posts)->withCategories($categories)->withPopulars($populars)
-		->withUser($user)->withTopcategories($topcategories)->withRecomends($recomends);
+		return view('pages.welcome.main', compact('posts', 'categories', 'populars', 'user', 'recomends'));
 	}
 
 	public function getAbout(){
 		
-		# to pass var to page use with() function with the view().
-		# to pass a simple varible -------- use ->with("varNameToUseInPage", $varNameToPass);
-		# Eg.  ---- >           return view('pages.about') ->with("fullname",$full);
-
-		# or use shortcut method as ------------  useVarNameTOUseInPage($varNameToPass);
-		# Eg. --->    	return view('pages.about') ->withFullname($full);
-
-		# to pass the array we can use the withData($arrayName) function with view();
-		#Eg. ---->    return view('pages.about') ->withData($arrayName);
-
-
 		return view('pages.about');
 	}
 
@@ -77,6 +62,13 @@ class PagesController extends Controller {
 			return redirect('/');
 	}
 
+	public function search(Request $request)
+	{
+		$keyword = $request->keywords;
+
+		$results = Post::where('title', 'like', '%'.$keyword.'%')->orWhere('body', 'like', '%'.$keyword.'%')->paginate(5);
+		return view('pages.search' ,compact('results'));
+	}
 
 	public function setting() {
 

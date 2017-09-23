@@ -41,8 +41,12 @@ Auth::routes();
 // Post like routes
 Route::post('/favorite/{post}', 'PostController@favoritePost');
 Route::post('/unfavorite/{post}', 'PostController@unFavoritePost');
+Route::get('my_favorites', 'UserController@myFavorites')->middleware('auth');
 
-// Route::get('my_favorites', 'UsersController@myFavorites')->middleware('auth');
+// bookmark routes
+Route::post('bookmark/{post}', 'PostController@bookmarkPost');
+Route::post('unbookmark/{post}', 'PostController@unBookmarkPost');
+Route::get('my_bookmarked', 'UserController@myBookmarks')->middleware('auth');
 
 // socialite - social login route
 Route::get('/auth/{provider}', 'Auth\RegisterController@redirectToProvider');
@@ -56,6 +60,8 @@ Route::resource('subscribe', 'SubscribeController');
 
 // feedback
 Route::resource('feedback', 'FeedbackController');
+
+Route::post('search' , 'PagesController@search');
 
 //tags route
 // Route::resource('tags', 'TagController', ['except' => ['create']]);

@@ -61,36 +61,25 @@ $('.ui.dropdown')
 ###############################################
 */
 
-$('ul.pagination').hide();
-    $(function() {
-        $('.infinite-scroll').jscroll({
-            autoTrigger: true,
-            loadingHtml: '<center><img src="/images/loading.gif" alt="Loading..." /></center>',
-            padding: 0,
-            nextSelector: '.pagination li.active + li a',
-            contentSelector: 'div.infinite-scroll',
-            callback: function() {
-                $('ul.pagination').remove();
-            }
-        });
-    });
-/*
-##############################################
-*/
-
-// auto tagging initialize
-$('article').tagExtract({
-  max: 4,
-  min: 2,
-  target: 'tags-container',
-  clusters: ['label-primary', 'label-info', 'label-warning', 'label-danger']
-});
+// $('ul.pagination').hide();
+//     $(function() {
+//         $('.infinite-scroll').jscroll({
+//             autoTrigger: true,
+//             loadingHtml: '<center><img src="/images/loading.gif" alt="Loading..." /></center>',
+//             padding: 0,
+//             nextSelector: '.pagination li.active + li a',
+//             contentSelector: 'div.infinite-scroll',
+//             callback: function() {
+//                 $('ul.pagination').remove();
+//             }
+//         });
+//     });
 
 /* ###########################################
  */
 
 // typing style jquery intialization
-$('.type-it').typeIt({
+$('#type-it').typeIt({
   breakLines:false,
   loop:true,
 });

@@ -31,9 +31,17 @@
     <div id="modal-full" class="uk-modal-full uk-modal" uk-modal>
         <div class="uk-modal-dialog uk-flex uk-flex-center uk-flex-middle" uk-height-viewport>
             <button class="uk-modal-close-full" type="button" uk-close></button>
-            <form class="uk-search uk-search-large">
+            {{-- <form class="uk-search uk-search-large">
                 <input class="uk-search-input uk-text-center" type="search" placeholder="Search..." autofocus>
-            </form>
+            </form> --}}
+
+            {!! Form::open(['url' =>'search', 'method' => 'POST', 'class' => 'uk-search uk-search-large']) !!}
+
+                {{ Form::search('keywords', null , ['class' => 'uk-search-input uk-text-center uk-inline' , 'placeholder' => 'Search...', 'autofocus' => 'autofocus']) }}
+
+                {{ Form::submit('Submit', ['style' =>'display:none']) }}
+
+            {!! Form::close() !!}
         </div>
     </div>
     @if ( Auth::check() )
@@ -51,7 +59,7 @@
             <li><a href="{{ route('posts.index') }}"><span uk-icon="icon: grid"></span> My Stories</a></li>
             <li><a href="{{ url('my_favorites') }}"><span uk-icon="icon: heart"></span> Likes</a></li>
             <li><a href="{{ route('categories.index') }}"><span uk-icon="icon: list"></span> Interests</a></li>
-            <li><a href="{{ route('categories.index') }}"><span uk-icon="icon: bookmark"></span> Bookmarks</a></li>
+            <li><a href="{{ url('my_bookmarked') }}"><span uk-icon="icon: bookmark"></span> Bookmarked Stories</a></li>
             <li><a href="#"><span uk-icon="icon: cog"></span> Setting</a></li>
             <li><a href="{{route('logout')}}"><span uk-icon="icon: sign-out"></span> Logout</a></li>
             <li id="greybox"><a href="#!"></a></li>

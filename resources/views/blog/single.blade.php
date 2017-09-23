@@ -11,14 +11,14 @@
 
 @section('og-image', asset('/images/blog/' . $post->image) )
 
-@section('description', $post->title.','.$post->category->name.','.$post->tags->pluck('name') )
+@section('description', $post->title.','.$post->category->name)
 
 
 @section('content')
     
     <div class="uk-cover-container uk-margin-large-top">
         <canvas width="400" height="200"></canvas>
-        <img uk-cover src="/images/blog/1493449659.jpg" alt="" >
+        <img uk-cover src="{{$post->featured_image}}" alt="" >
     </div>
     <div class="uk-padding-large">
         <div uk-grid>
@@ -26,26 +26,14 @@
             <div class="uk-width-3-5@m">
                 <p class="uk-text-lead">
                     <article class="uk-article">
-                        <h1 class="uk-article-title">The 5 Questions Asked in Every Microsoft Interview and How to Answer Them</h1>
-                        <p class="uk-article-meta"><span class="uk-icon uk-icon-image" style="background-image: url(../images/user-profile/1494097628.jpg);"></span><a href="#"> Super User</a> . 12 April 2012.
-                        <span class="uk-badge uk-text-center uk-align-right"><a class="uk-link-reset" href="#">Interview</a></span></p>
+                        <h1 class="uk-article-title">{{ $post->title}}</h1>
+                        <p class="uk-article-meta"><span class="uk-icon uk-icon-image" style="background-image: url({{$post->user->avatar}});"></span><a href="#"> {{$post->user->name}}</a> . {{ $post->created_at->format('d-m-y') }}
+                        <span class="uk-badge uk-text-center uk-align-right"><a class="uk-link-reset" href="#">{{$post->category->name}}</a></span></p>
 
                         <h4 class="uk-text-background">If you believe you’ve got ideas running in you head and are creative, Microsoft is the place you should be.</h4>
 
-                        <p class="uk-text-lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                        </p>
-
-                        <p class="uk-text-lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                        <p class="uk-text-lead">
+                          {!! $post->body!!}
                         </p>
 
                         <div class="uk-cover-container" uk-lightbox>
@@ -55,35 +43,21 @@
                             </a>
                         </div>
 
-                        <p class="uk-text-lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                        </p>
-
-                        <p class="uk-text-lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                        </p>
-                        <hr>
-                        <p class="uk-text-lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                        </p>
                     </article>  
                 </p>
 
                 <div class="uk-flex-center" uk-grid>
-                    <div><a href="" uk-icon="icon: heart"></a> 15K</div>
-                    <div><a href="" uk-icon="icon: bookmark"></a> 12.5K</div>
+                    <favorite :post= {{ $post->id }} :favorited= {{ $post->favorited() ? 'true' : 'false' }}
+                      :likes={{ $post->likes }} >
+                    </favorite>
+                    <div class="uk-child-width-auto">
+                      <a href="{{ route('blog.single', $post->slug.'#comments') }}">
+                          <span uk-icon="icon: comments" title="Comment" uk-tooltip></span>
+                        <span class="uk-text-meta uk-text-small"> {{ $post->comments()->count() }}</span> 
+                      </a>
+                    </div>
+                    <bookmark :post= {{ $post->id }} :bookmarked = {{ $post->bookmarked() ? 'true': 'false' }} :bookmarks ={{ $post->bookmarks }}
+                    ></bookmark> 
                     <div><a href="" uk-icon="icon: facebook"></a></div>
                     <div><a href="" uk-icon="icon: twitter"></a></div>
                     <div><a href="" uk-icon="icon: google-plus"></a></div>
@@ -97,8 +71,8 @@
                     <div class="field">
                       <textarea></textarea>
                     </div>
-                    <div class="ui blue labeled submit icon button">
-                      <i class="icon edit"></i> Add Reply
+                    <div class="uk-button uk-button-primary">
+                      Add Reply
                     </div>
                   </form>
                   <hr class="uk-divider-small">

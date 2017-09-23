@@ -19,11 +19,7 @@ class PostController extends Controller
     {
         $this->middleware('auth');
     }
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+   
     public function index()
     {
         //excrating all the posts from database and stroing into variable
@@ -37,12 +33,7 @@ class PostController extends Controller
     }
 
 
-    /**
-     * Favorite a particular post
-     *
-     * @param  Post $post
-     * @return Response
-     */
+    // favorite posts
     public function favoritePost(Post $post)
     {
         Auth::user()->favorites()->attach($post->id);
@@ -50,23 +41,30 @@ class PostController extends Controller
         return back();
     }
 
-    /**
-     * Unfavorite a particular post
-     *
-     * @param  Post $post
-     * @return Response
-     */
+    // unfavorite posts
     public function unFavoritePost(Post $post)
     {
         Auth::user()->favorites()->detach($post->id);
         $post->decrement('likes');
         return back();
     }
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
+    // Bookmark posts
+    public function bookmarkPost(Post $post)
+    {
+        Auth::user()->bookmarks()->attach($post->id);
+        $post->increment('bookmarks');
+        return back();
+    }
+    // unbookmark posts
+    public function unBookmarkPost(Post $post)
+    {
+        Auth::user()->bookmarks()->detach($post->id);
+        $post->decrement('bookmarks');
+        return back();
+    }
+
+    // creating new post
     public function create()
     {
         $categories = Category::all();
@@ -74,12 +72,7 @@ class PostController extends Controller
         return view('posts.create')->withCategories($categories);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+    // storing post request
     public function store(Request $request)
     {   
         // validating the form data before storing into database
@@ -128,12 +121,7 @@ class PostController extends Controller
 
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    // showing single post
     public function show($id)
     {   
         $post = Post::find($id);
@@ -153,12 +141,7 @@ class PostController extends Controller
         
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    // edit post
     public function edit($id)
     {
         //storing the post into the variable
@@ -183,13 +166,7 @@ class PostController extends Controller
         }
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    // update post after edit
     public function update(Request $request, $id)
     {
         $post = Post::find($id);
@@ -237,12 +214,7 @@ class PostController extends Controller
 
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    // deleting posts
     public function destroy($id)
     {
         
