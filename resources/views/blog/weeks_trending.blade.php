@@ -7,6 +7,8 @@
 @section('content')
 
 <div class="uk-padding-large uk-container">
+
+  <h1 class="uk-heading-primary">Trending this week</h1>
 <div class="infinite-scroll"> 
 <div class="uk-child-width-1-3@m uk-grid-large uk-grid-match uk-text-center uk-padding-small" uk-grid>
     

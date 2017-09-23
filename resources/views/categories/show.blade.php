@@ -1,8 +1,8 @@
 @extends('main')
 
-@section('title' , "|  $name->name  Blogs ")
+@section('title' , " Blogs ")
 
-@section('description', $name->name.' blogs category')
+@section('description',' blogs category')
 
 @section('content')
 
@@ -71,6 +71,8 @@
 
      <div class="uk-padding-large">
          <h1 class="uk-heading-primary">All stories related to same category...</h1>
+
+         {{$category}}
      </div>
 
 @endsection

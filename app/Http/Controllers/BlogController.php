@@ -18,6 +18,14 @@ class BlogController extends Controller
 		return view('blog.index')->withPosts($posts)->withUser($user);
 	}
 
+    public function weeksTrending(){
+
+        $posts=Post::orderBy('views','desc')->paginate(21);
+        $user = new User;
+
+        return view('blog.weeks_trending')->withPosts($posts)->withUser($user);
+    }
+
     public function getSingle($slug){
 
     	//fetching from database based on slug

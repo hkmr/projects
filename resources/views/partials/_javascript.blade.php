@@ -48,32 +48,22 @@ $("#login-box-link").click(function(){
 $('article').readingTime();
 
 /*
-############################################
-*/
-
-// semantic dropdown initialization
-
-$('.ui.dropdown')
-  .dropdown();
-
-
-/*
 ###############################################
 */
 
-// $('ul.pagination').hide();
-//     $(function() {
-//         $('.infinite-scroll').jscroll({
-//             autoTrigger: true,
-//             loadingHtml: '<center><img src="/images/loading.gif" alt="Loading..." /></center>',
-//             padding: 0,
-//             nextSelector: '.pagination li.active + li a',
-//             contentSelector: 'div.infinite-scroll',
-//             callback: function() {
-//                 $('ul.pagination').remove();
-//             }
-//         });
-//     });
+$('ul.pagination').hide();
+    $(function() {
+        $('.infinite-scroll').jscroll({
+            autoTrigger: true,
+            loadingHtml: '<center><div uk-spinner></div></center>',
+            padding: 0,
+            nextSelector: '.pagination li.active + li a',
+            contentSelector: 'div.infinite-scroll',
+            callback: function() {
+                $('ul.pagination').remove();
+            }
+        });
+    });
 
 /* ###########################################
  */

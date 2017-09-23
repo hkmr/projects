@@ -19,7 +19,9 @@ Route::get('/', 'PagesController@getIndex')->name('home');
 
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
-Route::get('blog', ['uses' => 'BlogController@getIndex' ,'as' => 'blog.index']);
+Route::get('blogs', ['uses' => 'BlogController@getIndex' ,'as' => 'blog.index']);
+
+Route::get('trending', 'BlogController@weeksTrending');
 
 Route::get('contact','PagesController@getContact');
 
@@ -47,6 +49,11 @@ Route::get('my_favorites', 'UserController@myFavorites')->middleware('auth');
 Route::post('bookmark/{post}', 'PostController@bookmarkPost');
 Route::post('unbookmark/{post}', 'PostController@unBookmarkPost');
 Route::get('my_bookmarked', 'UserController@myBookmarks')->middleware('auth');
+
+// Category follow routes
+Route::post('follow/{category}', 'CategoryController@follow');
+Route::post('unfollow/{category}', 'CategoryController@unfollow');
+Route::get('followed', 'CategoryController@showFollowed')->middleware('auth');
 
 // socialite - social login route
 Route::get('/auth/{provider}', 'Auth\RegisterController@redirectToProvider');

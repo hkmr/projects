@@ -1,15 +1,11 @@
-<header class="uk-position-relative" id="header" >      
+<header class="uk-position-relative" id="header" >  
+<link href="https://fonts.googleapis.com/css?family=Noto+Sans" rel="stylesheet">
 <nav class="paradeiser">
-    {{-- <a href="#">
-        <h2>TweBox </h2>
-    </a> --}}
-    <a href="/" class="link">
-        <div class="paradeiser_icon_canvas">
-            <span uk-icon="icon: home; ratio:1.3"></span>
-        </div>
-        <span>Home</span>
+     <a href="/">
+        <h3 >Twebox</h3>
     </a>
-    <a href="/blog" class="link">
+    
+    <a href="/blogs" class="link">
         <div class="paradeiser_icon_canvas">
             <span uk-icon="icon: thumbnails; ratio:1.3"></span>
         </div>
@@ -58,7 +54,7 @@
             <li><a href="{{ route('profile.show', ['id' => Auth::user()->id]) }}"><span uk-icon="icon: user"></span> Profile</a></li>
             <li><a href="{{ route('posts.index') }}"><span uk-icon="icon: grid"></span> My Stories</a></li>
             <li><a href="{{ url('my_favorites') }}"><span uk-icon="icon: heart"></span> Likes</a></li>
-            <li><a href="{{ route('categories.index') }}"><span uk-icon="icon: list"></span> Interests</a></li>
+            <li><a href="{{ url('followed') }}"><span uk-icon="icon: list"></span> Interests</a></li>
             <li><a href="{{ url('my_bookmarked') }}"><span uk-icon="icon: bookmark"></span> Bookmarked Stories</a></li>
             <li><a href="#"><span uk-icon="icon: cog"></span> Setting</a></li>
             <li><a href="{{route('logout')}}"><span uk-icon="icon: sign-out"></span> Logout</a></li>

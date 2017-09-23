@@ -1,7 +1,7 @@
 <div class="uk-container">
   {{-- Latest Stories Section --}}
 
-<h1 class="uk-heading-divider uk-margin-top-small">Latest Stories <span class="uk-text-small"><a href="/blog"> Show more...</a></span></h1>
+<h1 class="uk-heading-divider uk-margin-top-small">Latest Stories <span class="uk-text-small"><a href="/blogs"> Show more...</a></span></h1>
 <div class="uk-grid-large uk-text-center uk-grid-match uk-padding-large@s uk-child-width-1-3@m" uk-grid>
  
  @foreach ($posts as $post)

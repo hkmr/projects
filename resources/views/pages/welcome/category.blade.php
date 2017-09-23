@@ -16,8 +16,13 @@
                     <a href="{{'categories/'. $category->id }}"> {{ $category->name }} </a>
                     </span><br>
 
-                    <small class="uk-text-meta">123 Stories</small>
-                    <p><button class="uk-button uk-button-default uk-button-small">Follow</button></p>
+                    <small class="uk-text-meta">{{ $category->total_posts }}</small>
+                    {{-- <p><button class="uk-button uk-button-default uk-button-small">Follow</button></p> --}}
+                    <follow
+                        :category ={{ $category->id }}
+                        :followed = {{ $category->followed() ? 'true' : 'false' }}
+                        :followers ={{ $category->total_followers }}
+                    ></follow>
                 </div>
         </div>
     </div>

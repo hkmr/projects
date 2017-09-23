@@ -1,7 +1,7 @@
 <div class="uk-container">
   {{-- Week's Trending Stories --}}
 
-<h1 class="uk-heading-divider uk-margin-top-small">Week's Trending <span class="uk-text-small"><a href="/blog"> Show more...</a></span></h1>
+<h1 class="uk-heading-divider uk-margin-top-small">Week's Trending <span class="uk-text-small"><a href="/trending"> Show more...</a></span></h1>
 <div class="uk-grid-large uk-grid-match uk-text-center uk-padding-large@s uk-child-width-1-3@m" uk-grid>
 
 @foreach($posts as $post)

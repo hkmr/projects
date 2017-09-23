@@ -41,4 +41,9 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Post::class, 'bookmarks', 'user_id' , 'post_id')->withTimeStamps();
     }
+
+    public function follows()
+    {
+        return $this->belongsToMany(Category::class, 'category_follows', 'user_id' , 'category_id')->withTimeStamps();
+    }
 }

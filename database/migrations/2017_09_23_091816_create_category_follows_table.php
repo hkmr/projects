@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCategoriesTable extends Migration
+class CreateCategoryFollowsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,10 @@ class CreateCategoriesTable extends Migration
      */
     public function up()
     {
-        Schema::create('categories', function (Blueprint $table) {
+        Schema::create('category_follows', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name')->unique();
-            $table->integer('total_posts')->unsigned()->default(0);
-            $table->integer('total_followers')->unsigned()->default(0);
+            $table->integer('user_id')->unsigned();
+            $table->integer('category_id')->unsigned();
             $table->timestamps();
         });
     }
@@ -29,6 +28,6 @@ class CreateCategoriesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('categories');
+        Schema::dropIfExists('category_follows');
     }
 }
