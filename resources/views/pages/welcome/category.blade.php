@@ -2,7 +2,7 @@
 
 <div class="uk-container">
  <h1 class="uk-heading-divider">Categories <span class="uk-text-small"><a href="/categories/"> Show more...</a></span></h1>
-<div class="uk-child-width-1-5@s" uk-grid>
+<div class="uk-child-width-1-5@m" uk-grid>
 
 @foreach ($categories as $category)
 
@@ -13,11 +13,9 @@
                 <div class="uk-overlay-primary uk-position-cover"></div>
                 <div class="uk-position-center">
                     <span class="uk-text-large uk-text-bold uk-text-uppercase">
-                    <a href="{{'categories/'. $category->id }}"> {{ $category->name }} </a>
+                    <a class="uk-link-reset" href="{{'categories/'. $category->id }}"> {{ $category->name }} </a>
                     </span><br>
-
-                    <small class="uk-text-meta">{{ $category->total_posts }}</small>
-                    {{-- <p><button class="uk-button uk-button-default uk-button-small">Follow</button></p> --}}
+                    <small class="uk-text-meta">{{ $category->total_posts }} Stories</small>
                     <follow
                         :category ={{ $category->id }}
                         :followed = {{ $category->followed() ? 'true' : 'false' }}

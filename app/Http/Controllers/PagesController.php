@@ -15,13 +15,24 @@ class PagesController extends Controller {
 	public function getIndex(){
 		$posts = Post::orderBy('created_at','desc')->limit(3)->paginate(3);
 		$categories = Category::orderBy('created_at','desc')->take(5)->get();
-		$populars =Post::orderBy('views','desc')->paginate(5);
-		$user = User::all();
+
+		// Week's trending
+		$beginning_of_week = strtotime('last Monday', time()); 
+		$end_of_week = strtotime('next Sunday', time()) + 86400; 
+		$allPosts = Post::all();
+		$weekTrendIds = collect([]);
+		foreach ($allPosts as $post) {
+			if( strtotime($post->created_at) > $beginning_of_week && strtotime($post->created_at) < $end_of_week )
+			{
+				$weekTrendIds->push($post->id);
+			}
+		}
+		$weekTrends = Post::whereIn('id',$weekTrendIds)->orderBy('views','desc')->take(3)->get();
 
 		// recommended System
 		$recomends = Post::all()->random(5);
 
-		return view('pages.welcome.main', compact('posts', 'categories', 'populars', 'user', 'recomends'));
+		return view('pages.welcome.main', compact('posts', 'categories', 'weekTrends' ,'recomends'));
 	}
 
 	public function getAbout(){
@@ -66,13 +77,8 @@ class PagesController extends Controller {
 	{
 		$keyword = $request->keywords;
 
-		$results = Post::where('title', 'like', '%'.$keyword.'%')->orWhere('body', 'like', '%'.$keyword.'%')->paginate(5);
-		return view('pages.search' ,compact('results'));
-	}
-
-	public function setting() {
-
-		return view('pages.setting');
+		$results = Post::where(strtolower('title'), 'like', '%'.strtolower($keyword).'%')->orWhere('body', 'like', '%'.$keyword.'%')->paginate(30);
+		return view('pages.search' ,compact('results','keyword'));
 	}
 
 }

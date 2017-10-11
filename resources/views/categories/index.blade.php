@@ -24,8 +24,12 @@
                         <a class="uk-link-reset" href="{{'/categories/'.$category->id }}">
                             <span class="uk-text-large uk-text-bold uk-text-uppercase"> {{ $category->name }} </span>
                         </a><br>
-                        <small class="uk-text-meta">123 Stories</small>
-                        <p><button class="uk-button uk-button-default uk-button-small">Follow</button></p>
+                        <small class="uk-text-meta">{{$category->total_posts}} Stories</small>
+                        <follow
+                        :category ={{ $category->id }}
+                        :followed = {{ $category->followed() ? 'true' : 'false' }}
+                        :followers ={{ $category->total_followers }}
+                        ></follow>
                     </div>
 
                 </div>
@@ -33,6 +37,7 @@
 
             @endforeach
             
+            <div>{{$categories->links()}}</div>
         </div>
 
     </div>

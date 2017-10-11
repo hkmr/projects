@@ -11107,6 +11107,7 @@ Vue.component('follow', __webpack_require__(39));
 
 var app = new Vue({
   el: '#app'
+
 });
 
 /***/ }),
@@ -11987,7 +11988,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     data: function data() {
         return {
-            isBookmarked: ''
+            isBookmarked: '',
+            count: 0
         };
     },
 
@@ -12006,23 +12008,30 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         bookmark: function bookmark(post) {
             var _this = this;
 
-            axios.post('/bookmark/' + post).then(function (response) {
-                return _this.isBookmarked = true;
-            }).catch(function (response) {
-                return console.log(response.data);
-            });
-            this.bookmarks++;
+            if (this.count < 1) {
+
+                axios.post('/bookmark/' + post).then(function (response) {
+                    return _this.isBookmarked = true;
+                });
+                // .catch(response => console.log(response.data));
+                this.bookmarks++;
+                this.count++;
+            }
         },
         unBookmark: function unBookmark(post) {
             var _this2 = this;
 
-            axios.post('/unbookmark/' + post).then(function (response) {
-                return _this2.isBookmarked = false;
-            }).catch(function (response) {
-                return console.log(response.data);
-            });
+            if (this.count > 0) {
 
-            this.bookmarks--;
+                axios.post('/unbookmark/' + post).then(function (response) {
+                    return _this2.isBookmarked = false;
+                }).catch(function (response) {
+                    return console.log(response.data);
+                });
+
+                this.bookmarks--;
+                this.count--;
+            }
         }
     }
 });
@@ -12033,6 +12042,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
 //
 //
 //
@@ -12072,22 +12082,28 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         favorite: function favorite(post) {
             var _this = this;
 
-            axios.post('/favorite/' + post).then(function (response) {
-                return _this.isFavorited = true;
-            });
-            // .catch(response => console.log(response.data));
-            this.likes++;
-            this.count++;
+            if (this.count < 1) {
+
+                axios.post('/favorite/' + post).then(function (response) {
+                    return _this.isFavorited = true;
+                });
+                // .catch(response => console.log(response.data));
+                this.likes++;
+                this.count++;
+            }
         },
         unFavorite: function unFavorite(post) {
             var _this2 = this;
 
-            axios.post('/unfavorite/' + post).then(function (response) {
-                return _this2.isFavorited = false;
-            });
-            // .catch(response => console.log(response.data));
-            this.likes--;
-            this.count--;
+            if (this.count > 0) {
+
+                axios.post('/unfavorite/' + post).then(function (response) {
+                    return _this2.isFavorited = false;
+                });
+                // .catch(response => console.log(response.data));
+                this.likes--;
+                this.count--;
+            }
         }
     }
 });
@@ -12125,7 +12141,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     data: function data() {
         return {
-            isFollowed: ''
+            isFollowed: '',
+            count: 0
         };
     },
 
@@ -12144,22 +12161,30 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         follow: function follow(category) {
             var _this = this;
 
-            axios.post('/follow/' + category).then(function (response) {
-                return _this.isFollowed = true;
-            }).catch(function (response) {
-                return console.log(response.data);
-            });
-            this.followers++;
+            if (this.count < 1) {
+
+                axios.post('/follow/' + category).then(function (response) {
+                    return _this.isFollowed = true;
+                }).catch(function (response) {
+                    return console.log(response.data);
+                });
+                this.followers++;
+                this.count++;
+            }
         },
         unfollow: function unfollow(category) {
             var _this2 = this;
 
-            axios.post('/unfollow/' + category).then(function (response) {
-                return _this2.isFollowed = false;
-            }).catch(function (response) {
-                return console.log(response.data);
-            });
-            this.followers--;
+            if (this.count > 0) {
+
+                axios.post('/unfollow/' + category).then(function (response) {
+                    return _this2.isFollowed = false;
+                }).catch(function (response) {
+                    return console.log(response.data);
+                });
+                this.followers--;
+                this.count--;
+            }
         }
     }
 });
@@ -38551,9 +38576,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "uk-icon": "icon:check"
     }
-  }), _vm._v(" FOLLOWING\n            ")]), _vm._v(" "), _c('p', {
+  }), _vm._v(" FOLLOWING\n            ")]), _c('br'), _vm._v(" "), _c('span', {
     staticClass: "uk-text-meta"
-  }, [_vm._v(" " + _vm._s(_vm.followers) + " ")])]) : _c('div', [_c('button', {
+  }, [_vm._v(" " + _vm._s(_vm.followers) + " Following ")])]) : _c('div', [_c('button', {
     staticClass: "uk-button uk-button-default uk-button-small",
     on: {
       "click": function($event) {
@@ -38561,9 +38586,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.follow(_vm.category)
       }
     }
-  }, [_vm._v("FOLLOW\n            ")]), _vm._v(" "), _c('p', {
-    staticClass: "uk-text-meta"
-  }, [_vm._v(" " + _vm._s(_vm.followers) + " ")])])])
+  }, [_vm._v("FOLLOW\n            ")]), _c('br'), _vm._v(" "), _c('span', {
+    staticClass: "uk-text-meta uk-text-center"
+  }, [_vm._v(" " + _vm._s(_vm.followers) + " Following")])])])
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {

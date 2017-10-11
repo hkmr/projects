@@ -46,7 +46,7 @@
         <a href="#paradeiser-more" id="paradeiser-dropdown">
             <div class="paradeiser_icon_canvas">
                 <!-- User icon by Icons8 -->
-                <span class="uk-icon uk-icon-image" style="background-image: url(/images/user-profile/1494097628.jpg);"></span>
+                <span class="uk-icon uk-icon-image" style="background-image: url( {{ strpos(Auth::user()->avatar, "http",0) ===0 ? Auth::user()->avatar : '/images/user-profile/'.Auth::user()->avatar   }} );"></span>
             </div>
             <span>{{ Auth::user()->name }} </span>
         </a>

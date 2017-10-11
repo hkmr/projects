@@ -10,6 +10,7 @@ use Purifier;
 use Image;
 use Storage;
 use App\User;
+use App\Comment;
 use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
@@ -78,6 +79,7 @@ class PostController extends Controller
         // validating the form data before storing into database
 
         $this -> validate($request, array(
+                'status'        =>  'required',
                 'title'         =>  'required|max:255|unique:posts,title',
                 // 'slug'          =>  'required|alpha_dash|min:5|max:255|unique:posts,slug',
                 'category_id'   =>  'required|integer',
@@ -91,6 +93,7 @@ class PostController extends Controller
         $replace =array(" ","?","/","[","]","<",">","{","}","|","^","`",";",":","@","&","=","+","$",",","'",".");
         $slug = str_ireplace($replace , "-", $request->title);
 
+        $post ->status          =$request->status;
         $post -> title          =$request->title;
         $post -> slug           =$slug;
         $post -> category_id    =$request->category_id;        
@@ -108,12 +111,12 @@ class PostController extends Controller
             $post->image = $fileName;
         }
 
-
+        Category::where('id', $request->category_id)->increment('total_posts');
+        
         $post ->save(); //for saving the items
 
-        $post->tags()->sync($request->tags,false);
 
-        Session::flash('success' , 'Your is published !');
+        Session::flash('success' , 'Story published !');
 
         //after submiting redirect to show
 
@@ -125,12 +128,11 @@ class PostController extends Controller
     public function show($id)
     {   
         $post = Post::find($id);
-        $categories = Category::orderBy('created_at','desc')->take(4)->get();
-        $users=User::all();
+        $comments = Comment::where('post_id' , $post->id)->get();
 
         if ($post->user_id == Auth::user()->id) {
 
-            return view('posts.show')->withPost($post)->withCategories($categories)->withUsers($users);
+            return view('posts.show' , compact('post', 'comments'));
         }
         else {
 
@@ -173,6 +175,7 @@ class PostController extends Controller
 
             //validating the data 
             $this -> validate($request, array(
+                'status' => 'required',
                 'title' => 'required|max:255',
                 // 'slug' =>"required|alpha_dash|min:5|max:255|unique:posts,slug,$id",
                 'category_id' => 'required|integer',
@@ -184,6 +187,7 @@ class PostController extends Controller
         $slug = str_ireplace($replace , "-", $request->title);
         //saving the data to the database
 
+        $post->status = $request->status;
         $post->title = $request->input('title');
         $post->slug =$slug;
         $post->category_id =$request->input('category_id');

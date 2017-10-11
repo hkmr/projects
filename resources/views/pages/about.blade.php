@@ -7,20 +7,12 @@
 
 @section('content')
 
-
-    <section id="about-company" class="padding-top wow fadeInUp" data-wow-duration="400ms" data-wow-delay="400ms">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-12 text-center">
-                    <!-- <img src="images/aboutus/simple-logo.png" class="margin-bottom" alt="">
-                    <h1 class="margin-bottom">myhexagon</h1> -->
-                    <p class="margin-bottom" style="font-family: 'Economica', sans-serif; font-size: 40px; color: black;"><!-- <img src="/images/logo.png" width="300px" alt="logo"> -->twe<span style="color: #5894f4; border:2px solid black; border-radius: 20%; padding: 1%;"><b>Box</b></span> </p>
-                    <p class="about">Our mission: To give everyone the power to create and share ideas and information instantly, without barriers.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!--/#about-company-->
+    <div class="uk-flex uk-flex-center">
+        <div class="uk-padding-large uk-margin-large-top">
+        <h1 class="uk-heading-primary">About us</h1>
+        <hr>
+    </div>
+    </div>
 
     <section id="services">
         <div class="container">

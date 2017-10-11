@@ -21,4 +21,9 @@ class UserController extends Controller
 
         return view('user.bookmarked', compact('myBookmarks'));
     }
+
+    public function setting()
+    {
+        return view('user.setting');
+    }
 }

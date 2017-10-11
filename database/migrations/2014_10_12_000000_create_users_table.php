@@ -21,6 +21,11 @@ class CreateUsersTable extends Migration
             $table->string('provider')->default('normal');
             $table->string('provider_id')->nullable();
             $table->string('avatar');
+            $table->string('coverImage')->default('defaultProfileCoverImage.jpg');
+            $table->string('facebook')->nullable();
+            $table->string('twitter')->nullable();
+            $table->string('tumblr')->nullable();
+            $table->string('youtube')->nullable();
             $table->text('info')->nullable();
             $table->rememberToken();
             $table->timestamps();

@@ -19,5 +19,6 @@ Vue.component('bookmark', require('./components/Bookmark.vue'));
 Vue.component('follow', require('./components/Follow.vue'));
 
 const app = new Vue({
-    el: '#app'
+    el: '#app',
+
 });

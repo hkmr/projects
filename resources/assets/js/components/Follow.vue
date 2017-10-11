@@ -4,14 +4,14 @@
 		<div v-if="isFollowed">
             <button class="uk-button uk-button-default uk-button-small" @click.prevent="unfollow(category)">
                 <span style="color:green" uk-icon="icon:check"></span> FOLLOWING
-            </button>
-            <p class="uk-text-meta"> {{ followers }} </p>      
+            </button><br>
+            <span class="uk-text-meta"> {{ followers }} Following </span>      
         </div>
         
         <div v-else>
             <button class="uk-button uk-button-default uk-button-small" @click.prevent="follow(category)">FOLLOW
-            </button>
-            <p class="uk-text-meta"> {{ followers }} </p>
+            </button><br>
+            <span class="uk-text-meta uk-text-center"> {{ followers }} Following</span>
         </div>
 
 	</div>
@@ -26,6 +26,7 @@
         data: function() {
             return {
                 isFollowed: '',
+                count: 0,
             }
         },
 
@@ -42,19 +43,27 @@
         methods: {
             follow(category) {
 
+                        if (this.count < 1) {
+
                         axios.post('/follow/'+category)
                             .then(response => this.isFollowed = true)
                             .catch(response => console.log(response.data));
                         this.followers++;
+                        this.count++;
+                        }
 
             },
 
             unfollow(category) {
-                
+                        
+                        if (this.count > 0) {
+
                         axios.post('/unfollow/'+category)
                             .then(response => this.isFollowed = false)
                             .catch(response => console.log(response.data));
                         this.followers--;
+                        this.count--;
+                        }
 
             }
         }

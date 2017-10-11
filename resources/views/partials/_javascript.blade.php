@@ -18,10 +18,8 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.30/js/uikit-icons.min.js"></script>
 
-<!-- javascript plugin for responsive grid layout -->
-    {{-- <script src="/js/masonry.pkgd.min.js"></script> --}}
-    {{-- <script src="/js/imagesloaded.pkgd.min.js"></script> --}}
 
+@yield('scripts')
 
 <script type="text/javascript">
 
@@ -45,25 +43,7 @@ $("#login-box-link").click(function(){
  */
 
 // reading time initialize
-$('article').readingTime();
-
-/*
-###############################################
-*/
-
-$('ul.pagination').hide();
-    $(function() {
-        $('.infinite-scroll').jscroll({
-            autoTrigger: true,
-            loadingHtml: '<center><div uk-spinner></div></center>',
-            padding: 0,
-            nextSelector: '.pagination li.active + li a',
-            contentSelector: 'div.infinite-scroll',
-            callback: function() {
-                $('ul.pagination').remove();
-            }
-        });
-    });
+$('p').readingTime();
 
 /* ###########################################
  */
@@ -78,18 +58,18 @@ $('#type-it').typeIt({
 /* ###########################################
  */
 // enabling to open the overflow menu as the pure css link
-        // would toggle a scroll and therefore hide the menu
-        document.getElementById("paradeiser-dropdown").addEventListener("click", function(event){
-            // stopping the scroll
-            event.preventDefault();
-            // toggling the class
-            document.getElementById("paradeiser-more").classList.toggle("open");
-        });
-        // OPTIONAL: enables closing the overflow by clicking the grey background.
-        // be sure to add the ID "greybox" to the last <li> within the .paradeiser_children
-        document.getElementById("greybox").addEventListener("click", function(event){
-            document.getElementById("paradeiser-more").classList.toggle("open");
-        });
+// would toggle a scroll and therefore hide the menu
+document.getElementById("paradeiser-dropdown").addEventListener("click", function(event){
+    // stopping the scroll
+    event.preventDefault();
+    // toggling the class
+    document.getElementById("paradeiser-more").classList.toggle("open");
+});
+// OPTIONAL: enables closing the overflow by clicking the grey background.
+// be sure to add the ID "greybox" to the last <li> within the .paradeiser_children
+document.getElementById("greybox").addEventListener("click", function(event){
+    document.getElementById("paradeiser-more").classList.toggle("open");
+});
 
 </script>
 

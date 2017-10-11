@@ -5,86 +5,108 @@
 
 @section('content')
 
-	<section id="page-breadcrumb">
-        <div class="vertical-center sun">
-             <div class="container">
-                <div class="row">
-                    <div class="action">
-                        <div class="col-sm-12">
-                            <h1 class="title">Profile Update</h1>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-   </section>
-    <!--/#action-->
+	<div class="uk-container uk-margin-xlarge-top">
+		<div uk-grid>
+			<div class="uk-width-1-5@m"></div>
+			<div class="uk-width-3-5@m">
+				
+				{!! Form::model($user , ['route' => ['profile.update', $user->id] , 'method' =>'PUT' , 'files' => 'true'] ) !!}
 
-    <section id="portfolio-information" class="padding-top">
-	<div class="container">
-		<div class="row">
-			{!! Form::model($user , ['route' => ['profile.update', $user->id] ,'method' => 'PUT' ,'files' => true ]) !!}
-
-			<div class="col-md-8 col-md-offset-2 padding-bottom">
-				{{ Form::label('name', 'UserName:') }}
-				{{ Form::text('name',null, ['class'=> 'form-control input-lg', 'readonly'] ) }}
-
-				{{ Form::label('email', 'Email:' ,['class'=> 'form-spacing-top']) }}
-				{{ Form::text('email', null, ['class'=> 'form-control ', 'readonly']) }}
-
-				{{ Form::label('avatar','Upload Profile Image:', ['class' => 'form-spacing-top']) }}
-				{{ Form::file('avatar') }}
-
-				<h2>Social Connect </h2>
-				<ul class="social-links">
+				<fieldset class="uk-fieldset">
 					
-				<li>
-				{{ Form::label('facebook', 'Facebook link:' ,['class'=> 'form-spacing-top']) }}
-				{{ Form::text('facebook', null, ['class'=> 'form-control', 'placeholder' => 'https://facebook.com/user_name' ]) }}
-				</li>
+					<legend class="uk-legend">Update Profile</legend>
 
-				<li>
-				{{ Form::label('twitter', 'Twitter link:' ,['class'=> 'form-spacing-top']) }}
-				{{ Form::text('twitter', null, ['class'=> 'form-control', 'placeholder' => 'https://twitter.com/user_name' ]) }}
-				</li>
-
-				<li>
-				{{ Form::label('instagram', 'Instagram link:' ,['class'=> 'form-spacing-top']) }}
-				{{ Form::text('instagram', null, ['class'=> 'form-control', 'placeholder' => 'https://instagram.com/user_name' ]) }}
-				</li>
-
-				<li>
-				{{ Form::label('tumblr', 'Tumblr link:' ,['class'=> 'form-spacing-top']) }}
-				{{ Form::text('tumblr', null, ['class'=> 'form-control', 'placeholder' => 'https://tumblr.com/user_name' ]) }}
-				</li>
-
-				<li>
-				{{ Form::label('youtube', 'Youtube link:' ,['class'=> 'form-spacing-top']) }}
-				{{ Form::text('youtube', null, ['class'=> 'form-control', 'placeholder' => 'https://youtube.com/user_name' ]) }}
-				</li>
-
-				</ul>
-
-				{{ Form::label('info', 'User Description:',['class'=> 'form-spacing-top' ]) }}
-				{{ Form::textarea('info', null, ['class' => 'form-control ', 'required']) }}
-
-				<div class="row padding-top">
-					<div class="col-sm-6">
-						{!! Html::linkRoute('profile.show', 'Cancel' , array($user->id), array('class' => 'btn btn-danger btn-block') ) !!} 
+					<div class="uk-margin">
+						{{ Form::label('name' , 'UserName', ['class' => 'uk-form-label']) }}
+						<div class="uk-form-control">
+							{{ Form::text('name', null , ['class' => 'uk-input', 'readonly']) }}
+						</div>
 					</div>
-					<div class="col-sm-6">
-						{{ Form::submit('Save Changes', ['class' => 'btn btn-success btn-block']) }}
-						
-						
+
+					<div class="uk-margin">
+						{{ Form::label('email', 'Email', [ 'class' => 'uk-form-label']) }}
+						<div class="uk-form-control">
+							{{ Form::text('email', null , ['class'=> 'uk-input', 'readonly']) }}
+						</div>
 					</div>
-				</div>
+
+					<div class="uk-margin">
+						{{ Form::label('avatar', 'Change Profle Image', [ 'class' => 'uk-form-label']) }}
+						<div class="uk-form-control">
+							<div uk-form-custom>
+							{{ Form::file('avatar') }}
+							<button class="uk-button uk-button-default" type="button" tabindex="-1">Select</button>
+							</div>
+						</div>
+					</div>
+
+					<div class="uk-margin">
+						{{ Form::label('coverImage', 'Change Cover Image', [ 'class' => 'uk-form-label']) }}
+						<div class="uk-form-control">
+							<div uk-form-custom>
+							{{ Form::file('coverImage') }}
+							<button class="uk-button uk-button-default" type="button" tabindex="-1">Select</button>
+							</div>
+						</div>
+					</div>
+
+					<div class="uk-text-lead">Social Connect : </div>
+
+					<div class="uk-margin">
+						{{ Form::label('facebook', 'Facebook link:' ,['class'=> 'uk-form-label']) }}
+						<div class="uk-form-control">
+							{{ Form::text('facebook', null, ['class'=> 'uk-input', 'placeholder' => 'https://facebook.com/user_name' ]) }}
+						</div>
+					</div>
+
+					<div class="uk-margin">
+						{{ Form::label('twitter', 'Twitter link:' ,['class'=> 'uk-form-label']) }}
+						<div class="uk-form-control">
+							{{ Form::text('twitter', null, ['class'=> 'uk-input', 'placeholder' => 'https://twitter.com/user_name' ]) }}
+						</div>
+					</div>
+
+					<div class="uk-margin">
+						{{ Form::label('instagram', 'Instagram link:' ,['class'=> 'uk-form-label']) }}
+						<div class="uk-form-control">
+							{{ Form::text('instagram', null, ['class'=> 'uk-input', 'placeholder' => 'https://instagram.com/user_name' ]) }}
+						</div>
+					</div>
+
+					<div class="uk-margin">
+						{{ Form::label('tumblr', 'Tumblr link:' ,['class'=> 'uk-form-label']) }}
+						<div class="uk-form-control">
+							{{ Form::text('tumblr', null, ['class'=> 'uk-input', 'placeholder' => 'https://tumblr.com/user_name' ]) }}
+						</div>
+					</div>
+
+					<div class="uk-margin">
+						{{ Form::label('youtube', 'Youtube link:' ,['class'=> 'uk-form-label']) }}
+						<div class="uk-form-control">
+							{{ Form::text('youtube', null, ['class'=> 'uk-input', 'placeholder' => 'https://youtube.com/user_name' ]) }}
+						</div>
+					</div>
+
+					<div class="uk-margin">
+						{{ Form::label('info', 'About Yourself:',['class'=> 'uk-form-label' ]) }}
+						<div class="uk-form-control">
+							{{ Form::textarea('info', null, ['class' => 'uk-textarea ', 'required']) }}
+						</div>
+					</div>
+
+					<div class="uk-margin">
+						{!! Html::linkRoute('profile.show', 'Cancel' , array($user->id), array('class' => 'uk-button uk-button-danger') ) !!} 
+
+						{{ Form::submit('Save', ['class' => 'uk-button uk-button-primary']) }}
+					</div>
+
+				</fieldset>
+
+				{!! Form::close() !!}
 
 			</div>
-
-			{!! Form::close() !!}
 		</div>
 	</div>
-	</section>
 
 
 @endsection

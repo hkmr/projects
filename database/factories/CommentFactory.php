@@ -8,6 +8,7 @@ $factory->define(App\Comment::class, function (Faker $faker) {
         'name' => $faker->name($gender = null|'male'|'female'),
         'email' => $faker->unique()->safeEmail,
         'comment' => $faker->sentence($nbWords = 6, true),
+        'approved' => 1,
         'post_id' => $faker->numberBetween($min = 1, $max = 100),
     ];
 });

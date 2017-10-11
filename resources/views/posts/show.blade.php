@@ -1,8 +1,8 @@
 @extends('main')
 
-@section('title' , '| View Post')
+@section('title' , '| '. $post->title)
 
-@section('description', 'show all your twebox posts')
+@section('description', $post->title)
 
 @section('content')
 
@@ -87,7 +87,7 @@
 
                                 {!! Form::submit('Delete' , ['class' => 'btn btn-danger btn-block' ,'onclick'=> 'return confirm("Delete This story ?")', 'id'=>'delete']) !!}
 
-								{!! Form::close() !!}
+                								{!! Form::close() !!}
                             </div>
                             <div class="media">
                                 {{ Html::linkRoute('posts.index', '<< See all Posts', [], ['class' => 'btn btn-warning btn-block'] ) }}
@@ -114,169 +114,123 @@
 {{-- ################################################################################################################# --}}
 
  <div class="uk-cover-container uk-margin-large-top">
-        <canvas width="400" height="200"></canvas>
-        <img uk-cover src="/images/blog/1493449659.jpg" alt="" >
-    </div>
+      <canvas width="400" height="200"></canvas>
+      <img uk-cover src="/images/blog/{{$post->image}}" alt="" >
+  </div>
     <div class="uk-padding-large">
         <div uk-grid>
             <div class="uk-width-1-6@m"></div>
             <div class="uk-width-3-5@m">
+                <div class="uk-flex uk-flex-center">
+                  <div uk-grid>
+                  <div>ABC</div>
+                  <div>ABC</div>
+                  <div>ABC</div>
+                </div>
+                </div>
                 <p class="uk-text-lead">
                     <article class="uk-article">
-                        <h1 class="uk-article-title">The 5 Questions Asked in Every Microsoft Interview & How to Answer Them</h1>
-                        <p class="uk-article-meta"><span class="uk-icon uk-icon-image" style="background-image: url(../images/user-profile/1494097628.jpg);"></span><a href="#"> Super User</a> . 12 April 2012.
-                        <span class="uk-badge uk-text-center uk-align-right"><a class="uk-link-reset" href="#">Interview</a></span></p>
+                        <h1 class="uk-article-title"> <a class="uk-link-reset" href="{{ route('blog.single', $post->slug) }}"> {{ $post->title }} </a></h1>
+                        <p class="uk-article-meta"><span class="uk-icon uk-icon-image" style="background-image: url(../images/user-profile/1494097628.jpg);"></span><a href="{{ '/profile/'. $post->user_id }}"> {{ $post->user->name }}</a> . {{ $post->created_at->diffForHumans() }}.
+                        <span class="uk-badge uk-text-center uk-align-right"><a class="uk-link-reset" href="/categories/{{$post->category_id}}">{{ $post->category->name }}</a></span></p>
 
-                        <h4 class="uk-text-background">If you believe you’ve got ideas running in you head and are creative, Microsoft is the place you should be.</h4>
-
-                        <p class="uk-text-lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                        </p>
-
-                        <p class="uk-text-lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                        </p>
-
-                        <div class="uk-cover-container">
-                            <canvas width="400" height="200"></canvas>
-                            <img uk-cover src="/images/blog/1493449659.jpg" alt="">
+                        <div>
+                          {!! $post->body !!}
                         </div>
 
-                        <p class="uk-text-lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                        </p>
-
-                        <p class="uk-text-lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                        </p>
-                        <hr>
-                        <p class="uk-text-lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                        </p>
                     </article>  
                 </p>
 
                 <div class="uk-flex-center" uk-grid>
-                    <div><a href="" uk-icon="icon: heart"></a> 15K</div>
-                    <div><a href="" uk-icon="icon: bookmark"></a> 12.5K</div>
-                    <div><a href="" uk-icon="icon: facebook"></a></div>
-                    <div><a href="" uk-icon="icon: twitter"></a></div>
-                    <div><a href="" uk-icon="icon: google-plus"></a></div>
+                    <favorite :post= {{ $post->id }} :favorited= {{ $post->favorited() ? 'true' : 'false' }}
+                      :likes={{ $post->likes }} >
+                    </favorite>
+                    <div class="uk-child-width-auto">
+                      <a href="{{ route('blog.single', $post->slug.'#comments') }}">
+                          <span uk-icon="icon: comments" title="Comment" uk-tooltip></span>
+                        <span class="uk-text-meta uk-text-small"> {{ $post->comments()->count() }}</span> 
+                      </a>
+                    </div>
+                    <bookmark :post= {{ $post->id }} :bookmarked = {{ $post->bookmarked() ? 'true': 'false' }} :bookmarks ={{ $post->bookmarks }}
+                    ></bookmark> 
+                    <div><a href="http://www.facebook.com/share.php?u={{route('blog.single', $post->slug)}}&title={{$post->slug}}" target="_blank" title="Share this story on Facebook" uk-icon="icon: facebook"></a></div>
+                    <div><a href="http://twitter.com/home?status={{$post->slug}}+https://laravel.com/docs/5.5/collections#method-push" target="_blank" title="Share this story on Twiiter" uk-icon="icon: twitter"></a></div>
+                    <div><a href="https://plus.google.com/share?url={{route('blog.single', $post->slug)}}" target="_blank" title="Share this story on Google-plus" uk-icon="icon: google-plus"></a></div>
                 </div>
 
                 <hr class="uk-divider-icon">
                 {{-- comment section --}}
                 <div class="ui comments">
                   <h3 class="ui dividing header">Comments</h3>
-                  <form class="ui reply form">
+                  @if (Auth::check())
+
+                    {{ Form::open(['route' => ['comments.store', $post->id ], 'method' => 'POST', 'class'=>'ui reply form']) }}
                     <div class="field">
-                      <textarea></textarea>
+                      {{ Form::textarea('comment',null, ['class' => 'form-control', 'rows' => '3', 'placeholder' => 'Enter Your comment here..']) }}
                     </div>
-                    <div class="ui blue labeled submit icon button">
-                      <i class="icon edit"></i> Add Reply
+                    {{ Form::submit('Comment', ['class' => 'uk-button uk-button-primary']) }}
+                    {{ Form::close() }}
+
+                  @else
+
+                    {{ Form::open(['route' => ['comments.store', $post->id ], 'method' => 'POST']) }}
+
+                    <div class="field uk-margin">
+                      {{ Form::text('name', null, ['class' => 'uk-input', 'placeholder' => 'Name']) }}
                     </div>
-                  </form>
+
+                    <div class="field uk-margin">
+                      {{ Form::text('email', null, ['class' => 'uk-input', 'placeholder' => 'Email']) }}
+                    </div>
+
+                    <div class="field uk-margin">
+                      {{ Form::textarea('comment',null, ['class' => 'uk-textarea', 'rows' => '5', 'placeholder' => 'Write Comment']) }}
+                    </div>
+
+                    {{ Form::submit('Add Comment', ['class' => 'uk-button uk-button-primary']) }}
+
+                    {{ Form::close() }}
+                  @endif
+
                   <hr class="uk-divider-small">
-                  <div class="comment">
+                  @forelse($comments as $comment)
+
+                    <div class="comment">
                     <a class="avatar">
-                      <img src="../images/user-profile/1494097628.jpg">
+                      <img src="{{$comment->user->avatar}}">
                     </a>
                     <div class="content">
-                      <a class="author">Matt</a>
+                      <a href="/profile/{{$comment->user->id}}" class="author">{{ $comment->user->name }}</a>
                       <div class="metadata">
-                        <span class="date">Today at 5:42PM</span>
+                        <span class="date">{{$comment->created_at->diffForHumans()}}</span>
                       </div>
                       <div class="text">
-                        How artistic!
-                      </div>
-                      <div class="actions">
-                        <a class="reply">Reply</a>
+                        {!! $comment->comment !!}
                       </div>
                     </div>
                   </div>
-                  <div class="comment">
-                    <a class="avatar">
-                      <img src="../images/user-profile/1494097628.jpg">
-                    </a>
-                    <div class="content">
-                      <a class="author">Elliot Fu</a>
-                      <div class="metadata">
-                        <span class="date">Yesterday at 12:30AM</span>
-                      </div>
-                      <div class="text">
-                        <p>This has been very useful for my research. Thanks as well!</p>
-                      </div>
-                      <div class="actions">
-                        <a class="reply">Reply</a>
-                      </div>
-                    </div>
-                    <div class="comments">
-                      <div class="comment">
-                        <a class="avatar">
-                          <img src="../images/user-profile/1494097628.jpg">
-                        </a>
-                        <div class="content">
-                          <a class="author">Jenny Hess</a>
-                          <div class="metadata">
-                            <span class="date">Just now</span>
-                          </div>
-                          <div class="text">
-                            Elliot you are always so right :)
-                          </div>
-                          <div class="actions">
-                            <a class="reply">Reply</a>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="comment">
-                    <a class="avatar">
-                      <img src="../images/user-profile/1494097628.jpg">
-                    </a>
-                    <div class="content">
-                      <a class="author">Joe Henderson</a>
-                      <div class="metadata">
-                        <span class="date">5 days ago</span>
-                      </div>
-                      <div class="text">
-                        Dude, this is awesome. Thanks so much
-                      </div>
-                      <div class="actions">
-                        <a class="reply">Reply</a>
-                      </div>
-                    </div>
-                  </div>
-                  <a class="uk-link-muted">Load more...</a>
+
+                  @empty
+                    <div class="uk-text-lead">No One has Commented</div>
+                  @endforelse
+
                 </div>
             </div>
 
             <div class="uk-margin">
                 <ul class="uk-iconnav uk-iconnav-vertical uk-position-fixed">
                     {{-- <li><a href="#" uk-icon="icon: plus; ratio:1.7"></a></li> --}}
-                    <li><a href="#" uk-icon="icon: file-edit; ratio:1.7" title="Edit this Story" uk-tooltip></a></li>
-                    <li><a href="#" uk-icon="icon: trash; ratio:1.7" title="Delete this Story" uk-tooltip></a></li>
-                    <li><a href="#" uk-icon="icon: list; ratio:1.7" title="See all Stories" uk-tooltip></a></li>
+                    <li><a href="/posts/{{$post->id}}/edit" uk-icon="icon: file-edit; ratio:1.7" title="Edit this Story" uk-tooltip></a><p class="uk-text-meta">EDIT</p> </li>
+                    <li>
+                      {!! Form::open([ 'route' =>['posts.destroy',$post->id] , 'method' => 'DELETE' ]) !!}
+
+                      {!! Form::submit('Delete' , ['class' =>'uk-button uk-button-default'  ,'onclick'=> 'return confirm("Delete This story ?")', 'id'=>'delete']) !!}
+
+                      {!! Form::close() !!}
+                      {{-- <a href="#" uk-icon="icon: trash; ratio:1.7" title="Delete this Story" uk-tooltip></a> --}}
+                      <p class="uk-text-meta">DELETE</p>
+                    </li>
+                    <li><a href="#" uk-icon="icon: list; ratio:1.7" title="See all Stories" uk-tooltip></a> <p class="uk-text-meta">STORIES</p></li>
                 </ul>
             </div>
         </div>

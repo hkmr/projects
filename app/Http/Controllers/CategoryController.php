@@ -22,9 +22,9 @@ class CategoryController extends Controller
         //display a view of all categories
         //also having form to create new category
 
-        $categories = Category::orderBy('created_at','desc')->paginate(50);
+        $categories = Category::orderBy('created_at','desc')->paginate(12);
 
-        return view('categories.index')->withCategories($categories);
+        return view('categories.index', compact('categories'));
     }
 
     public function follow(Category $category)
@@ -64,9 +64,10 @@ class CategoryController extends Controller
 
     public function show($id)
     {
-        $category = Category::where('id', $id )->get();
+        // $category = Category::where('id', $id )->get();
+        $posts = Post::where('category_id', $id)->paginate(5);
 
-        return view('categories.show', compact('category'));
+        return view('categories.show', compact('posts'));
     }
 
     public function showFollowed()

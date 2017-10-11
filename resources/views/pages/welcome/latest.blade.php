@@ -13,7 +13,7 @@
               <span class="uk-badge uk-text-center uk-align-right"><a class="uk-link-reset" href="{{'/categories/'.$post->category->id }}">{{ $post->category->name }}</a></span>
               <div class="uk-grid-small uk-flex-middle" uk-grid>
                   <div class="">
-                      <img class="uk-border-circle uk-icon uk-icon-image" width="30" height="30" src="../images/user-profile/1494097628.jpg">
+                      <img class="uk-border-circle uk-icon uk-icon-image" width="30" height="30" src="{{ strpos($post->user->avatar, "http",0) ===0 ? $post->user->avatar : '/images/user-profile/'.$post->user->avatar   }} ">
                   </div>
                   <div class="uk-text-left">
                     <h3 class="uk-text-small uk-margin-remove-bottom"><a class="uk-link-reset" href="{{ '/profile/'. $post->user_id }}">{{ $post->user->name }}</a></h3>
@@ -25,7 +25,7 @@
               </div>
           </div>
           <div class="uk-card-body">
-            <div class=" uk-background-primary uk-background-cover uk-height-small uk-panel uk-flex uk-flex-center uk-flex-middle" style="background-image: url({{$post->featured_image}});">
+            <div class=" uk-background-primary uk-background-cover uk-height-small uk-panel uk-flex uk-flex-center uk-flex-middle" style="background-image: url({{'/images/blog/'.$post->image}});">
 
             </div>
               <p>{{ substr(strip_tags($post->body), 0 ,100) }} {{ strlen(strip_tags($post->body)) >250 ? '...' : '' }}<a href="{{ route('blog.single', $post->slug) }}">read more.</a></p>
@@ -63,3 +63,5 @@
  
 </div>
 </div>
+
+<hr class="uk-divider-icon">

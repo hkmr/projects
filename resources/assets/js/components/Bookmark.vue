@@ -24,6 +24,7 @@
         data: function() {
             return {
                 isBookmarked: '',
+                count : 0,
             }
         },
 
@@ -40,20 +41,28 @@
         methods: {
             bookmark(post) {
 
-		                axios.post('/bookmark/'+post)
-		                    .then(response => this.isBookmarked = true)
-		                    .catch(response => console.log(response.data));
-	                    this.bookmarks++;
+                        if (this.count < 1) {
+
+    		                axios.post('/bookmark/'+post)
+    		                    .then(response => this.isBookmarked = true);
+    		                    // .catch(response => console.log(response.data));
+    	                    this.bookmarks++;
+                            this.count++;
+                        }
 
             },
 
             unBookmark(post) {
 
-		                axios.post('/unbookmark/'+post)
-		                    .then(response => this.isBookmarked = false)
-		                    .catch(response => console.log(response.data));
-                    	
-	                    this.bookmarks--;
+                        if (this.count >0) {
+
+    		                axios.post('/unbookmark/'+post)
+    		                    .then(response => this.isBookmarked = false)
+    		                    .catch(response => console.log(response.data));
+                        	
+    	                    this.bookmarks--;
+                            this.count--;
+                        }
 
             }
         }

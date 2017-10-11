@@ -22,8 +22,6 @@
 
       @include('partials._javascript')
 
-      @yield('scripts')
-
       @include('partials._messages')
 
     

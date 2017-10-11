@@ -7,45 +7,37 @@
 
 @section('content')
 
-    <section id="services">
-        <div class="container padding-top padding-bottom">
-            <div class="row">
-               <h2 class="head">Mail us</h2> 
-              <form action=" {{ url('contact') }} " method="POST">
+    <div class="uk-section uk-padding-large uk-margin-large-top">
+        
+      <div class="uk-flex uk-flex-center">
+        <div class="uk-width-3-5@m">
+          <h1 class="uk-text-lead">Mail us...</h1>
+          <p class="uk-text-meta">For any queries please write us , or put your put in "mailtwebox@gmail.com"</p>
+
+          <form action=" {{ url('contact') }} " method="POST">
               {{ csrf_field() }}
-              <div class="form-group">
-                  <!-- <label name="email">Email :</label> -->
-                  <input type="email" id="email" name="email" class="form-control" placeholder="Your Email">
-              </div>
+          <div class="uk-margin">
+              <input type="email" id="email" name="email" class="uk-input" placeholder="example@example.com">
+          </div>
 
-              <div class="form-group">
-                  <!-- <label name="subject">Subject :</label> -->
-                  <input type="text" id="subject" name="subject" class="form-control" placeholder="Subject">
-              </div>
+          <div class="uk-margin">
+              <input type="text" id="subject" name="subject" class="uk-input" placeholder="Subject">
+          </div>
 
-              <div class="form-group">
-                  <!-- <label name="message">Message :</label> -->
-                  <textarea placeholder="Write Your message here..." id="message" name="message" class="form-control" placeholder="Write your message here..."  ></textarea>
-              </div>
+          <div class="uk-margin">
+              <!-- <label name="message">Message :</label> -->
+              <textarea placeholder="Write Your message here..." id="message" name="message" rows='5' class="uk-textarea" placeholder="Write your message here..."  ></textarea>
+          </div>
 
-                  <input type="submit" name="submit" value="Send Message" class="btn btn-lg btn-success">
-              </form>
+              <input type="submit" name="submit" value="Send Message" class="uk-button uk-button-primary">
+          </form>
 
-            </div>
-        </div>
-    </section><hr>
-    <!--/#services-->
+          <hr class="uk-divider-icon">
 
-    <section class="services" id="advertise">
-      <div class="container padding-bottom">
-        <h2 class="head">Avertise with us</h2>
-          <p>For all advertising inquiries, please contact:</p>
-          <address class="address">
-            BTM Layout,<br>
-            Bengaluru, Karnataka <br>  
-            <a href="mailto:example@email.com">Mail : mailtwebox@gmail.com</a> <br>
-          </address>
-      </div>
-    </section>
+        </div>  
+      </div>    
+        
+
+    </div>
 
 @endsection

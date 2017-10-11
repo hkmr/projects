@@ -5,7 +5,7 @@
 		type:"info",
 		color: "#fff",
 		background:"#4B7EE0",
-		delay:3000,
+		delay:4000,
 		}); 
 	</script>
 
