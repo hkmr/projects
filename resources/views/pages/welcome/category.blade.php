@@ -9,7 +9,7 @@
     <div class="uk-padding-small">
         <div class="uk-inline uk-light uk-margin">
             
-                <img src="/images/categories/gaming.jpeg" alt="">
+                <img src="/images/categories/{{ $category->image }}" alt="">
                 <div class="uk-overlay-primary uk-position-cover"></div>
                 <div class="uk-position-center">
                     <span class="uk-text-large uk-text-bold uk-text-uppercase">

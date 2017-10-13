@@ -29,7 +29,7 @@
                 <p class="uk-text-lead">
                     <article class="uk-article">
                         <h1 class="uk-article-title">{{ $post->title}}</h1>
-                        <p class="uk-article-meta"><span class="uk-icon uk-icon-image" style="background-image: url({{$post->user->avatar}});"></span><a href="#"> {{$post->user->name}}</a> <br>Published on {{ $post->created_at->format('d-m-y') }}
+                        <p class="uk-article-meta"><span class="uk-icon uk-icon-image" style="background-image: url({{ strpos($post->user->avatar, "http",0) ===0 ? $post->user->avatar : '/images/user-profile/'.$post->user->avatar   }});"></span><a href="#"> {{$post->user->name}}</a> <br>Written on : {{ $post->created_at->format('d-m-y') }}
                         <span class="uk-badge uk-text-center uk-align-right"><a class="uk-link-reset" href="/categories/{{$post->category_id}}">{{$post->category->name}}</a></span></p>
                         <hr>
                         <div id="story-body">
@@ -71,7 +71,7 @@
 
                     {{ Form::open(['route' => ['comments.store', $post->id ], 'method' => 'POST', 'class'=>'ui reply form']) }}
                     <div class="field">
-                      {{ Form::textarea('comment',null, ['class' => 'form-control', 'rows' => '3', 'placeholder' => 'Enter Your comment here..']) }}
+                      {{ Form::textarea('comment',null, ['class' => 'form-control', 'rows' => '3', 'placeholder' => 'Write Your comment here..']) }}
                     </div>
                     {{ Form::submit('Comment', ['class' => 'uk-button uk-button-primary']) }}
                     {{ Form::close() }}
@@ -105,7 +105,7 @@
                       @if($comment->user_id == null)
                       <img src="https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?f=y&d=mm">
                       @else
-                      <img src="{{$comment->user->avatar}}">
+                      <img src="{{ strpos($comment->user->avatar, "http",0) ===0 ? $comment->user->avatar : '/images/user-profile/'.$comment->user->avatar   }}">
                       @endif
                     </a>
                     <div class="content">

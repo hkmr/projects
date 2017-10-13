@@ -1,8 +1,8 @@
 @extends('main')
 
-@section('title' , '| Blogs')
+@section('title' , '| Stories')
 
-@section('description', 'tweBox all blogs')
+@section('description', 'best story , twebox stories')
 
 @section('content')
 

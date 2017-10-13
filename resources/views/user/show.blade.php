@@ -31,19 +31,19 @@
             <div class="uk-padding-small">
               <span class="uk-text-lead">Follow {{$user->name}} : </span>
               @if($user->facebook != "")
-              <a href="{{ $user->facebook }}" class="uk-icon-link uk-margin-small-right" uk-icon="icon: facebook ; ratio:1.3"></a>
+              <a href="{{ $user->facebook }}" class="uk-icon-link uk-margin-small-right" uk-icon="icon: facebook ; ratio:1.3" title="Follow {{$user->name}} on facebook"></a>
               @endif
               @if($user->twitter != "")
-              <a href="{{ $user->twitter }}" class="uk-icon-link uk-margin-small-right" uk-icon="icon: twitter; ratio:1.3"></a>
+              <a href="{{ $user->twitter }}" class="uk-icon-link uk-margin-small-right" uk-icon="icon: twitter; ratio:1.3" title="Follow {{$user->name}} on twitter"></a>
               @endif
               @if($user->google != "")
-              <a href="{{ $user->google }}" class="uk-icon-link uk-margin-small-right" uk-icon="icon: google-plus; ratio:1.3"></a>
+              <a href="{{ $user->google }}" class="uk-icon-link uk-margin-small-right" uk-icon="icon: google-plus; ratio:1.3" title="Follow {{$user->name}} on google-plus"></a>
               @endif
               @if($user->tumblr != "")
-              <a href="{{ $user->tumblr }}" class="uk-icon-link uk-margin-small-right" uk-icon="icon: tumblr; ratio:1.3"></a>
+              <a href="{{ $user->tumblr }}" class="uk-icon-link uk-margin-small-right" uk-icon="icon: tumblr; ratio:1.3" title="Follow {{$user->name}} on tumblr"></a>
               @endif
               @if($user->youtube != "")
-              <a href="{{ $user->youtube }}" class="uk-icon-link uk-margin-small-right" uk-icon="icon: youtube; ratio:1.3"></a>
+              <a href="{{ $user->youtube }}" class="uk-icon-link uk-margin-small-right" uk-icon="icon: youtube; ratio:1.3" title="Follow {{$user->name}} on youtube"></a>
               @endif
             </div>
           </div>
@@ -71,14 +71,11 @@
                       <div class="uk-grid-small uk-flex-middle" uk-grid>
                           <div class="">
                               <img class="uk-border-circle uk-icon uk-icon-image" width="30" height="30" 
-                              src="{{ $post->user->avatar }}">
+                              src="{{ strpos($post->user->avatar, "http",0) ===0 ? $post->user->avatar : '/images/user-profile/'.$post->user->avatar   }}">
                           </div>
                           <div class="uk-text-left">
                             <h3 class="uk-text-small uk-margin-remove-bottom"><a class="uk-link-reset" href="/profile/{{$post->user->id}}">{{$post->user->name}}</a></h3>
                               <p class="uk-text-meta uk-margin-remove-top"><time>{{$post->created_at->diffForHumans()}}</time></p>
-                          </div>
-                          <div >
-                              <p class="uk-text-right"><a uk-icon="icon: clock; ratio: 0.6"></a><span class="uk-text-meta uk-text-small"> 3min</span></p>
                           </div>
                       </div>
                   </div>

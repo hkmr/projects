@@ -16,6 +16,7 @@ class CreateCategoriesTable extends Migration
         Schema::create('categories', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name')->unique();
+            $table->string('image');
             $table->integer('total_posts')->unsigned()->default(0);
             $table->integer('total_followers')->unsigned()->default(0);
             $table->timestamps();

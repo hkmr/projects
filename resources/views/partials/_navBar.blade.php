@@ -56,7 +56,6 @@
             <li><a href="{{ url('my_favorites') }}"><span uk-icon="icon: heart"></span> Likes</a></li>
             <li><a href="{{ url('followed') }}"><span uk-icon="icon: list"></span> Interests</a></li>
             <li><a href="{{ url('my_bookmarked') }}"><span uk-icon="icon: bookmark"></span> Bookmarked Stories</a></li>
-            <li><a href="#"><span uk-icon="icon: cog"></span> Setting</a></li>
             <li><a href="{{route('logout')}}"><span uk-icon="icon: sign-out"></span> Logout</a></li>
             <li id="greybox"><a href="#!"></a></li>
         </ul>

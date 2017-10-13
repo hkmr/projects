@@ -79,3 +79,8 @@ Route::get('comments/{id}/edit', ['uses' => 'CommentsController@edit', 'as' => '
 Route::get('comments/{id}', ['uses' => 'CommentsController@update', 'as' => 'comments.update']);
 Route::delete('comments/{id}', ['uses' => 'CommentsController@destroy', 'as' => 'comments.destroy']);
 Route::get('comments/{id}/delete', ['uses' => 'CommentsController@delete', 'as' => 'comments.delete']);
+
+
+// Recommends routes
+	Route::get('recommend/{id}/blog', 'BlogController@userRecommends');
+	Route::get('recommend/blog', 'BlogController@guestRecommends');

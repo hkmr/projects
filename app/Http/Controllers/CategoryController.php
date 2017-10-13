@@ -7,6 +7,7 @@ use App\Category;
 use Session;
 use App\Post;
 use App\User;
+use Image;
 use App\CategoryFollow;
 use Illuminate\Support\Facades\Auth;
 
@@ -14,7 +15,7 @@ class CategoryController extends Controller
 {
     public function __construct(){
 
-        $this->middleware('auth',['except' => 'show']);
+        $this->middleware('auth',['except' => 'show' && 'index']);
     }
 
     public function index()
@@ -22,7 +23,7 @@ class CategoryController extends Controller
         //display a view of all categories
         //also having form to create new category
 
-        $categories = Category::orderBy('created_at','desc')->paginate(12);
+        $categories = Category::orderBy('created_at','desc')->get();
 
         return view('categories.index', compact('categories'));
     }
@@ -51,10 +52,22 @@ class CategoryController extends Controller
     {
         //storing the new category
         $this-> validate($request , array(
-            'name' => 'required|max:255|unique:categories' ));
+            'name' => 'required|max:255|unique:categories',
+            'featured_image' => 'required|image|max:1012' ));
 
         $category = new Category;
         $category->name = $request->name;
+
+        if( $request->hasFile('featured_image') )
+        {
+            $image =$request->file('featured_image');
+            $fileName = $request->name. '.' .$image->getClientOriginalExtension();
+            $location =public_path('images/categories/'. $fileName);
+            Image::make($image)->resize(640,426)->save($location);
+
+            $category->image = $fileName;
+        }
+
         $category->save();
 
         Session::flash('success' , 'New Category has been created');

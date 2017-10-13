@@ -1,6 +1,6 @@
 <div class="uk-container">
     {{-- User Recommended Section --}}
-<h1 class="uk-heading-divider">Recommended for you <span class="uk-text-small"><a href="/recomend/blog"> Show more...</a></span></h1>
+<h1 class="uk-heading-divider">Recommended for you <span class="uk-text-small"><a href= {{ Auth::check() ? "/recommend/".Auth::user()->id."/blog" : "recommend/blog" }} > Show more...</a></span></h1>
 <div class="uk-child-width-1-5@m uk-grid-small uk-grid-match" uk-grid>
   @foreach($recomends as $recomend)
     <div>

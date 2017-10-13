@@ -7,6 +7,7 @@ use App\Post;
 use App\Category;
 use App\Comment;
 use App\User;
+use App\CategoryFollow;
 
 class BlogController extends Controller
 {
@@ -50,4 +51,24 @@ class BlogController extends Controller
     	return view('blog.single',compact('post','comments', 'recommends'));
 
     }
+
+    // recommends for login user
+    public function userRecommends($id){
+
+        $getCategoryIds = CategoryFollow::where('user_id',$id)->get();
+
+        $posts = Post::whereIn('category_id',$getCategoryIds)->orderBy('views','desc')->paginate(12);
+
+        return view('recommends/blog_recommend', compact('posts'));
+
+    }
+
+    // recommend for guest user
+    public function guestRecommends(){
+        
+        $posts = Post::all()->random(50);
+
+        return view('recommends/blog_recommend', compact('posts'));
+    }
+
 }

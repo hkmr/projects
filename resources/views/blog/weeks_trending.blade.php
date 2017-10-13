@@ -6,7 +6,7 @@
 
 @section('content')
 
-<div class="uk-padding-large uk-container">
+<div class="uk-container uk-margin-xlarge-top">
 
   <h1 class="uk-heading-primary">Trending this week {{$posts->count()}}</h1>
 
