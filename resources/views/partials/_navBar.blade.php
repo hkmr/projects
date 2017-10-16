@@ -51,7 +51,7 @@
             <span>{{ Auth::user()->name }} </span>
         </a>
         <ul class="paradeiser_children" id="paradeiser-more">
-            <li><a href="{{ route('profile.show', ['id' => Auth::user()->id]) }}"><span uk-icon="icon: user"></span> Profile</a></li>
+            <li><a href="{{ route('profile.show', ['id' => Auth::user()->username]) }}"><span uk-icon="icon: user"></span> Profile</a></li>
             <li><a href="{{ route('posts.index') }}"><span uk-icon="icon: grid"></span> My Stories</a></li>
             <li><a href="{{ url('my_favorites') }}"><span uk-icon="icon: heart"></span> Likes</a></li>
             <li><a href="{{ url('followed') }}"><span uk-icon="icon: list"></span> Interests</a></li>

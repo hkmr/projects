@@ -4,14 +4,6 @@
 
 @section('description', 'edit your twebox posts')
 
-@section('stylesheets')
-
-	<!-- include libraries(jQuery, bootstrap) -->
-<link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
-<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.css" rel="stylesheet">
-
-@endsection
-
 @section('content')
 
     <div class="uk-padding-large uk-margin-large-top">
@@ -48,7 +40,7 @@
 					</div>
 				</div>
 
-				<div class="uk-margin">
+				<div class="uk-margin uk-margin-xlarge-top">
 					{{ Form::textarea('body', null, ['class'=> 'uk-textarea', 'required' =>'required', 'id' => 'post-body'] ) }}
 				</div>
 
@@ -75,14 +67,14 @@
     var editor_config = {
         path_absolute : "{{ URL::to('/') }}/",
         selector: "textarea",
-        menubar: false,
+        menubar: view,
         plugins: [
             "advlist autolink lists link image charmap print preview hr anchor pagebreak",
             "searchreplace wordcount visualblocks visualchars code fullscreen",
             "insertdatetime media nonbreaking save table contextmenu directionality",
             "emoticons template paste textcolor colorpicker textpattern textcolor"
         ],
-        toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist | link image | fontselect | forecolor | fontsizeselect",
+        toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist | link image | fontselect | forecolor | fontsizeselect | fullscreen",
         content_css: [
 '//fonts.googleapis.com/css?family=Lato:300,300i,400,400i',
 '//www.tinymce.com/css/codepen.min.css'],

@@ -14,18 +14,16 @@ class BlogController extends Controller
 
 	public function getIndex(){
 
-        $posts=Post::orderBy('views','desc')->paginate(21);
-        $user = new User;
+        $posts=Post::orderBy('views','desc')->where('status',1)->paginate(21);
 
-		return view('blog.index')->withPosts($posts)->withUser($user);
+		return view('blog.index',compact('posts'));
 	}
 
     public function weeksTrending(){
 
-        // $posts=Post::where('created_at', '>' ,strtotime('previous sunday') )->paginate(9);
         $beginning_of_week = strtotime('last Monday', time()); 
         $end_of_week = strtotime('next Sunday', time()) + 86400; 
-        $allPosts = Post::all();
+        $allPosts = Post::where('status',1);
         $weekTrendIds = collect([]);
         foreach ($allPosts as $post) {
             if( strtotime($post->created_at) > $beginning_of_week && strtotime($post->created_at) < $end_of_week )
@@ -42,10 +40,10 @@ class BlogController extends Controller
     public function getSingle($slug){
 
     	//fetching from database based on slug
-    	$post = Post::where('slug' , '=', $slug)->first();
+    	$post = Post::where([['slug' , '=', $slug],['status',1]])->first();
         $post->increment('views'); 
         $comments = Comment::where('post_id' , $post->id)->get();
-        $recommends = Post::where('category_id', $post->category_id)->get()->random(5);
+        $recommends = Post::where([['category_id', $post->category_id],['status',1]])->get()->take(5);
 
     	//returning the view
     	return view('blog.single',compact('post','comments', 'recommends'));
@@ -57,7 +55,7 @@ class BlogController extends Controller
 
         $getCategoryIds = CategoryFollow::where('user_id',$id)->get();
 
-        $posts = Post::whereIn('category_id',$getCategoryIds)->orderBy('views','desc')->paginate(12);
+        $posts = Post::whereIn([['category_id',$getCategoryIds],['status',1]])->orderBy('views','desc')->paginate(12);
 
         return view('recommends/blog_recommend', compact('posts'));
 
@@ -66,7 +64,7 @@ class BlogController extends Controller
     // recommend for guest user
     public function guestRecommends(){
         
-        $posts = Post::all()->random(50);
+        $posts = Post::where('status',1)->random(50);
 
         return view('recommends/blog_recommend', compact('posts'));
     }

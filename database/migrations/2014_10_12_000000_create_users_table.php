@@ -20,7 +20,7 @@ class CreateUsersTable extends Migration
             $table->string('password')->nullable();
             $table->string('provider')->default('normal');
             $table->string('provider_id')->nullable();
-            $table->string('avatar');
+            $table->string('avatar')->default(' https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?f=y&d=identicon');
             $table->string('coverImage')->default('defaultProfileCoverImage.jpg');
             $table->string('facebook')->nullable();
             $table->string('twitter')->nullable();

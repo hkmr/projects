@@ -9,7 +9,7 @@
 
 <div class="uk-container uk-margin-xlarge-top">
     
-    @if(Auth::check())
+    @if(!Auth::check())
     {{-- Welcome Message --}}
     <div uk-alert>
         <a class="uk-alert-close" uk-close></a>

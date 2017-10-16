@@ -45,7 +45,7 @@ class CategoryController extends Controller
 
     public function create()
     {
-        //
+        return redirect('/');
     }
 
     public function store(Request $request)
@@ -78,9 +78,11 @@ class CategoryController extends Controller
     public function show($id)
     {
         // $category = Category::where('id', $id )->get();
-        $posts = Post::where('category_id', $id)->paginate(5);
+        $category = Category::where('name',$id)->first();
+        $posts = Post::where([['category_id', $category->id ],['status',1]])->paginate(5);
+        $categoryName = $id;
 
-        return view('categories.show', compact('posts'));
+        return view('categories.show', compact('posts','categoryName'));
     }
 
     public function showFollowed()

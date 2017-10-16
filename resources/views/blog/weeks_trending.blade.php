@@ -8,7 +8,7 @@
 
 <div class="uk-container uk-margin-xlarge-top">
 
-  <h1 class="uk-heading-primary">Trending this week {{$posts->count()}}</h1>
+  <h1 class="uk-heading-primary">Trending this week</h1>
 
 <div class="uk-child-width-1-3@m uk-grid-large uk-grid-match uk-text-center uk-padding-small" uk-grid>
     
@@ -18,17 +18,14 @@
         <div class="uk-card uk-card-default">
           <div class="uk-card-header uk-padding-small">
               <h1 class="uk-card-title uk-text-uppercase"><a class="uk-link-reset" href="{{ route('blog.single', $post->slug) }}">{{ substr(strip_tags($post->title), 0, 30 ) }} {{ strlen(strip_tags($post->title)) > 30 ? '...' : '' }} </a> </h1>
-              <span class="uk-badge uk-text-center uk-align-right"><a class="uk-link-reset" href="{{'categories/'.$post->category->id }}">{{ $post->category->name }}</a></span>
+              <span class="uk-badge uk-text-center uk-align-right"><a class="uk-link-reset" href="{{'/category/'.$post->category->name }}">{{ $post->category->name }}</a></span>
               <div class="uk-grid-small uk-flex-middle" uk-grid>
                   <div>
                       <img class="uk-border-circle uk-icon uk-icon-image" icon-ratio="1.5" src="{{ strpos($post->user->avatar, "http",0) ===0 ? $post->user->avatar : '/images/user-profile/'.$post->user->avatar   }}">
                   </div>
                   <div class="uk-text-left">
-                    <h3 class="uk-text-small uk-margin-remove-bottom"><a class="uk-link-reset" href="#">{{ $post->user->name }}</a></h3>
+                    <h3 class="uk-text-small uk-margin-remove-bottom"><a class="uk-link-reset" href="{{route('profile.show',$post->user->username)}}">{{ $post->user->name }}</a></h3>
                       <p class="uk-text-meta uk-margin-remove-top"><time>{{ (date('dDMYW',strtotime( $post->created_at))) }}</time></p>
-                  </div>
-                  <div >
-                      <p class="uk-text-right"><a uk-icon="icon: clock; ratio: 0.6"></a><span class="uk-text-meta uk-text-small"> 3min read</span></p>
                   </div>
               </div>
           </div>

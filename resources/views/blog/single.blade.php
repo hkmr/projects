@@ -29,8 +29,8 @@
                 <p class="uk-text-lead">
                     <article class="uk-article">
                         <h1 class="uk-article-title">{{ $post->title}}</h1>
-                        <p class="uk-article-meta"><span class="uk-icon uk-icon-image" style="background-image: url({{ strpos($post->user->avatar, "http",0) ===0 ? $post->user->avatar : '/images/user-profile/'.$post->user->avatar   }});"></span><a href="#"> {{$post->user->name}}</a> <br>Written on : {{ $post->created_at->format('d-m-y') }}
-                        <span class="uk-badge uk-text-center uk-align-right"><a class="uk-link-reset" href="/categories/{{$post->category_id}}">{{$post->category->name}}</a></span></p>
+                        <p class="uk-article-meta"><span class="uk-icon uk-icon-image" style="background-image: url({{ strpos($post->user->avatar, "http",0) ===0 ? $post->user->avatar : '/images/user-profile/'.$post->user->avatar   }});"></span><a href="{{ route('profile.show',$post->user->username) }}"> {{$post->user->name}}</a> <br>Written on : {{ $post->created_at->format('d-m-y') }} | Views: {{ $post->views }}
+                        <span class="uk-badge uk-text-center uk-align-right"><a class="uk-link-reset" href="/category/{{$post->category->name}}">{{$post->category->name}}</a></span></p>
                         <hr>
                         <div id="story-body">
                           {!! $post->body!!}
@@ -59,7 +59,7 @@
                     <bookmark :post= {{ $post->id }} :bookmarked = {{ $post->bookmarked() ? 'true': 'false' }} :bookmarks ={{ $post->bookmarks }}
                     ></bookmark> 
                     <div><a href="http://www.facebook.com/share.php?u={{route('blog.single', $post->slug)}}&title={{$post->slug}}" target="_blank" title="Share this story on Facebook" uk-icon="icon: facebook"></a></div>
-                    <div><a href="http://twitter.com/home?status={{$post->slug}}+https://laravel.com/docs/5.5/collections#method-push" target="_blank" title="Share this story on Twiiter" uk-icon="icon: twitter"></a></div>
+                    <div><a href="http://twitter.com/share?text={{$post->title}}&url={{route('blog.single', $post->slug)}}" target="_blank" title="Share this story on Twiiter" uk-icon="icon: twitter"></a></div>
                     <div><a href="https://plus.google.com/share?url={{route('blog.single', $post->slug)}}" target="_blank" title="Share this story on Google-plus" uk-icon="icon: google-plus"></a></div>
                 </div>
 
@@ -153,7 +153,7 @@
                             <div uk-dropdown="mode: click" class="uk-dark uk-background-secondary">
                                 <ul class="uk-iconnav uk-padding-remove">
                                     <li><a href="http://www.facebook.com/share.php?u={{route('blog.single', $recommend->slug)}}&title={{$recommend->slug}}" target="_blank" uk-icon="icon: facebook" title="Facebook" ></a></li>
-                                    <li><a href="http://twitter.com/home?status={{$recommend->slug}}+https://laravel.com/docs/5.5/collections#method-push" target="_blank" uk-icon="icon: twitter" title="Twiiter" ></a></li>
+                                    <li><a href="http://twitter.com/share?text={{$recommend->title}}&url={{$recommend->slug}}" target="_blank" uk-icon="icon: twitter" title="Twiiter" ></a></li>
                                     <li><a href="https://plus.google.com/share?url={{route('blog.single', $post->slug)}}" target="_blank" uk-icon="icon: google-plus" title="Google Plus" ></a></li>
                                     <li><a href="#" uk-icon="icon: instagram" title="Instagram" ></a></li>
                                 </ul>

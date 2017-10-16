@@ -28,8 +28,9 @@ class ProfileController extends Controller
 
 	public function show($id) {
 
-		$user = User::find($id);
-		$posts =Post::where('user_id',$id)->orderBy('views','desc')->paginate(10);
+        $user = User::where('username',$id)->first();
+        // $user = User::find($id);
+		$posts =Post::where([['user_id',$user->id],['status',1]])->orderBy('views','desc')->paginate(10);
         $total_view = 0;
         $total_likes = 0;
         foreach ($posts as $post) {

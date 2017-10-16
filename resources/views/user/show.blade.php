@@ -7,14 +7,14 @@
 
     <div class="uk-container uk-margin-xlarge-top">
         {{-- backgroud image --}}
-        <div class="uk-background-cover uk-background-muted uk-height-medium uk-panel uk-flex uk-flex-center uk-flex-middle" style="background-image: url('/images/user-cover/{{$user->coverImage}} ');">
+        <div class="uk-background-cover uk-background-muted uk-height-medium uk-panel uk-flex uk-flex-center uk-flex-middle" style="background-image: url('/images/user-cover/{{ $user->coverImage }}');">
             {{-- user profile image --}}
                 <div uk-lightbox>
                     <a href="{{ $user->avatar }}"><img  class="uk-position-bottom uk-border-circle uk-padding-small" style="z-index: 100;" width="150" height="150" src=
                       {{ strpos($user->avatar, "http",0) ===0 ? $user->avatar : '/images/user-profile/'.$user->avatar   }} ></a>
                 </div>
                 <div class="uk-overlay-default">
-                <p class="uk-heading-primary">{{ $user->name }}</p>
+                <p class="uk-heading-primary"><a href="{{'/profile/'. $user->username}}" class="uk-link-reset"> {{ $user->name }} </a></p>
                 </div>
 
                 <ul class="uk-breadcrumb uk-position-bottom-right uk-text-meta uk-margin-small-right" style="color:#ffffff; z-index: 100;">
@@ -30,19 +30,19 @@
           <div class="uk-width-1-2@s">
             <div class="uk-padding-small">
               <span class="uk-text-lead">Follow {{$user->name}} : </span>
-              @if($user->facebook != "")
+              @if($user->facebook != null)
               <a href="{{ $user->facebook }}" class="uk-icon-link uk-margin-small-right" uk-icon="icon: facebook ; ratio:1.3" title="Follow {{$user->name}} on facebook"></a>
               @endif
-              @if($user->twitter != "")
+              @if($user->twitter != null)
               <a href="{{ $user->twitter }}" class="uk-icon-link uk-margin-small-right" uk-icon="icon: twitter; ratio:1.3" title="Follow {{$user->name}} on twitter"></a>
               @endif
-              @if($user->google != "")
+              @if($user->google != null)
               <a href="{{ $user->google }}" class="uk-icon-link uk-margin-small-right" uk-icon="icon: google-plus; ratio:1.3" title="Follow {{$user->name}} on google-plus"></a>
               @endif
-              @if($user->tumblr != "")
+              @if($user->tumblr != null)
               <a href="{{ $user->tumblr }}" class="uk-icon-link uk-margin-small-right" uk-icon="icon: tumblr; ratio:1.3" title="Follow {{$user->name}} on tumblr"></a>
               @endif
-              @if($user->youtube != "")
+              @if($user->youtube != null)
               <a href="{{ $user->youtube }}" class="uk-icon-link uk-margin-small-right" uk-icon="icon: youtube; ratio:1.3" title="Follow {{$user->name}} on youtube"></a>
               @endif
             </div>
@@ -51,7 +51,7 @@
           <div class="uk-width-1-2@s">
             <div class="uk-flex uk-flex-right uk-padding-small">
               <a class="uk-button uk-button-small@s uk-button-default uk-margin-small-right" href="/profile/{{$user->id}}/edit"><span uk-icon="icon: pencil"></span> <span class="uk-text-small">Edit Profile</span></a>
-              <button class="uk-button uk-button-default" href="/setting" disabled><span uk-icon="icon: cog"></span> Setting</button>
+              <button class="uk-button uk-button-default" href="/setting" disabled><span uk-icon="icon: settings"></span> Setting</button>
           </div>
           </div>
         @endif
@@ -61,7 +61,7 @@
             
             @forelse($posts as $post)
 
-                <div class="uk-text-lead uk-margin"><i uk-icon="icon: clock; ratio:1.5"></i> {{$post->created_at}}</div>
+                <div class="uk-text-meta uk-margin"><i uk-icon="icon: clock; ratio:1.5"></i> {{$post->created_at->diffForHumans()}}</div>
                 <div class="uk-divider-small"></div>
                 <div class="uk-card uk-card-default">
                   <div class="uk-card-header uk-padding-small">
@@ -99,9 +99,9 @@
                         <a uk-icon="icon: social" title="Share" uk-tooltip></a>
                         <div uk-dropdown="mode: click">
                             <ul class="uk-iconnav uk-padding-remove">
-                                <li><a href="#" uk-icon="icon: facebook" title="Facebook" uk-tooltip></a></li>
-                                <li><a href="#" uk-icon="icon: twitter" title="Twiiter" uk-tooltip></a></li>
-                                <li><a href="#" uk-icon="icon: google-plus" title="Google Plus" uk-tooltip></a></li>
+                                <li><a href="http://www.facebook.com/share.php?u={{route('blog.single', $post->slug)}}&title={{$post->slug}}" uk-icon="icon: facebook" title="Facebook" uk-tooltip></a></li>
+                                <li><a href="http://twitter.com/home?status={{$post->slug}}+{{route('blog.single', $post->slug)}}" uk-icon="icon: twitter" title="Twiiter" uk-tooltip></a></li>
+                                <li><a href="https://plus.google.com/share?url={{route('blog.single', $post->slug)}}" uk-icon="icon: google-plus" title="Google Plus" uk-tooltip></a></li>
                                 <li><a href="#" uk-icon="icon: instagram" title="Instagram" uk-tooltip></a></li>
                             </ul>
                         </div>
@@ -118,7 +118,9 @@
 
             @endforelse
 
-            {{-- <div class="uk-align-center uk-text-center" uk-spinner></div> --}}
+            <div class="uk-flex uk-flex-center uk-margin">
+              <div>{{$posts->links()}}</div>
+            </div>
         </div>
     </div>
 

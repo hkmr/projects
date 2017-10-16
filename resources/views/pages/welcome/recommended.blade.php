@@ -2,7 +2,7 @@
     {{-- User Recommended Section --}}
 <h1 class="uk-heading-divider">Recommended for you <span class="uk-text-small"><a href= {{ Auth::check() ? "/recommend/".Auth::user()->id."/blog" : "recommend/blog" }} > Show more...</a></span></h1>
 <div class="uk-child-width-1-5@m uk-grid-small uk-grid-match" uk-grid>
-  @foreach($recomends as $recomend)
+  @forelse($recomends as $recomend)
     <div>
         <div class="uk-card uk-card-primary uk-card-body">
             <h3 class="uk-card-title"><a class="uk-link-reset" href="{{ route('blog.single', $recomend->slug) }}">{{ substr(strip_tags($recomend->title), 0 ,15) }} {{ strlen( strip_tags($recomend->title )) >15 ? '...' : '' }}</a></h3>
@@ -29,7 +29,13 @@
         </div>
     </div>
 
-    @endforeach
+    @empty
+
+        <div class="uk-flex uk-flex-center">
+            <p class="uk-text-lead">Sorry no Stories...</p>
+        </div>
+
+    @endforelse
     
 </div>
 </div>

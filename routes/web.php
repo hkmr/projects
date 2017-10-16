@@ -34,6 +34,7 @@ Route::get('terms','PagesController@getTerms');
 Route::get('setting','UserController@setting');
 
 Route::resource('profile','ProfileController');
+Route::get('/profile/{id}',['uses'=>'ProfileController@show','as'=>'profile.show']);
 
 Route::resource('posts','PostController');
 
@@ -61,6 +62,7 @@ Route::get('/auth/{provider}/callback', 'Auth\RegisterController@handleProviderC
 
 //category route
 Route::resource('categories', 'CategoryController', ['except' => ['create']]);
+Route::get('/category/{id}',['uses'=>'CategoryController@show', 'as'=>'categories.show']);
 
 //subscribe
 Route::resource('subscribe', 'SubscribeController');
@@ -69,9 +71,6 @@ Route::resource('subscribe', 'SubscribeController');
 Route::resource('feedback', 'FeedbackController');
 
 Route::post('search' , 'PagesController@search');
-
-//tags route
-// Route::resource('tags', 'TagController', ['except' => ['create']]);
 
 // comments
 Route::post('comments/{post_id}', ['uses' => 'CommentsController@store', 'as' => 'comments.store']);
@@ -82,5 +81,5 @@ Route::get('comments/{id}/delete', ['uses' => 'CommentsController@delete', 'as' 
 
 
 // Recommends routes
-	Route::get('recommend/{id}/blog', 'BlogController@userRecommends');
-	Route::get('recommend/blog', 'BlogController@guestRecommends');
+Route::get('recommend/{id}/blog', 'BlogController@userRecommends');
+Route::get('recommend/blog', 'BlogController@guestRecommends');

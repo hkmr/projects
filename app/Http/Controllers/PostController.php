@@ -12,6 +12,8 @@ use Storage;
 use App\User;
 use App\Comment;
 use Illuminate\Support\Facades\Auth;
+use Jenssegers\Agent\Agent;
+
 
 class PostController extends Controller
 {
@@ -115,8 +117,12 @@ class PostController extends Controller
         
         $post ->save(); //for saving the items
 
-
-        Session::flash('success' , 'Story published !');
+        if ($request->status == 1) {
+            Session::flash('success' , 'Story published !');
+        }
+        else{
+            Session::flash('success', 'Story saved');
+        }
 
         //after submiting redirect to show
 
@@ -129,10 +135,11 @@ class PostController extends Controller
     {   
         $post = Post::find($id);
         $comments = Comment::where('post_id' , $post->id)->get();
+        $agent = new Agent();
 
         if ($post->user_id == Auth::user()->id) {
 
-            return view('posts.show' , compact('post', 'comments'));
+            return view('posts.show' , compact('post', 'comments','agent'));
         }
         else {
 

@@ -64,10 +64,13 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        // generating substring from email
+        $loc = strpos($data['email'],'@');
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
+            'username' => substr($data['email'],0,$loc),
         ]);
     }
     
@@ -106,11 +109,14 @@ class RegisterController extends Controller
         if ($authUser) {
             return $authUser;
         }
+
+        $loc = strpos($data['email'],'@');
         return User::create([
             'name'     => $user->name,
             'email'    => $user->email,
             'provider' => $provider,
-            'provider_id' => $user->id
+            'provider_id' => $user->id,
+            'username' => substr($data['email'],0,$loc),
         ]);
     }
 }

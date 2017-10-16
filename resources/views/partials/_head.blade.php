@@ -5,6 +5,7 @@
 <meta name="csrf-token" content="{{ csrf_token() }}">
 <meta name="description" content="@yield('description') ">
 <meta name="author" content="twebox.com">
+<meta name="theme-color" content="#202e3d" />
 <title> tweBox @yield('title') </title>
 <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 <link href="/css/bootstrap.min.css" rel="stylesheet">

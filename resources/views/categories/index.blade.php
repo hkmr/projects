@@ -45,7 +45,7 @@
                     <img class="uk-transition-scale-up uk-transition-opaque" src="/images/categories/{{ $category->image }}" alt="">
                     <div class="uk-overlay-primary uk-position-cover"></div>
                     <div class="uk-position-center">
-                        <a class="uk-link-reset" href="{{'/categories/'.$category->id }}">
+                        <a class="uk-link-reset" href="{{'/category/'.$category->name }}">
                             <span class="uk-text-large uk-text-bold uk-text-uppercase"> {{ $category->name }} </span>
                         </a><br>
                         <small class="uk-text-meta">{{$category->total_posts}} Stories</small>
