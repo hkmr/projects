@@ -32,6 +32,8 @@ Route::get('about','PagesController@getAbout');
 Route::get('terms','PagesController@getTerms');
 
 Route::get('setting','UserController@setting');
+Route::post('setting/update',['uses'=>'UserController@user_setting_new', 'as'=> 'setting.update']);
+Route::get('setting/cancel',['uses' =>'UserController@cancel', 'as' =>'setting.cancel']);
 
 Route::resource('profile','ProfileController');
 Route::get('/profile/{id}',['uses'=>'ProfileController@show','as'=>'profile.show']);

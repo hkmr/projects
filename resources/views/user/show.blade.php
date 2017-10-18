@@ -28,8 +28,10 @@
 
         <div class="uk-margin-xlarge-right@m uk-margin-xlarge-left@m" uk-grid>
           <div class="uk-width-1-2@s">
+            @if( $user->setting->show_social_links != null )
+
             <div class="uk-padding-small">
-              <span class="uk-text-lead">Follow {{$user->name}} : </span>
+              <span class="uk-text-lead">Follow {{ $user->name }} : </span>
               @if($user->facebook != null)
               <a href="{{ $user->facebook }}" class="uk-icon-link uk-margin-small-right" uk-icon="icon: facebook ; ratio:1.3" title="Follow {{$user->name}} on facebook"></a>
               @endif
@@ -46,12 +48,21 @@
               <a href="{{ $user->youtube }}" class="uk-icon-link uk-margin-small-right" uk-icon="icon: youtube; ratio:1.3" title="Follow {{$user->name}} on youtube"></a>
               @endif
             </div>
+
+            @endif
+
+            <div class="uk-padding-small uk-padding-remove-top">
+              @if($user->setting->show_email_id != null)
+              <div class="uk-text-bold">Email : {{ $user->email }}</div>
+              @endif
+              <div class="uk-text-muted"> {!! $user->info !!} </div>
+            </div>
           </div>
         @if(Auth::id() == $user->id)
           <div class="uk-width-1-2@s">
             <div class="uk-flex uk-flex-right uk-padding-small">
-              <a class="uk-button uk-button-small@s uk-button-default uk-margin-small-right" href="/profile/{{$user->id}}/edit"><span uk-icon="icon: pencil"></span> <span class="uk-text-small">Edit Profile</span></a>
-              <button class="uk-button uk-button-default" href="/setting" disabled><span uk-icon="icon: settings"></span> Setting</button>
+              <a class="uk-button uk-button-default uk-button-small uk-margin-small-right" href="/profile/{{$user->id}}/edit"><span uk-icon="icon: pencil"></span> <span class="uk-text-small">Edit Profile</span></a>
+              <a class="uk-button uk-button-default uk-button-small" href="/setting" ><span uk-icon="icon: settings"></span> Setting</a>
           </div>
           </div>
         @endif
@@ -59,10 +70,10 @@
 
         <div class="uk-container uk-width-1-2@m uk-width-1-1 uk-padding-large">
             
-            @forelse($posts as $post)
+                <div class="uk-text-lead uk-text-medium">Stories</div>
 
-                <div class="uk-text-meta uk-margin"><i uk-icon="icon: clock; ratio:1.5"></i> {{$post->created_at->diffForHumans()}}</div>
-                <div class="uk-divider-small"></div>
+            @forelse($posts as $post)
+                <hr>
                 <div class="uk-card uk-card-default">
                   <div class="uk-card-header uk-padding-small">
                       <h1 class="uk-card-title uk-text-uppercase"><a class="uk-link-reset" href="{{ route('blog.single', $post->slug) }}" title="{{ $post->title }}">

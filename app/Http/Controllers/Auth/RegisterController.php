@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
+use App\UserSetting;
 use Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
@@ -11,42 +12,18 @@ use Socialite;
 
 class RegisterController extends Controller
 {
-    /*
-    |--------------------------------------------------------------------------
-    | Register Controller
-    |--------------------------------------------------------------------------
-    |
-    | This controller handles the registration of new users as well as their
-    | validation and creation. By default this controller uses a trait to
-    | provide this functionality without requiring any additional code.
-    |
-    */
 
     use RegistersUsers;
 
-    /**
-     * Where to redirect users after registration.
-     *
-     * @var string
-     */
+
     protected $redirectTo = '/';
 
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
+
     public function __construct()
     {
         $this->middleware('guest');
     }
 
-    /**
-     * Get a validator for an incoming registration request.
-     *
-     * @param  array  $data
-     * @return \Illuminate\Contracts\Validation\Validator
-     */
     protected function validator(array $data)
     {
         return Validator::make($data, [
@@ -56,22 +33,22 @@ class RegisterController extends Controller
         ]);
     }
 
-    /**
-     * Create a new user instance after a valid registration.
-     *
-     * @param  array  $data
-     * @return User
-     */
     protected function create(array $data)
-    {
+    {   
         // generating substring from email
         $loc = strpos($data['email'],'@');
-        return User::create([
+        $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
             'username' => substr($data['email'],0,$loc),
         ]);
+
+        $setting = new UserSetting;
+        $setting->user_id = $user->id;
+        $setting->save();
+        
+        return $user;
     }
     
     public function redirectToProvider($provider)
@@ -79,14 +56,6 @@ class RegisterController extends Controller
         return Socialite::driver($provider)->redirect();
     }
 
-    /**
-     * Obtain the user information from provider.  Check if the user already exists in our
-     * database by looking up their provider_id in the database.
-     * If the user exists, log them in. Otherwise, create a new user then log them in. After that 
-     * redirect them to the authenticated users homepage.
-     *
-     * @return Response
-     */
     public function handleProviderCallback($provider)
     {
         $user = Socialite::driver($provider)->user();
@@ -96,13 +65,7 @@ class RegisterController extends Controller
         return redirect($this->redirectTo);
     }
 
-    /**
-     * If a user has registered before using social auth, return the user
-     * else, create a new user object.
-     * @param  $user Socialite user object
-     * @param $provider Social auth provider
-     * @return  User
-     */
+
     public function findOrCreateUser($user, $provider)
     {
         $authUser = User::where('email', $user->email)->first();
@@ -111,12 +74,19 @@ class RegisterController extends Controller
         }
 
         $loc = strpos($data['email'],'@');
-        return User::create([
+        $createUser = User::create([
             'name'     => $user->name,
             'email'    => $user->email,
             'provider' => $provider,
             'provider_id' => $user->id,
             'username' => substr($data['email'],0,$loc),
+            'avatar'   => $user->public_profile,
         ]);
+
+        $setting = new UserSetting;
+        $setting->user_id = $createUser->id;
+        $setting->save();
+
+        return $createUser;
     }
 }

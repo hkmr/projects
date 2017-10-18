@@ -46,4 +46,9 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Category::class, 'category_follows', 'user_id' , 'category_id')->withTimeStamps();
     }
+
+    public function setting()
+    {
+        return $this->hasOne('App\UserSetting');
+    }
 }

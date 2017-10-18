@@ -15,18 +15,46 @@
 
 			<div class="uk-width-3-5@m">
 				
-				<h2 class="uk-heading-primary">Heading</h2>
-				<hr>
-				<div class="uk-margin uk-width uk-inline">
-					<div class="uk-position-left uk-text-lead">Text</div>
+				<h2 class="uk-heading-primary">Settings</h2>
+
+				<div class=" uk-margin-large-top uk-text-bold uk-text-large"><span uk-icon="icon: hashtag;ratio:1.3"></span>Privacy</div>
+
+				{!! Form::open(['route' => 'setting.update', 'method' => "POST"]) !!}
+				<div class="uk-margin uk-width uk-inline uk-margin-medium">
+					<div class="uk-position-left uk-text-lead">Show Social Links on Profile Page </div>
 					<div class="uk-position-right">
-						<div class="ui toggle checkbox">
-						  <label>Subscribe to weekly newsletter</label>
-						  <input  type="checkbox" name="public">
+						<div class="uk-margin">
+						  <label class="uk-switch">
+						  	<input type="checkbox" name="show_social_link" {{ $user->show_social_links =="on" ? 'checked' : '' }}>
+						  	<span class="uk-slider"></span>
+						  </label>
 						</div>
 					</div>
 				</div>
+				<hr>
 
+				<div class="uk-margin uk-width uk-inline uk-margin-medium-top">
+					<div class="uk-position-left uk-text-lead">Show Email Publicly </div>
+					<div class="uk-position-right">
+						<div class="uk-margin">
+						  <label class="uk-switch">
+						  	<input type="checkbox" name="show_email_id" {{ $user->show_email_id =="on" ? 'checked' : '' }}>
+						  	<span class="uk-slider"></span>
+						  </label>
+						</div>
+					</div>
+				</div>
+				<hr class="uk-divider-icon">
+
+				<div class="uk-margin-large-top uk-flex uk-flex-right">
+				<a href="{{route('setting.cancel')}}" class="uk-button uk-button-danger uk-margin-right" >Cancel</a>
+					
+				{{ Form::submit('Save',['class' => 'uk-button uk-button-primary']) }}
+				
+				</div>
+
+				{!! Form::close() !!}
+					
 			</div>
 
 		</div>

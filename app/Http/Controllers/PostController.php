@@ -154,7 +154,7 @@ class PostController extends Controller
     public function edit($id)
     {
         //storing the post into the variable
-        $post = Post::find($id);    //finding the post using id no
+        $post = Post::find($id);    
 
         if ($post->user_id == Auth::user()->id) {
             
@@ -212,7 +212,7 @@ class PostController extends Controller
             $post->image = $fileName; 
 
             // delete the old fileName
-            Storage::delete('blog/'.$oldFileName);
+            Storage::delete('images/blog/'.$oldFileName);
         }
 
         $post->save();     

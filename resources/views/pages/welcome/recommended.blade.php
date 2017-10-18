@@ -11,14 +11,14 @@
                 <favorite :post= {{ $recomend->id }} :favorited= {{ $recomend->favorited() ? 'true' : 'false' }}
                 :likes={{ $recomend->likes }} >
                 </favorite>
-                <div><a href="" uk-icon="icon: comments" title="Comment"></a> {{ $recomend->comments()->count() }}</div>
+                <div><a href="{{ route('blog.single', $recomend->slug.'#comments') }}" uk-icon="icon: comments" title="Comment"></a> {{ $recomend->comments()->count() }}</div>
                 <div class="uk-child-width-auto">
                 <a uk-icon="icon: social" title="Share"></a>
                 <div uk-dropdown="mode: click" class="uk-dark uk-background-secondary">
                     <ul class="uk-iconnav uk-padding-remove">
-                        <li><a href="#" uk-icon="icon: facebook" title="Facebook" ></a></li>
-                        <li><a href="#" uk-icon="icon: twitter" title="Twiiter" ></a></li>
-                        <li><a href="#" uk-icon="icon: google-plus" title="Google Plus" ></a></li>
+                        <li><a href="http://www.facebook.com/share.php?u={{route('blog.single', $recomend->slug)}}&title={{$recomend->slug}}" target="_blank" uk-icon="icon: facebook" title="Facebook" ></a></li>
+                        <li><a href="http://twitter.com/home?status={{$recomend->slug}}+{{route('blog.single', $recomend->slug)}}" target="_blank" uk-icon="icon: twitter" title="Twiiter" ></a></li>
+                        <li><a href="https://plus.google.com/share?url={{route('blog.single', $recomend->slug)}}" target="_blank" uk-icon="icon: google-plus" title="Google Plus" ></a></li>
                         <li><a href="#" uk-icon="icon: instagram" title="Instagram" ></a></li>
                     </ul>
                 </div>
