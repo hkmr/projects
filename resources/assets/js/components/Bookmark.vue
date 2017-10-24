@@ -1,15 +1,24 @@
 <template>
 
     <div class="uk-child-width-auto">
-        <a class="uk-link-reset" v-if="isBookmarked" @click.prevent="unBookmark(post)">
-            <span style="color:red" uk-icon="icon: bookmark" title="Unbookmark" uk-tooltip></span>
-            <span> {{ bookmarks }} </span>
-        </a>
+        
+        <div v-if="isLogged">
+            <a class="uk-link-reset" v-if="isBookmarked" @click.prevent="unBookmark(post)">
+                <span style="color:red" uk-icon="icon: bookmark" title="Unbookmark" uk-tooltip></span>
+                <span> {{ bookmarks }} </span>
+            </a>
 
-        <a class="uk-link-reset" v-else @click.prevent="bookmark(post)">
-            <span  uk-icon="icon: bookmark" title="Bookmark" uk-tooltip></span>
-            <span> {{ bookmarks }} </span>
-        </a>
+            <a class="uk-link-reset" v-else @click.prevent="bookmark(post)">
+                <span  uk-icon="icon: bookmark" title="Bookmark" uk-tooltip></span>
+                <span> {{ bookmarks }} </span>
+            </a>
+        </div>
+        <div v-else>
+            <a href="/login" class="uk-link-reset">
+                <span  uk-icon="icon: bookmark" title="Bookmark" uk-tooltip></span>
+                <span> {{ bookmarks }} </span>
+            </a>
+        </div>
 
     </div>
 
@@ -19,23 +28,29 @@
 <script>
 
 	export default {
-        props: ['post', 'bookmarked' ,'bookmarks'],
+        props: ['post', 'bookmarked' ,'bookmarks', 'user'],
 
         data: function() {
             return {
                 isBookmarked: '',
                 count : 0,
+                isLogged: '',
             }
         },
 
         mounted() {
             this.isBookmarked = this.isBookmark ? true : false;
+            this.isLogged = this.isLogin ? true : false ;
         },
 
         computed: {
             isBookmark() {
                 return this.bookmarked;
             },
+            isLogin() {
+
+                return this.user;
+            }
         },
 
         methods: {

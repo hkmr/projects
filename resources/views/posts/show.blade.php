@@ -54,7 +54,7 @@
 
                 <div class="uk-flex-center" uk-grid>
                     <favorite :post= {{ $post->id }} :favorited= {{ $post->favorited() ? 'true' : 'false' }}
-                      :likes={{ $post->likes }} >
+                      :likes={{ $post->likes }} :user = {{ Auth::check() ? 'true' : 'false' }} >
                     </favorite>
                     <div class="uk-child-width-auto">
                       <a href="{{ route('blog.single', $post->slug.'#comments') }}">
@@ -63,7 +63,7 @@
                       </a>
                     </div>
                     <bookmark :post= {{ $post->id }} :bookmarked = {{ $post->bookmarked() ? 'true': 'false' }} :bookmarks ={{ $post->bookmarks }}
-                    ></bookmark> 
+                     :user = {{ Auth::check() ? 'true' : 'false' }} ></bookmark> 
                     <div><a href="http://www.facebook.com/share.php?u={{route('blog.single', $post->slug)}}&title={{$post->slug}}" target="_blank" title="Share this story on Facebook" uk-icon="icon: facebook"></a></div>
                     <div><a href="http://twitter.com/home?status={{$post->slug}}+https://laravel.com/docs/5.5/collections#method-push" target="_blank" title="Share this story on Twiiter" uk-icon="icon: twitter"></a></div>
                     <div><a href="https://plus.google.com/share?url={{route('blog.single', $post->slug)}}" target="_blank" title="Share this story on Google-plus" uk-icon="icon: google-plus"></a></div>

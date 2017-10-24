@@ -4,7 +4,7 @@
 	$.notify("{{ Session::get('success') }}",{
 		type:"info",
 		color: "#fff",
-		background:"#4B7EE0",
+		background:"#4c73ad",
 		delay:4000,
 		}); 
 	</script>
@@ -19,7 +19,7 @@
 				<script>
 					$.notify("{{ $error }}",{
 						color: "#fff",
-						background: "#D44950",
+						background: "#ad5d5d",
 						delay:5000,
 						close:true,
 						}); 

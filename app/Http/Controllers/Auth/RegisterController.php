@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\User;
 use App\UserSetting;
+use App\UserAchievement;
 use Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
@@ -37,16 +38,32 @@ class RegisterController extends Controller
     {   
         // generating substring from email
         $loc = strpos($data['email'],'@');
+        $username = substr($data['email'],0,$loc);
+        $usercount = 0;
+        // checking for username
+        $allUsers = User::where('username',$username)->get();
+        
+        if($allUsers != null)
+        {
+            $username = $username.$allUsers->count();
+        }
         $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
-            'username' => substr($data['email'],0,$loc),
+            'username' => $username,
+            'avatar' => 'https://www.gravatar.com/avatar/'.md5($data['email']).'?f=v&d=wavatar',
         ]);
 
+        // creating setting table for user
         $setting = new UserSetting;
         $setting->user_id = $user->id;
         $setting->save();
+
+        // creating achievement table for user
+        $achieve = new UserAchievement;
+        $achieve->user_id = $user->id;
+        $achieve->save();
         
         return $user;
     }

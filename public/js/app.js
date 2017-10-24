@@ -11981,26 +11981,41 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    props: ['post', 'bookmarked', 'bookmarks'],
+    props: ['post', 'bookmarked', 'bookmarks', 'user'],
 
     data: function data() {
         return {
             isBookmarked: '',
-            count: 0
+            count: 0,
+            isLogged: ''
         };
     },
 
     mounted: function mounted() {
         this.isBookmarked = this.isBookmark ? true : false;
+        this.isLogged = this.isLogin ? true : false;
     },
 
 
     computed: {
         isBookmark: function isBookmark() {
             return this.bookmarked;
+        },
+        isLogin: function isLogin() {
+
+            return this.user;
         }
     },
 
@@ -12056,25 +12071,41 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    props: ['post', 'favorited', 'likes'],
+    props: ['post', 'favorited', 'likes', 'user'],
 
     data: function data() {
         return {
             isFavorited: '',
-            count: 0
+            count: 0,
+            isLogged: ''
         };
     },
 
     mounted: function mounted() {
         this.isFavorited = this.isFavorite ? true : false;
+        this.isLogged = this.isLogin ? true : false;
     },
 
 
     computed: {
         isFavorite: function isFavorite() {
             return this.favorited;
+        },
+        isLogin: function isLogin() {
+
+            return this.user;
         }
     },
 
@@ -12134,26 +12165,41 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    props: ['category', 'followed', 'followers'],
+    props: ['category', 'followed', 'followers', 'user'],
 
     data: function data() {
         return {
             isFollowed: '',
-            count: 0
+            count: 0,
+            isLogged: ''
         };
     },
 
     mounted: function mounted() {
         this.isFollowed = this.isFollow ? true : false;
+        this.isLogged = this.isLogin ? true : false;
     },
 
 
     computed: {
         isFollow: function isFollow() {
             return this.followed;
+        },
+        isLogin: function isLogin() {
+
+            return this.user;
         }
     },
 
@@ -38511,7 +38557,7 @@ module.exports = Component.exports
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "uk-child-width-auto"
-  }, [(_vm.isFavorited) ? _c('a', {
+  }, [(_vm.isLogged) ? _c('div', [(_vm.isFavorited) ? _c('a', {
     staticClass: "uk-link-reset",
     on: {
       "click": function($event) {
@@ -38546,7 +38592,20 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }), _vm._v(" "), _c('span', {
     staticClass: "uk-text-meta uk-text-small"
-  }, [_vm._v(" " + _vm._s(_vm.likes) + " ")])])])
+  }, [_vm._v(" " + _vm._s(_vm.likes) + " ")])])]) : _c('div', [_c('a', {
+    staticClass: "uk-link-reset",
+    attrs: {
+      "href": "/login"
+    }
+  }, [_c('span', {
+    attrs: {
+      "uk-icon": "icon: heart",
+      "title": "Like",
+      "uk-tooltip": ""
+    }
+  }), _vm._v(" "), _c('span', {
+    staticClass: "uk-text-meta uk-text-small"
+  }, [_vm._v(" " + _vm._s(_vm.likes) + " ")])])])])
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
@@ -38561,7 +38620,7 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', [(_vm.isFollowed) ? _c('div', [_c('button', {
+  return _c('div', [(_vm.isLogged) ? _c('div', [(_vm.isFollowed) ? _c('div', [_c('button', {
     staticClass: "uk-button uk-button-default uk-button-small",
     on: {
       "click": function($event) {
@@ -38576,7 +38635,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "uk-icon": "icon:check"
     }
-  }), _vm._v(" FOLLOWING\n            ")]), _c('br'), _vm._v(" "), _c('span', {
+  }), _vm._v(" FOLLOWING\n                ")]), _c('br'), _vm._v(" "), _c('span', {
     staticClass: "uk-text-meta"
   }, [_vm._v(" " + _vm._s(_vm.followers) + " Following ")])]) : _c('div', [_c('button', {
     staticClass: "uk-button uk-button-default uk-button-small",
@@ -38585,6 +38644,13 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         $event.preventDefault();
         _vm.follow(_vm.category)
       }
+    }
+  }, [_vm._v("FOLLOW\n                ")]), _c('br'), _vm._v(" "), _c('span', {
+    staticClass: "uk-text-meta uk-text-center"
+  }, [_vm._v(" " + _vm._s(_vm.followers) + " Following")])])]) : _c('div', [_c('a', {
+    staticClass: "uk-button uk-button-default uk-button-small",
+    attrs: {
+      "href": "/login"
     }
   }, [_vm._v("FOLLOW\n            ")]), _c('br'), _vm._v(" "), _c('span', {
     staticClass: "uk-text-meta uk-text-center"
@@ -38605,7 +38671,7 @@ if (false) {
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "uk-child-width-auto"
-  }, [(_vm.isBookmarked) ? _c('a', {
+  }, [(_vm.isLogged) ? _c('div', [(_vm.isBookmarked) ? _c('a', {
     staticClass: "uk-link-reset",
     on: {
       "click": function($event) {
@@ -38636,7 +38702,18 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "title": "Bookmark",
       "uk-tooltip": ""
     }
-  }), _vm._v(" "), _c('span', [_vm._v(" " + _vm._s(_vm.bookmarks) + " ")])])])
+  }), _vm._v(" "), _c('span', [_vm._v(" " + _vm._s(_vm.bookmarks) + " ")])])]) : _c('div', [_c('a', {
+    staticClass: "uk-link-reset",
+    attrs: {
+      "href": "/login"
+    }
+  }, [_c('span', {
+    attrs: {
+      "uk-icon": "icon: bookmark",
+      "title": "Bookmark",
+      "uk-tooltip": ""
+    }
+  }), _vm._v(" "), _c('span', [_vm._v(" " + _vm._s(_vm.bookmarks) + " ")])])])])
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {

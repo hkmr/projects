@@ -46,7 +46,7 @@
 	            <div class="uk-grid-small uk-child-width-1-4" uk-grid>
 
 		          <favorite :post= {{ $myFav->id }} :favorited= {{ $myFav->favorited() ? 'true' : 'false' }}
-	                :likes={{ $myFav->likes }} >
+	                :likes={{ $myFav->likes }} :user = {{ Auth::check() ? 'true' : 'false' }} >
 	              </favorite>
 
 	              <div class="uk-child-width-auto"><a href="{{ route('blog.single', $myFav->slug.'#comments') }}" uk-icon="icon: comments" title="Comments" uk-tooltip></a><span class="uk-text-meta uk-text-small"> {{ $myFav->comments()->count() }} </span> </div>
@@ -63,7 +63,7 @@
 	                </div>
 	               </div>
 	              <bookmark :post= {{ $myFav->id }} :bookmarked = {{ $myFav->bookmarked() ? 'true': 'false' }} :bookmarks ={{ $myFav->bookmarks }}
-              		></bookmark> 
+              		:user = {{ Auth::check() ? 'true' : 'false' }} ></bookmark> 
 	            </div>
 	          </div>
 	        </div>

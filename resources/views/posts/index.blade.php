@@ -31,7 +31,7 @@
                 <div class="uk-card-footer ">
                     <div class="uk-child-width-1-5" uk-grid>
                         <div>
-                            <favorite :post= {{ $post->id }} :favorited= {{ $post->favorited() ? 'true' : 'false' }} :likes={{ $post->likes }} >
+                            <favorite :post= {{ $post->id }} :favorited= {{ $post->favorited() ? 'true' : 'false' }} :likes={{ $post->likes }} :user = {{ Auth::check() ? 'true' : 'false' }} >
                             </favorite>
                         </div>
                         <div><a href="{{ route('blog.single', $post->slug.'#comments') }}" uk-icon="icon: comments"></a> {{ $post->comments()->count() }} </div>
@@ -47,7 +47,7 @@
                             </div>
                         </div>
                         <div>
-                            <bookmark :post= {{ $post->id }} :bookmarked = {{ $post->bookmarked() ? 'true': 'false' }} :bookmarks ={{ $post->bookmarks }} ></bookmark> 
+                            <bookmark :post= {{ $post->id }} :bookmarked = {{ $post->bookmarked() ? 'true': 'false' }} :bookmarks ={{ $post->bookmarks }} :user = {{ Auth::check() ? 'true' : 'false' }} ></bookmark> 
                         </div>
                         <div>
                             <a class="uk-link-reset" uk-icon="icon: chevron-down"> More</a>

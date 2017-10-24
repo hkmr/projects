@@ -10,7 +10,7 @@
 			<div class="uk-width-1-5@m"></div>
 			<div class="uk-width-3-5@m">
 				
-				{!! Form::model($user , ['route' => ['profile.update', $user->id] , 'method' =>'PUT' , 'files' => 'true'] ) !!}
+				{!! Form::model($user , ['route' => ['profile.update', $user->username] , 'method' =>'PUT' , 'files' => 'true'] ) !!}
 
 				<fieldset class="uk-fieldset">
 					
@@ -90,12 +90,12 @@
 					<div class="uk-margin">
 						{{ Form::label('info', 'About Yourself:',['class'=> 'uk-form-label' ]) }}
 						<div class="uk-form-control">
-							{{ Form::textarea('info', null, ['class' => 'uk-textarea ', 'required']) }}
+							{!! Form::textarea('info', null, ['class' => 'uk-textarea ', 'required']) !!}
 						</div>
 					</div>
 
 					<div class="uk-margin">
-						{!! Html::linkRoute('profile.show', 'Cancel' , array($user->id), array('class' => 'uk-button uk-button-danger') ) !!} 
+						{!! Html::linkRoute('profile.show', 'Cancel' , array($user->username), array('class' => 'uk-button uk-button-danger') ) !!} 
 
 						{{ Form::submit('Save', ['class' => 'uk-button uk-button-primary']) }}
 					</div>

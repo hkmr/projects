@@ -30,15 +30,16 @@
               </div>
           </div>
           <div class="uk-card-body">
+            @if($post->image !=null)
             <div class="uk-background-blend-darken uk-background-primary uk-background-cover uk-height-small uk-panel uk-flex uk-flex-center uk-flex-middle" style="background-image: url({{ asset($post->image) }} " alt="{{$post->name}}">
-
             </div>
+            @endif
               <p>{{ substr(strip_tags($post->body), 0, 200) }} {{ strlen(strip_tags($post->body)) >200 ? '...' : '' }}<a href="{{ route('blog.single', $post->slug) }}">read more.</a></p>
           </div>
           <div class="uk-card-footer">
             <div class="uk-grid-small uk-child-width-1-4" uk-grid>
               <favorite :post= {{ $post->id }} :favorited= {{ $post->favorited() ? 'true' : 'false' }}
-                :likes={{ $post->likes }} >
+                :likes={{ $post->likes }} :user = {{ Auth::check() ? 'true' : 'false' }} >
               </favorite>
               <div class="uk-child-width-auto">
                 <a href="{{ route('blog.single', $post->slug.'#comments') }}">
@@ -57,7 +58,7 @@
                     </ul>
                 </div>
                </div>
-              <bookmark :post= {{ $post->id }} :bookmarked = {{ $post->bookmarked() ? 'true': 'false' }} :bookmarks ={{ $post->bookmarks }}
+              <bookmark :post= {{ $post->id }} :bookmarked = {{ $post->bookmarked() ? 'true': 'false' }} :bookmarks ={{ $post->bookmarks }} :user = {{ Auth::check() ? 'true' : 'false' }}
               ></bookmark> 
             </div>
           </div>

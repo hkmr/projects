@@ -90,12 +90,6 @@
       <h1>Submit your suggestion</h1>
     </div>
     <div class="modal-body">
-      <!-- <form action="">
-        <input type="text" name="userName" placeholder="your name">
-        <input type="text" name="email" placeholder="email address" /><br>
-        <textarea name="massage" placeholder="your suggestion here..."></textarea>
-        <input type="submit" name="Submit">
-      </form> -->
       {!! Form::open([ 'route' => 'feedback.store', 'method' => 'POST' ]) !!}
           <div class="form-group">
           {{ Form::text('username', null, ['class' => 'form-control', 'required'=>'required','placeholder'=>'user name *']) }}<br>

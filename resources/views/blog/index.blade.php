@@ -22,22 +22,23 @@
                       <img class="uk-border-circle uk-icon uk-icon-image" icon-ratio="1.5" src="{{ strpos($post->user->avatar, "http",0) ===0 ? $post->user->avatar : '/images/user-profile/'.$post->user->avatar   }}">
                   </div>
                   <div class="uk-text-left">
-                    <h3 class="uk-text-small uk-margin-remove-bottom"><a class="uk-link-reset" href="{{ '/profile/'. $post->user->id }}">{{ $post->user->name }}</a></h3>
+                    <h3 class="uk-text-small uk-margin-remove-bottom"><a class="uk-link-reset" href="{{ '/profile/'. $post->user->username }}">{{ $post->user->name }}</a></h3>
                       <p class="uk-text-meta uk-margin-remove-top"><time>{{ $post->created_at->diffForHumans() }}</time></p>
                   </div>
               </div>
           </div>
           <div class="uk-card-body">
-            <div class="uk-background-blend-darken uk-background-primary uk-background-cover uk-height-small uk-panel uk-flex uk-flex-center uk-flex-middle" style="background-image: url({{ asset($post->image) }} " alt="{{$post->name}});">
-
+            @if($post->image !=null)
+            <div class="uk-background-blend-darken uk-background-primary uk-background-cover uk-height-small uk-panel uk-flex uk-flex-center uk-flex-middle" style="background-image: url({{'/images/blog/'.$post->image}} " alt="{{$post->name}});">
             </div>
+            @endif
               <p class="word-count">{{ substr(strip_tags($post->body), 0, 200) }} {{ strlen(strip_tags($post->body)) >200 ? '...' : '' }}<a href="{{ route('blog.single', $post->slug) }}">read more.</a></p>
           </div>
           <div class="uk-card-footer">
             <div class="uk-grid-small uk-child-width-1-4" uk-grid>
               <keep-alive>
                 <favorite :post= {{ $post->id }} :favorited= {{ $post->favorited() ? 'true' : 'false' }}
-                :likes={{ $post->likes }} >
+                :likes={{ $post->likes }} :user = {{ Auth::check() ? 'true' : 'false' }} >
               </favorite>
               </keep-alive>
               <div class="uk-child-width-auto">
@@ -57,7 +58,7 @@
                     </ul>
                 </div>
                </div>
-              <bookmark :post= {{ $post->id }} :bookmarked = {{ $post->bookmarked() ? 'true': 'false' }} :bookmarks ={{ $post->bookmarks }}
+              <bookmark :post= {{ $post->id }} :bookmarked = {{ $post->bookmarked() ? 'true': 'false' }} :bookmarks ={{ $post->bookmarks }} :user = {{ Auth::check() ? 'true' : 'false' }}
               ></bookmark> 
             </div>
           </div>

@@ -10,7 +10,14 @@
 
          <div class="uk-flex uk-flex-center">
              <div class="uk-width-1-2@m">
-                 <h2 class="uk-heading-primary">All stories of {{ $categoryName }}</h2>
+                 <h2 class="uk-heading-primary">All stories of {{ $category->name }}</h2>
+                 <follow
+                  :category ={{ $category->id }}
+                  :followed = {{ $category->followed() ? 'true' : 'false' }}
+                  :followers ={{ $category->total_followers }}
+                  :user = {{ Auth::check() ? 'true' : 'false' }}
+                  ></follow>
+                  <hr>
                  <div class="infinite-scroll">
                  @forelse ($posts as $post)
                      
@@ -42,7 +49,7 @@
                       <div class="uk-card-footer">
                         <div class="uk-grid-small uk-child-width-1-4" uk-grid>
                           <favorite :post= {{ $post->id }} :favorited= {{ $post->favorited() ? 'true' : 'false' }}
-                            :likes={{ $post->likes }} >
+                            :likes={{ $post->likes }} :user = {{ Auth::check() ? 'true' : 'false' }} >
                           </favorite>
 
                           <div class="uk-child-width-auto">
@@ -60,7 +67,7 @@
                                 </ul>
                             </div>
                            </div>
-                          <bookmark :post= {{ $post->id }} :bookmarked = {{ $post->bookmarked() ? 'true': 'false' }} :bookmarks ={{ $post->bookmarks }}
+                          <bookmark :post= {{ $post->id }} :bookmarked = {{ $post->bookmarked() ? 'true': 'false' }} :bookmarks ={{ $post->bookmarks }} :user = {{ Auth::check() ? 'true' : 'false' }}
                           ></bookmark>
                         </div>
                       </div>

@@ -53,6 +53,7 @@
                         :category ={{ $category->id }}
                         :followed = {{ $category->followed() ? 'true' : 'false' }}
                         :followers ={{ $category->total_followers }}
+                        :user = {{ Auth::check() ? 'true' : 'false' }}
                         ></follow>
                     </div>
 

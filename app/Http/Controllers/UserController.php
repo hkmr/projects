@@ -26,9 +26,13 @@ class UserController extends Controller
 
     public function setting()
     {
-        
-        $user = UserSetting::where('user_id',Auth::user()->id)->first();
-        return view('user.setting', compact('method', 'user'));
+        if(Auth::check())
+            {
+                $user = UserSetting::where('user_id',Auth::user()->id)->first();
+                return view('user.setting', compact('method', 'user'));
+            }
+        else
+            return redirect()->back();
 
     }
 
@@ -72,8 +76,4 @@ class UserController extends Controller
 
     }
 
-    public function cancel()
-    {
-        return redirect(route('profile.show',Auth::user()->username));
-    }
 }

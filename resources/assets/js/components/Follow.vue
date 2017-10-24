@@ -1,16 +1,25 @@
 <template>
 	
 	<div>
-		<div v-if="isFollowed">
-            <button class="uk-button uk-button-default uk-button-small" @click.prevent="unfollow(category)">
-                <span style="color:green" uk-icon="icon:check"></span> FOLLOWING
-            </button><br>
-            <span class="uk-text-meta"> {{ followers }} Following </span>      
+		
+        <div v-if="isLogged">
+            <div v-if="isFollowed">
+                <button class="uk-button uk-button-default uk-button-small" @click.prevent="unfollow(category)">
+                    <span style="color:green" uk-icon="icon:check"></span> FOLLOWING
+                </button><br>
+                <span class="uk-text-meta"> {{ followers }} Following </span>      
+            </div>
+            
+            <div v-else>
+                <button class="uk-button uk-button-default uk-button-small" @click.prevent="follow(category)">FOLLOW
+                </button><br>
+                <span class="uk-text-meta uk-text-center"> {{ followers }} Following</span>
+            </div>
         </div>
-        
+
         <div v-else>
-            <button class="uk-button uk-button-default uk-button-small" @click.prevent="follow(category)">FOLLOW
-            </button><br>
+            <a href="/login" class="uk-button uk-button-default uk-button-small" >FOLLOW
+            </a><br>
             <span class="uk-text-meta uk-text-center"> {{ followers }} Following</span>
         </div>
 
@@ -21,23 +30,29 @@
 <script>
 	
 	export default {
-        props: ['category', 'followed', 'followers'],
+        props: ['category', 'followed', 'followers', 'user'],
 
         data: function() {
             return {
                 isFollowed: '',
                 count: 0,
+                isLogged: '',
             }
         },
 
         mounted() {
             this.isFollowed = this.isFollow ? true : false;
+            this.isLogged = this.isLogin ? true : false ;
         },
 
         computed: {
             isFollow() {
                 return this.followed;
             },
+            isLogin() {
+
+                return this.user;
+            }
         },
 
         methods: {

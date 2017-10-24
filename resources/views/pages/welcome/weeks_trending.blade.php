@@ -21,15 +21,16 @@
           </div>
       </div>
       <div class="uk-card-body">
+        @if($weekTrend->image !=null)
         <div class="uk-background-blend-darken uk-background-primary uk-background-cover uk-height-small uk-panel uk-flex uk-flex-center uk-flex-middle" style="background-image: url({{'/images/blog/'.$weekTrend->image}});">
-
         </div>
+        @endif
           <p>{{ substr(strip_tags($weekTrend->body), 0 ,100) }} {{ strlen(strip_tags($weekTrend->body)) >250 ? '...' : '' }}<a href="{{ route('blog.single', $weekTrend->slug) }}">read more.</a></p>
       </div>
       <div class="uk-card-footer">
         <div class="uk-grid-small uk-child-width-1-4" uk-grid>
           <favorite :post= {{ $weekTrend->id }} :favorited= {{ $weekTrend->favorited() ? 'true' : 'false' }}
-            :likes={{ $weekTrend->likes }} >
+            :likes={{ $weekTrend->likes }} :user = {{ Auth::check() ? 'true' : 'false' }} >
           </favorite>
           <div class="uk-child-width-auto"><a href="" uk-icon="icon: comments" title="Comment" uk-tooltip></a><span class="uk-text-meta uk-text-small"> {{ $weekTrend->comments()->count() }}</span> </div>
           <div class="uk-child-width-auto">
@@ -43,7 +44,7 @@
                 </ul>
             </div>
            </div>
-          <bookmark :post= {{ $weekTrend->id }} :bookmarked = {{ $weekTrend->bookmarked() ? 'true': 'false' }} :bookmarks ={{ $weekTrend->bookmarks }}
+          <bookmark :post= {{ $weekTrend->id }} :bookmarked = {{ $weekTrend->bookmarked() ? 'true': 'false' }} :bookmarks ={{ $weekTrend->bookmarks }} :user = {{ Auth::check() ? 'true' : 'false' }}
               ></bookmark> 
         </div>
       </div>

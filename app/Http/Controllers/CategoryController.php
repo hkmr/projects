@@ -80,9 +80,8 @@ class CategoryController extends Controller
         // $category = Category::where('id', $id )->get();
         $category = Category::where('name',$id)->first();
         $posts = Post::where([['category_id', $category->id ],['status',1]])->paginate(5);
-        $categoryName = $id;
 
-        return view('categories.show', compact('posts','categoryName'));
+        return view('categories.show', compact('posts','category'));
     }
 
     public function showFollowed()

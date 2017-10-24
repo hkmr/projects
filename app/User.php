@@ -15,7 +15,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'provider', 'provider_id','username',
+        'name', 'email', 'password', 'provider', 'provider_id','username','avatar',
     ];
 
     /**
@@ -50,5 +50,10 @@ class User extends Authenticatable
     public function setting()
     {
         return $this->hasOne('App\UserSetting');
+    }
+
+    public function achievement()
+    {
+        return $this->hasOne('App\UserAchievement');
     }
 }

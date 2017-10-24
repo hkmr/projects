@@ -1,6 +1,6 @@
 @extends('main')
 
-@section('title', '| Profile')
+@section('title', $user->name.' profile')
 
 
 @section('content')
@@ -13,8 +13,8 @@
                     <a href="{{ $user->avatar }}"><img  class="uk-position-bottom uk-border-circle uk-padding-small" style="z-index: 100;" width="150" height="150" src=
                       {{ strpos($user->avatar, "http",0) ===0 ? $user->avatar : '/images/user-profile/'.$user->avatar   }} ></a>
                 </div>
-                <div class="uk-overlay-default">
-                <p class="uk-heading-primary"><a href="{{'/profile/'. $user->username}}" class="uk-link-reset"> {{ $user->name }} </a></p>
+                <div class="">
+                <p class="uk-heading-primary uk-overlay-default"><a href="{{'/profile/'. $user->username}}" class="uk-link-reset"> {{ $user->name }} </a></p>
                 </div>
 
                 <ul class="uk-breadcrumb uk-position-bottom-right uk-text-meta uk-margin-small-right" style="color:#ffffff; z-index: 100;">
@@ -56,13 +56,41 @@
               <div class="uk-text-bold">Email : {{ $user->email }}</div>
               @endif
               <div class="uk-text-muted"> {!! $user->info !!} </div>
+              <div class="uk-flex uk-flex-inline">
+                <div class="uk-margin-small-right">Achievements : </div>
+                @foreach( $badgeList as $badge )
+                <div class="uk-icon uk-icon-image uk-margin-small-right" style="background-image: url({{'/images/badges/'.$badge}});" ></div>
+                @endforeach
+                
+                <a href="#user-achievement" uk-toggle>See more..</a>
+              </div>
             </div>
+            {{-- user Achievement modal --}}
+            <div id="user-achievement" uk-modal>
+                <div class="uk-modal-dialog uk-modal-body">
+                    <button class="uk-modal-close-default" type="button" uk-close></button>
+
+                    <h2 class="uk-modal-title">{{ $user->name }}'s Badges</h2>
+                    <div class="uk-icon uk-icon-image uk-margin-small-right" style="background-image: url({{'/images/badges/badge.100.views.png'}});" ></div>
+                    <div class="uk-icon uk-icon-image uk-margin-small-right" style="background-image: url({{'/images/badges/badge.turkey.png'}});" ></div>
+                    <div class="uk-icon uk-icon-image uk-margin-small-right" style="background-image: url({{'/images/badges/badge.penguin.png'}});" ></div>
+                    <div class="uk-icon uk-icon-image uk-margin-small-right" style="background-image: url({{'/images/badges/badge.flamingo.png'}});" ></div>
+                    
+                </div>
+            </div>
+
           </div>
         @if(Auth::id() == $user->id)
           <div class="uk-width-1-2@s">
             <div class="uk-flex uk-flex-right uk-padding-small">
-              <a class="uk-button uk-button-default uk-button-small uk-margin-small-right" href="/profile/{{$user->id}}/edit"><span uk-icon="icon: pencil"></span> <span class="uk-text-small">Edit Profile</span></a>
+              <a class="uk-button uk-button-default uk-button-small uk-margin-small-right" href="/profile/{{$user->username}}/edit"><span uk-icon="icon: pencil"></span> <span class="uk-text-small">Edit Profile</span></a>
               <a class="uk-button uk-button-default uk-button-small" href="/setting" ><span uk-icon="icon: settings"></span> Setting</a>
+          </div>
+          </div>
+        @else
+          <div class="uk-width-1-2@s">
+            <div class="uk-flex uk-flex-right uk-padding-small">
+              <a class="uk-button uk-button-secondary uk-button-small uk-margin-small-right" href="#"><span uk-icon="icon: user; ratio:0.7"></span> <span class="uk-text-small">Follow</span></a>
           </div>
           </div>
         @endif
@@ -70,7 +98,7 @@
 
         <div class="uk-container uk-width-1-2@m uk-width-1-1 uk-padding-large">
             
-                <div class="uk-text-lead uk-text-medium">Stories</div>
+                <div class="uk-text-lead uk-text-medium">Stories </div>
 
             @forelse($posts as $post)
                 <hr>
@@ -91,15 +119,16 @@
                       </div>
                   </div>
                   <div class="uk-card-body">
+                    @if($post->image !=null)
                     <div class="uk-background-blend-darken uk-background-primary uk-background-cover uk-height-small uk-panel uk-flex uk-flex-center uk-flex-middle" style="background-image: url( {{ $post->featured_image  }} );">
-
                     </div>
+                    @endif
                       <p>{{ substr(strip_tags($post->body), 0 ,100) }} {{ strlen(strip_tags($post->body)) >250 ? '...' : '' }}<a href="{{ route('blog.single', $post->slug) }}">read more.</a></p>
                   </div>
                   <div class="uk-card-footer">
                     <div class="uk-grid-small uk-child-width-1-4" uk-grid>
                       <favorite :post= {{ $post->id }} :favorited= {{ $post->favorited() ? 'true' : 'false' }}
-                        :likes={{ $post->likes }} >
+                        :likes={{ $post->likes }} :user = {{ Auth::check() ? 'true' : 'false' }} >
                       </favorite>
 
                       <div class="uk-child-width-auto">
@@ -117,7 +146,7 @@
                             </ul>
                         </div>
                        </div>
-                      <bookmark :post= {{ $post->id }} :bookmarked = {{ $post->bookmarked() ? 'true': 'false' }} :bookmarks ={{ $post->bookmarks }}
+                      <bookmark :post= {{ $post->id }} :bookmarked = {{ $post->bookmarked() ? 'true': 'false' }} :bookmarks ={{ $post->bookmarks }} :user = {{ Auth::check() ? 'true' : 'false' }}
                       ></bookmark>
                     </div>
                   </div>

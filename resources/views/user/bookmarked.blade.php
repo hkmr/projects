@@ -7,7 +7,7 @@
 @section('content')
 
 <div class="uk-container uk-margin-xlarge-top">
-	<h1 class="uk-heading-primary">Liked Stories</h1>
+	<h1 class="uk-heading-primary">Bookmark List</h1>
 
 	<div class="uk-container">
 
@@ -46,7 +46,7 @@
 	            <div class="uk-grid-small uk-child-width-1-4" uk-grid>
 
 		          <favorite :post= {{ $myBookmark->id }} :favorited= {{ $myBookmark->favorited() ? 'true' : 'false' }}
-	                :likes={{ $myBookmark->likes }} >
+	                :likes={{ $myBookmark->likes }} :user = {{ Auth::check() ? 'true' : 'false' }} >
 	              </favorite>
 
 	              <div class="uk-child-width-auto"><a href="{{ route('blog.single', $myBookmark->slug.'#comments') }}" uk-icon="icon: comments" title="Comments" uk-tooltip></a><span class="uk-text-meta uk-text-small"> {{ $myBookmark->comments()->count() }} </span> </div>
@@ -62,7 +62,7 @@
 	                    </ul>
 	                </div>
 	               </div>
-	              <bookmark :post= {{ $myBookmark->id }} :bookmarked = {{ $myBookmark->bookmarked() ? 'true': 'false' }} :bookmarks ={{ $myBookmark->bookmarks }}
+	              <bookmark :post= {{ $myBookmark->id }} :bookmarked = {{ $myBookmark->bookmarked() ? 'true': 'false' }} :bookmarks ={{ $myBookmark->bookmarks }} :user = {{ Auth::check() ? 'true' : 'false' }}
               		></bookmark> 
 	            </div>
 	          </div>

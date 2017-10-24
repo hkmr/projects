@@ -16,7 +16,7 @@
 
 @section('content')
     
-    @if ($post->image)
+    @if ($post->image != null)
       <div class="uk-cover-container uk-margin-large-top">
           <canvas width="400" height="200"></canvas>
           <img uk-cover src="{{'/images/blog/'.$post->image}}" >
@@ -48,7 +48,7 @@
 
                 <div class="uk-flex-center" uk-grid>
                     <favorite :post= {{ $post->id }} :favorited= {{ $post->favorited() ? 'true' : 'false' }}
-                      :likes={{ $post->likes }} >
+                      :likes={{ $post->likes }} :user = {{ Auth::check() ? 'true' : 'false' }} >
                     </favorite>
                     <div class="uk-child-width-auto">
                       <a href="{{ route('blog.single', $post->slug.'#comments') }}">
@@ -56,7 +56,7 @@
                         <span class="uk-text-meta uk-text-small"> {{ $post->comments()->count() }}</span> 
                       </a>
                     </div>
-                    <bookmark :post= {{ $post->id }} :bookmarked = {{ $post->bookmarked() ? 'true': 'false' }} :bookmarks ={{ $post->bookmarks }}
+                    <bookmark :post= {{ $post->id }} :bookmarked = {{ $post->bookmarked() ? 'true': 'false' }} :bookmarks ={{ $post->bookmarks }} :user = {{ Auth::check() ? 'true' : 'false' }}
                     ></bookmark> 
                     <div><a href="http://www.facebook.com/share.php?u={{route('blog.single', $post->slug)}}&title={{$post->slug}}" target="_blank" title="Share this story on Facebook" uk-icon="icon: facebook"></a></div>
                     <div><a href="http://twitter.com/share?text={{$post->title}}&url={{route('blog.single', $post->slug)}}" target="_blank" title="Share this story on Twiiter" uk-icon="icon: twitter"></a></div>

@@ -6,7 +6,7 @@
 <meta name="description" content="@yield('description') ">
 <meta name="author" content="twebox.com">
 <meta name="theme-color" content="#202e3d" />
-<title> tweBox @yield('title') </title>
+<title> @yield('title') | twebox </title>
 <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 <link href="/css/bootstrap.min.css" rel="stylesheet">
 <link href="/css/semantic.min.css" rel="stylesheet">

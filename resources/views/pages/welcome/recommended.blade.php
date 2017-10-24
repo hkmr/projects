@@ -9,7 +9,7 @@
             <p>{{ substr(strip_tags($recomend->body), 0 ,100) }} {{ strlen(strip_tags($recomend->body)) >250 ? '...' : '' }} <a href="{{ route('blog.single', $recomend->slug) }}" class="uk-link-reset">Read More</a></p>
             <div class="uk-child-width-1-4" uk-grid>
                 <favorite :post= {{ $recomend->id }} :favorited= {{ $recomend->favorited() ? 'true' : 'false' }}
-                :likes={{ $recomend->likes }} >
+                :likes={{ $recomend->likes }} :user = {{ Auth::check() ? 'true' : 'false' }} >
                 </favorite>
                 <div><a href="{{ route('blog.single', $recomend->slug.'#comments') }}" uk-icon="icon: comments" title="Comment"></a> {{ $recomend->comments()->count() }}</div>
                 <div class="uk-child-width-auto">
@@ -23,7 +23,7 @@
                     </ul>
                 </div>
                </div>
-                <bookmark :post= {{ $recomend->id }} :bookmarked = {{ $recomend->bookmarked() ? 'true': 'false' }} :bookmarks ={{ $recomend->bookmarks }}
+                <bookmark :post= {{ $recomend->id }} :bookmarked = {{ $recomend->bookmarked() ? 'true': 'false' }} :bookmarks ={{ $recomend->bookmarks }} :user = {{ Auth::check() ? 'true' : 'false' }}
               ></bookmark> 
             </div>
         </div>
