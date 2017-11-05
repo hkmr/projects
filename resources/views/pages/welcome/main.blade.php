@@ -7,7 +7,7 @@
 
 @section('content')
 
-<div class="uk-container uk-margin-xlarge-top">
+<div class="uk-container">
     
     @if(!Auth::check())
     {{-- Welcome Message --}}

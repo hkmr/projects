@@ -30,6 +30,7 @@ class UserController extends Controller
             {
                 $user = UserSetting::where('user_id',Auth::user()->id)->first();
                 return view('user.setting', compact('method', 'user'));
+
             }
         else
             return redirect()->back();

@@ -7,7 +7,7 @@
 @section('content')
 
 
-<div class="uk-padding-large uk-margin-large-top">
+<div class="uk-padding-large">
 	
 	<div uk-grid>
 		<div class="uk-width-1-5@m"></div>

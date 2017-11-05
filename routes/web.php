@@ -83,3 +83,9 @@ Route::get('comments/{id}/delete', ['uses' => 'CommentsController@delete', 'as' 
 // Recommends routes
 Route::get('recommend/{id}/blog', 'BlogController@userRecommends');
 Route::get('recommend/blog', 'BlogController@guestRecommends');
+
+
+Route::get('/markAsRead', function(){
+
+	auth()->user()->notifications->markAsRead();
+});

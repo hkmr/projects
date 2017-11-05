@@ -36,10 +36,7 @@ class PagesController extends Controller {
 			$recomends = Post::all()->where('status',1)->random(5);
 		}
 
-		// detect device
-		$agent = new Agent();
-
-		return view('pages.welcome.main', compact('posts', 'categories', 'weekTrends' ,'recomends', 'agent'));
+		return view('pages.welcome.main', compact('posts', 'categories', 'weekTrends' ,'recomends'));
 	}
 
 	public function getAbout(){

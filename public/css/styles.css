@@ -235,26 +235,26 @@
   color: #c5c5c9;
 }
 
-::-webkit-scrollbar {
+/*::-webkit-scrollbar {
       width: 8px;
       height: 5px;
 }
 
 ::-webkit-scrollbar-track {
       background-color: #d9dde2;
-} /* the new scrollbar will have a flat appearance with the set background color */
+} 
  
 ::-webkit-scrollbar-thumb {
       background-color: rgba(0, 0, 0, 0.5); 
-} /* this will style the thumb, ignoring the track */
- /*
+}
+ 
 ::-webkit-scrollbar-button {
       background-color: #4591ef;
-}  */
+}  
  
 ::-webkit-scrollbar-corner {
       background-color: #4591ef;
-} 
+} */
 
 .about-para{
 	color: #b1b2b5;

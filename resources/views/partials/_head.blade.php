@@ -14,11 +14,10 @@
 
 <link href="/css/styles.css" rel="stylesheet">
 <link href="/css/notify.css" rel="stylesheet">
-<link href="/css/paradeiser.css" rel="stylesheet">
 
 <!-- UIkit CSS -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.28/css/uikit.min.css" />
-  <link href="https://fonts.googleapis.com/css?family=Bungee+Shade" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Bungee+Shade|Josefin+Sans" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
 
 <!-- facebook meta tags -->

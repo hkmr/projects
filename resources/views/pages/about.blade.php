@@ -8,7 +8,7 @@
 @section('content')
 
     <div class="uk-flex uk-flex-center">
-        <div class="uk-padding-large uk-margin-large-top">
+        <div class="uk-padding-large ">
         <h1 class="uk-heading-primary">About us</h1>
         <hr>
     </div>

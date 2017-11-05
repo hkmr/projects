@@ -45,6 +45,8 @@
 					</div>
 				</div>
 				<hr>
+				@if(false)
+				{{-- just to not display to for underconstruction --}}
 				<div class="uk-margin uk-width uk-inline uk-margin-small-top">
 					<div class="uk-position-left uk-text-lead">Show My Achievements </div>
 					<div class="uk-position-right">
@@ -56,6 +58,7 @@
 						</div>
 					</div>
 				</div>
+				@endif
 				<hr class="uk-divider-icon">
 
 				<div class="uk-margin-large-top uk-flex uk-flex-right">

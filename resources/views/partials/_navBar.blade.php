@@ -1,81 +1,68 @@
-<header class="uk-position-relative" id="header" >  
-<link href="https://fonts.googleapis.com/css?family=Noto+Sans" rel="stylesheet">
-<nav class="paradeiser">
-     <a href="/">
-        <h3 >Twebox</h3>
-    </a>
-    
-    <a href="/blogs" class="link">
-        <div class="paradeiser_icon_canvas">
-            <span uk-icon="icon: thumbnails; ratio:1.3"></span>
+
+  <div style="box-shadow: 0px 1px 5px #888888;" uk-sticky="sel-target: .uk-navbar-container; cls-active: uk-navbar-sticky; bottom: #transparent-sticky-navbar">
+      <div class="uk-navbar uk-section uk-section-default" uk-grid>
+
+        <div class=" uk-width-1-4 uk-flex uk-flex-left">
+          <span class="uk-margin-small-left uk-padding-small uk-text-large" style="font-family: 'Josefin Sans', cursive; font-size:30px;"><a href="/" class="uk-link-reset uk-logo">Twebox</a></span>
         </div>
-        <span>Stories</span>
-    </a>
-    <a href="{{ route('posts.create') }}" class="link">
-        <div class="paradeiser_icon_canvas">
-            <span uk-icon="icon: file-edit; ratio:1.3"></span>
+
+        <div class="uk-width-3-4 uk-flex uk-flex-right">
+          <ul class="uk-subnav uk-subnav-pill uk-margin-medium-right uk-padding-small" uk-margin>
+              
+              <li><a href="#modal-full" title="Search" uk-toggle><span uk-icon="icon:search;ratio:1.3"></span></a></li>
+              <!-- search full screen  -->
+                <div id="modal-full" class="uk-modal-full uk-modal" uk-modal>
+                    <div class="uk-modal-dialog uk-flex uk-flex-center uk-flex-middle" uk-height-viewport>
+                        <button class="uk-modal-close-full" type="button" uk-close></button>
+
+                        {!! Form::open(['url' =>'search', 'method' => 'POST', 'class' => 'uk-search uk-search-large']) !!}
+
+                            {{ Form::search('keywords', null , ['class' => 'uk-search-input uk-text-center uk-inline' , 'placeholder' => 'Search...', 'autofocus' => 'autofocus']) }}
+
+                            {{ Form::submit('Submit', ['style' =>'display:none']) }}
+
+                        {!! Form::close() !!}
+                    </div>
+                </div>
+
+              @if(!$agent->isMobile() || $agent->isTablet())
+              <li><a href="{{ route('posts.create') }}" title="Write New Story"><span uk-icon="icon:pencil;ratio:1.3"></span></a></li>
+              @endif
+              
+              @if(Auth::check())
+
+              <notification :notification="{{ auth()->user()->notifications }}" :userid="{{auth()->id()}}"></notification>
+
+              <li>
+                  <a title="{{Auth::user()->name}}"><img src="{{ strpos(Auth::user()->avatar, "http",0) ===0 ? Auth::user()->avatar : '/images/user-profile/'.Auth::user()->avatar }}" class="ui avatar image" style="width:32px; height:32px;"></img > </a>
+                  <div uk-dropdown="mode: click; pos: top-right;">
+                      <ul class="uk-nav uk-dropdown-nav">
+                          <li class="uk-nav-header">{{ Auth::user()->name }}</li>
+                          <li class="uk-nav-divider"></li>
+                          <li class=""><a href="{{ route('profile.show', ['id' => Auth::user()->username]) }}" title="Your Profile"><span uk-icon="icon:user"></span> Profile</a></li>
+                          <li><a href="{{ route('posts.create') }}" title="Write New Story"><span uk-icon="icon:pencil;"></span> Write Story</a></li>
+                          <li><a href="{{ route('posts.index') }}" title="Stories written by you"><span uk-icon="icon:list"></span> My Stories</a></li>
+                          <li><a href="{{ url('my_bookmarked') }}" title="All Bookmarked Stories"><span uk-icon="icon:bookmark"></span> Bookmarks</a></li>
+                          <li><a href="{{ url('my_favorites') }}" title="Stories You likes"><span uk-icon="icon:heart"></span> Likes</a></li>
+                          <li><a href="{{ url('followed') }}" title="Categories Followed"><span uk-icon="icon:thumbnails"></span> Interest</a></li>
+                          <li><a href="{{url('setting')}}" title="User Setting"><span uk-icon="icon:settings"></span> Setting</a></li>
+                          <li class="uk-nav-divider"></li>
+                          <li><a href="{{route('logout')}}"><span uk-icon="icon:sign-out"></span> Logout</a></li>
+                      </ul>
+                  </div>
+              </li>
+              @else
+              <li>
+                <a class="uk-text-large" href="{{ route('login') }}"><span uk-icon="icon:sign-in"></span>Login</a>
+              </li>
+              @endif
+          </ul>
         </div>
-        <span>Write</span>
-    </a>
-    <a href="#modal-full" class="link" uk-toggle>
-        <div class="paradeiser_icon_canvas">
-            <span uk-icon="icon: search; ratio:1.3"></span>       
-            </div>
-        <span>Search</span>
-    </a>
-    {{-- search full screen  --}}
-    <div id="modal-full" class="uk-modal-full uk-modal" uk-modal>
-        <div class="uk-modal-dialog uk-flex uk-flex-center uk-flex-middle" uk-height-viewport>
-            <button class="uk-modal-close-full" type="button" uk-close></button>
-            {{-- <form class="uk-search uk-search-large">
-                <input class="uk-search-input uk-text-center" type="search" placeholder="Search..." autofocus>
-            </form> --}}
 
-            {!! Form::open(['url' =>'search', 'method' => 'POST', 'class' => 'uk-search uk-search-large']) !!}
-
-                {{ Form::search('keywords', null , ['class' => 'uk-search-input uk-text-center uk-inline' , 'placeholder' => 'Search...', 'autofocus' => 'autofocus']) }}
-
-                {{ Form::submit('Submit', ['style' =>'display:none']) }}
-
-            {!! Form::close() !!}
-        </div>
+      </div>
     </div>
-    @if ( Auth::check() )
-    <!-- dropdown list -->
-    <div class="paradeiser_dropdown" >
-        <a href="#paradeiser-more" id="paradeiser-dropdown">
-            <div class="paradeiser_icon_canvas">
-                <!-- User icon by Icons8 -->
-                <span class="uk-icon uk-icon-image" style="background-image: url( {{ strpos(Auth::user()->avatar, "http",0) ===0 ? Auth::user()->avatar : '/images/user-profile/'.Auth::user()->avatar   }} );"></span>
-            </div>
-            <span>{{ Auth::user()->name }} </span>
-        </a>
-        <ul class="paradeiser_children" id="paradeiser-more">
-            <li><a href="{{ route('profile.show', ['id' => Auth::user()->username]) }}"><span uk-icon="icon: user"></span> Profile</a></li>
-            <li><a href="{{ route('posts.index') }}"><span uk-icon="icon: grid"></span> My Stories</a></li>
-            <li><a href="{{ url('my_favorites') }}"><span uk-icon="icon: heart"></span> Likes</a></li>
-            <li><a href="{{ url('followed') }}"><span uk-icon="icon: list"></span> Interests</a></li>
-            <li><a href="{{ url('my_bookmarked') }}"><span uk-icon="icon: bookmark"></span> Bookmarked Stories</a></li>
-            <li><a href="{{route('logout')}}"><span uk-icon="icon: sign-out"></span> Logout</a></li>
-            <li id="greybox"><a href="#!"></a></li>
-        </ul>
-    </div>
 
-    @else
-    <a href="{{ route('login') }}">
-        <div class="paradeiser_icon_canvas">
-            <!-- Login Rounded icon by Icons8 -->
-            <span uk-icon="icon: sign-in; ratio:1.3"></span>
-        </div>
-        <span>Register/Login</span>
-    </a>
-
-    @endif
-</nav>
-
-  </header>
-  <!--/#header -->
-
+    {{-- Feedback section --}}
   <div id="mySidenav" class="sidenav">
     <a uk-icon="icon: question; ratio:1.7" title="Feedback" id="myBtn" uk-tooltip></a>
   </div>
@@ -109,28 +96,3 @@
   </div>
 
 </div>
-
-
-<script>
-// Modal scripting
-// Get the modal
-var modal = document.getElementById('feedback-modal');
-// Get the button that opens the modal
-var btn = document.getElementById("myBtn");
-// Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[0];
-// When the user clicks the button, open the modal 
-btn.onclick = function() {
-    modal.style.display = "block";
-}
-// When the user clicks on <span> (x), close the modal
-span.onclick = function() {
-    modal.style.display = "none";
-}
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-    if (event.target == modal) {
-        modal.style.display = "none";
-    }
-}
-</script>

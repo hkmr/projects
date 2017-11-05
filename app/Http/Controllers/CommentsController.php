@@ -6,7 +6,9 @@ use Illuminate\Http\Request;
 use App\Comment;
 use Session;
 use App\Post;
+use App\User;
 use Illuminate\Support\Facades\Auth;
+use App\Notifications\PostComment;
 
 class CommentsController extends Controller
 {
@@ -31,7 +33,8 @@ class CommentsController extends Controller
 
     public function store(Request $request, $post_id)
     {
-        if ( Auth::user() ) {
+        // if Authenticated user
+        if ( Auth::check() ) {
             $this->validate($request, array(
             'comment'   => 'required|min:2|max:2000'
             ));
@@ -48,7 +51,13 @@ class CommentsController extends Controller
 
             $comment->save();
 
+            // sending notification
+            $user = User::where('id',$post->user_id)->first();
+
+            $user->notify(new PostComment( Auth::user(), $post, $request->comment ));
+
         }
+        // if Guest user
         else {
             $this->validate($request, array(
             'name'      => 'required|max:255',
@@ -66,10 +75,14 @@ class CommentsController extends Controller
             $comment->post()->associate($post);
 
             $comment->save();
-        }
 
-        
+            // $user = {'name': $request->name, 'email': $request->email};
 
+            // $user->notify(new PostComment( $user, $post, $request->comment ));
+        }  
+
+
+        // displaying success message
         Session('success', 'Comment posted successfully!');
 
         return redirect()->route('blog.single', [$post->slug]);

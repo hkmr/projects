@@ -112,7 +112,7 @@
                       @if($comment->user_id == null)
                         <a class="author">{{ $comment->name }}</a>
                       @else
-                      <a href="/profile/{{$comment->user->id}}" class="author">{{ $comment->user->name }}</a>
+                      <a href="/profile/{{$comment->user->username}}" class="author">{{ $comment->user->name }}</a>
                       @endif
                       <div class="metadata">
                         <span class="date">{{$comment->created_at->diffForHumans()}}</span>

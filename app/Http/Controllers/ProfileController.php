@@ -13,6 +13,7 @@ use Purifier;
 use Image;
 use Storage;
 use App\Category;
+use App\UserSetting;
 
 
 class ProfileController extends Controller
@@ -29,6 +30,7 @@ class ProfileController extends Controller
 
 	public function show($id) {
 
+
         $user = User::where('username',$id)->first();
 
 		$posts =Post::where([['user_id',$user->id],['status',1]])->orderBy('views','desc')->paginate(10);
@@ -39,7 +41,6 @@ class ProfileController extends Controller
             $total_likes+=$post->likes;
         }
 
-        // return $total_likes;
         // converting views to short form
         if($total_likes >=1000 && $total_likes <1000000)
             {
@@ -62,53 +63,61 @@ class ProfileController extends Controller
                 $show = round(($total_view/1000000),1).'M';
                 $total_view = $show;
             }
-    
-        $this->userAchievement($user->id);
+        // Creating user setting table if not present
+        if ( UserSetting::where('user_id',$user->id)->first() == null) {
+                $user_setting = new UserSetting;
+                $user_setting ->user_id = $user->id;
+                $user_setting ->show_social_links = 'on';
+                $user_setting ->show_email_id = 'on';
+                $user_setting->save(); 
+            }
 
-        $badgeList = [];
-        $list = UserAchievement::where('user_id',$user->id)->first();
+        // $this->userAchievement($user->id);
 
-        if($list->views_10m)
-            array_push($badgeList,'badge_1k_views.png','badge_10k_views.png','badge_100k_views.png','badge_500k_views.png','badge_1m_views.png','badge_10m_views');
-        else if($list->views_1m)
-            array_push($badgeList,'badge_1k_views.png','badge_10k_views.png','badge_100k_views.png','badge_500k_views.png','badge_1m_views.png');
-        elseif ($list->views_500k)
-            array_push($badgeList,'badge_1k_views.png','badge_10k_views.png','badge_100k_views.png','badge_500k_views.png');
-        else if($list->views_100k)
-            array_push($badgeList,'badge_1k_views.png','badge_10k_views.png','badge_100k_views.png');
-        else if($list->views_10k)
-            array_push($badgeList,'badge_1k_views.png','badge_10k_views.png');
-        else if($list->views_1k)
-            array_push($badgeList,'badge_1k_views.png');  
+        // $badgeList = [];
+        // $list = UserAchievement::where('user_id',$user->id)->first();
 
-        if($list->likes_1m)
-            array_push($badgeList,'badge_1k_likes.png','badge_10k_likes.png','badge_100k_likes.png','badge_500k_likes.png','badge_1m_likes.png','badge_10m_likes');
-        else if($list->likes_500k)
-            array_push($badgeList,'badge_1k_likes.png','badge_10k_likes.png','badge_100k_likes.png','badge_500k_likes.png','badge_1m_likes.png');
-        elseif ($list->likes_100k)
-            array_push($badgeList,'badge_1k_likes.png','badge_10k_likes.png','badge_100k_likes.png','badge_500k_likes.png');
-        else if($list->likes_10k)
-            array_push($badgeList,'badge_1k_likes.png','badge_10k_likes.png','badge_100k_likes.png');
-        else if($list->likes_1k)
-            array_push($badgeList,'badge_1k_likes.png','badge_10k_likes.png');
-        else if($list->likes_100)
-            array_push($badgeList,'badge_1k_likes.png');
+        // if($list->views_10m)
+        //     array_push($badgeList,'badge_1k_views.png','badge_10k_views.png','badge_100k_views.png','badge_500k_views.png','badge_1m_views.png','badge_10m_views');
+        // else if($list->views_1m)
+        //     array_push($badgeList,'badge_1k_views.png','badge_10k_views.png','badge_100k_views.png','badge_500k_views.png','badge_1m_views.png');
+        // elseif ($list->views_500k)
+        //     array_push($badgeList,'badge_1k_views.png','badge_10k_views.png','badge_100k_views.png','badge_500k_views.png');
+        // else if($list->views_100k)
+        //     array_push($badgeList,'badge_1k_views.png','badge_10k_views.png','badge_100k_views.png');
+        // else if($list->views_10k)
+        //     array_push($badgeList,'badge_1k_views.png','badge_10k_views.png');
+        // else if($list->views_1k)
+        //     array_push($badgeList,'badge_1k_views.png');  
 
-        if($list->bookmarks_10m)
-            array_push($badgeList,'badge_1k_bookmarks.png','badge_10k_bookmarks.png','badge_100k_bookmarks.png','badge_500k_bookmarks.png','badge_1m_bookmarks.png','badge_10m_bookmarks');
-        else if($list->bookmarks_1m)
-            array_push($badgeList,'badge_1k_bookmarks.png','badge_10k_bookmarks.png','badge_100k_bookmarks.png','badge_500k_bookmarks.png','badge_1m_bookmarks.png');
-        elseif ($list->bookmarks_500k)
-            array_push($badgeList,'badge_1k_bookmarks.png','badge_10k_bookmarks.png','badge_100k_bookmarks.png','badge_500k_bookmarks.png');
-        else if($list->bookmarks_100k)
-            array_push($badgeList,'badge_1k_bookmarks.png','badge_10k_bookmarks.png','badge_100k_bookmarks.png');
-        else if($list->bookmarks_10k)
-            array_push($badgeList,'badge_1k_bookmarks.png','badge_10k_bookmarks.png');
-        else if($list->bookmarks_1k)
-            array_push($badgeList,'badge_1k_bookmarks.png'); 
+        // if($list->likes_1m)
+        //     array_push($badgeList,'badge_1k_likes.png','badge_10k_likes.png','badge_100k_likes.png','badge_500k_likes.png','badge_1m_likes.png','badge_10m_likes');
+        // else if($list->likes_500k)
+        //     array_push($badgeList,'badge_1k_likes.png','badge_10k_likes.png','badge_100k_likes.png','badge_500k_likes.png','badge_1m_likes.png');
+        // elseif ($list->likes_100k)
+        //     array_push($badgeList,'badge_1k_likes.png','badge_10k_likes.png','badge_100k_likes.png','badge_500k_likes.png');
+        // else if($list->likes_10k)
+        //     array_push($badgeList,'badge_1k_likes.png','badge_10k_likes.png','badge_100k_likes.png');
+        // else if($list->likes_1k)
+        //     array_push($badgeList,'badge_1k_likes.png','badge_10k_likes.png');
+        // else if($list->likes_100)
+        //     array_push($badgeList,'badge_1k_likes.png');
+
+        // if($list->bookmarks_10m)
+        //     array_push($badgeList,'badge_1k_bookmarks.png','badge_10k_bookmarks.png','badge_100k_bookmarks.png','badge_500k_bookmarks.png','badge_1m_bookmarks.png','badge_10m_bookmarks');
+        // else if($list->bookmarks_1m)
+        //     array_push($badgeList,'badge_1k_bookmarks.png','badge_10k_bookmarks.png','badge_100k_bookmarks.png','badge_500k_bookmarks.png','badge_1m_bookmarks.png');
+        // elseif ($list->bookmarks_500k)
+        //     array_push($badgeList,'badge_1k_bookmarks.png','badge_10k_bookmarks.png','badge_100k_bookmarks.png','badge_500k_bookmarks.png');
+        // else if($list->bookmarks_100k)
+        //     array_push($badgeList,'badge_1k_bookmarks.png','badge_10k_bookmarks.png','badge_100k_bookmarks.png');
+        // else if($list->bookmarks_10k)
+        //     array_push($badgeList,'badge_1k_bookmarks.png','badge_10k_bookmarks.png');
+        // else if($list->bookmarks_1k)
+        //     array_push($badgeList,'badge_1k_bookmarks.png'); 
 
 
-        return view('user.show',compact('user', 'posts', 'total_view', 'total_likes','badgeList'));
+        return view('user.show',compact('user', 'posts', 'total_view', 'total_likes'));
 
 	}
 

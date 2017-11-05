@@ -42,7 +42,7 @@ class BlogController extends Controller
     	//fetching from database based on slug
     	$post = Post::where([['slug' , '=', $slug],['status',1]])->first();
         $post->increment('views'); 
-        $comments = Comment::where('post_id' , $post->id)->get();
+        $comments = Comment::where('post_id' , $post->id)->orderBy('created_at', 'desc')->get();
         $recommends = Post::where([['category_id', $post->category_id],['status',1]])->get()->take(5);
 
     	//returning the view

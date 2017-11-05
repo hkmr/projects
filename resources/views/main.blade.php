@@ -12,13 +12,16 @@
 
   <body>
 
-      @include('partials._navBar')  
-  
       <div id="app">
-        @yield('content')
+
+        @include('partials._navBar')  
+    
+          @yield('content')
+     
       </div>
-   
-      @include('partials._footer')
+      
+        @include('partials._footer')
+        
 
       @include('partials._javascript')
 

@@ -13,6 +13,8 @@ use App\User;
 use App\Comment;
 use Illuminate\Support\Facades\Auth;
 use Jenssegers\Agent\Agent;
+use App\Notifications\PostLike;
+use App\Notifications\PostBookmark;
 
 
 class PostController extends Controller
@@ -40,7 +42,13 @@ class PostController extends Controller
     public function favoritePost(Post $post)
     {
         Auth::user()->favorites()->attach($post->id);
+
         $post->increment('likes');
+
+        $user = User::where('id',$post->user_id)->first();
+
+        $user->notify(new PostLike( Auth::user(), $post ));
+
         return back();
     }
 
@@ -56,7 +64,13 @@ class PostController extends Controller
     public function bookmarkPost(Post $post)
     {
         Auth::user()->bookmarks()->attach($post->id);
+
         $post->increment('bookmarks');
+
+        $user = User::where('id',$post->user_id)->first();
+
+        $user->notify(new PostBookmark( Auth::user(), $post ));
+
         return back();
     }
     // unbookmark posts

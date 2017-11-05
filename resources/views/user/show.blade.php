@@ -5,7 +5,7 @@
 
 @section('content')
 
-    <div class="uk-container uk-margin-xlarge-top">
+    <div class="uk-container">
         {{-- backgroud image --}}
         <div class="uk-background-cover uk-background-muted uk-height-medium uk-panel uk-flex uk-flex-center uk-flex-middle" style="background-image: url('/images/user-cover/{{ $user->coverImage }}');">
             {{-- user profile image --}}
@@ -56,17 +56,17 @@
               <div class="uk-text-bold">Email : {{ $user->email }}</div>
               @endif
               <div class="uk-text-muted"> {!! $user->info !!} </div>
-              <div class="uk-flex uk-flex-inline">
+              {{-- <div class="uk-flex uk-flex-inline">
                 <div class="uk-margin-small-right">Achievements : </div>
                 @foreach( $badgeList as $badge )
                 <div class="uk-icon uk-icon-image uk-margin-small-right" style="background-image: url({{'/images/badges/'.$badge}});" ></div>
                 @endforeach
                 
                 <a href="#user-achievement" uk-toggle>See more..</a>
-              </div>
+              </div> --}}
             </div>
             {{-- user Achievement modal --}}
-            <div id="user-achievement" uk-modal>
+            {{-- <div id="user-achievement" uk-modal>
                 <div class="uk-modal-dialog uk-modal-body">
                     <button class="uk-modal-close-default" type="button" uk-close></button>
 
@@ -77,7 +77,7 @@
                     <div class="uk-icon uk-icon-image uk-margin-small-right" style="background-image: url({{'/images/badges/badge.flamingo.png'}});" ></div>
                     
                 </div>
-            </div>
+            </div> --}}
 
           </div>
         @if(Auth::id() == $user->id)
@@ -113,7 +113,7 @@
                               src="{{ strpos($post->user->avatar, "http",0) ===0 ? $post->user->avatar : '/images/user-profile/'.$post->user->avatar   }}">
                           </div>
                           <div class="uk-text-left">
-                            <h3 class="uk-text-small uk-margin-remove-bottom"><a class="uk-link-reset" href="/profile/{{$post->user->id}}">{{$post->user->name}}</a></h3>
+                            <h3 class="uk-text-small uk-margin-remove-bottom"><a class="uk-link-reset" href="/profile/{{$post->user->username}}">{{$post->user->name}}</a></h3>
                               <p class="uk-text-meta uk-margin-remove-top"><time>{{$post->created_at->diffForHumans()}}</time></p>
                           </div>
                       </div>

@@ -66,7 +66,7 @@
 
             unFavorite(post) {
                         
-                        if (this.count >0 ) {
+                        if (this.count >=0 ) {
 
                             axios.post('/unfavorite/'+post)
                                 .then(response => this.isFavorited = false);
